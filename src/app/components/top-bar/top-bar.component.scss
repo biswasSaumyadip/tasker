@@ -1,0 +1,53 @@
+@use 'index' as *;
+
+.menu__bar {
+  align-items: center;
+  display: flex;
+  padding: spacing(7) spacing(6);
+  height: 100%;
+  width: 100%;
+
+  .search__bar {
+    align-items: center;
+    border: 1px solid color-shade($gray, 200);
+    border-radius: spacing(3);
+    display: flex;
+    padding: spacing(2);
+    transition: border-color 0.2s;
+
+    &:focus-within {
+      border: 1px solid color-shade($indigo, 500);
+      //box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
+    }
+
+    ::ng-deep {
+      SearchIcon {
+        padding-left: spacing(3);
+        svg {
+          stroke: color-shade($gray, 400);
+        }
+      }
+    }
+  }
+
+  &--input {
+    border: none;
+    line-height: 1.25rem;
+    padding: spacing(1) spacing(2);
+    font-size: font-size(xl);
+
+    &::placeholder {
+      color: color-shade($gray, 400);
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &:enabled:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}

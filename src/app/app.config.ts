@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     // provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Nora,
+        preset: Material,
         options: {
           darkModeSelector: 'none'
         }
