@@ -1,0 +1,24 @@
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/typography' as *;
+@use 'sass:map';
+
+@function spacing($key) {
+  @return map.get($spacing, $key);
+}
+
+@function font-size($key) {
+  @return map.get($font-sizes, $key);
+}
+
+@function font-weight($key) {
+  @return map.get($font-weights, $key);
+}
+
+@function color-shade($palette, $level) {
+  @return map.get($palette, $level);
+}
+
+@function text-color($role) {
+  @return map.get($text-colors, $role);
+}

@@ -1,0 +1,55 @@
+<div class="dashboard__layout">
+  <div class="dashboard__heading">
+    <h2 class="dashboard__heading--text">
+      Dashboard
+    </h2>
+  </div>
+
+  <div class="dashboard__stats">
+    @for (stat of stats; track stat.title) {
+      <div class="dashboard__stats--item">
+        <tasker-stat-card
+          [title]="stat.title"
+          [count]="stat.count"
+          [icon]="stat.icon"/>
+      </div>
+    }
+  </div>
+
+  <div class="task__viewer">
+    <p-card styleClass="my-tasks-card">
+      <div class="task__card">
+        <div class="task__card--content">
+          <div class="task__card--header">
+            <h3 class="card__title">My Tasks</h3>
+          </div>
+          <hr/>
+          <div class="task-item">
+            <div class="task-info">
+              <div class="task-title">
+                <strong>Complete project proposal</strong>
+              </div>
+              <div class="task-description">
+                Write and submit the quarterly project proposal to management
+              </div>
+            </div>
+
+            <div class="task-meta">
+              <span class="priority-tag">High</span>
+              <span class="due-date">
+                <i class="pi pi-clock" style="margin-right: 0.25rem;"></i>
+                4/15/2025
+            </span>
+            </div>
+          </div>
+        </div>
+        <p-button
+          label="View All Tasks"
+          styleClass="p-button-primary view-tasks-button"
+          [style]="{ width: '100%', height: '38px', 'font-weight': '500', 'font-size': '12px' }"
+          class="mt-4 w-full">
+        </p-button>
+      </div>
+    </p-card>
+  </div>
+</div>

@@ -15,11 +15,14 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "tasker",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
             "outputPath": "dist/frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
