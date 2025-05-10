@@ -17,6 +17,15 @@
     .notification__button {
       position: relative;
       top: 2px;
+
+      ::ng-deep {
+        BellIcon {
+          svg {
+            stroke: color-shade($gray, 400);
+          }
+        }
+      }
+
       .notification__count {
         align-items: center;
         background-color: color-shade($red, 500);
