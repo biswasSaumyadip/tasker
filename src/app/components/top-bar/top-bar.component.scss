@@ -3,9 +3,54 @@
 .menu__bar {
   align-items: center;
   display: flex;
+  justify-content: space-between;
   padding: spacing(7) spacing(6);
   height: 100%;
   width: 100%;
+
+  .right__section {
+    display: flex;
+    align-items: center;
+    gap: spacing(7);
+    margin-right: spacing(7);
+
+    .notification__button {
+      position: relative;
+      top: 2px;
+      .notification__count {
+        align-items: center;
+        background-color: color-shade($red, 500);
+        border-radius: 50%;
+        color: color-shade($red, 50);
+        display: flex;
+        font-size: font-size(sm);
+        font-weight: font-weight(medium);
+        justify-content: center;
+        height: spacing(8);
+        position: absolute;
+        right: -#{spacing(5)};
+        text-align: center;
+        top: -#{spacing(6)};
+        width: spacing(8);
+
+      }
+    }
+
+    .user__info {
+      align-items: center;
+      display: flex;
+      gap: spacing(5);
+
+      .user__picture{
+        border-radius: 50%;
+      }
+
+      .userName {
+        font-weight: font-weight(medium);
+        font-size: font-size(xl);
+      }
+    }
+  }
 
   .search__bar {
     align-items: center;
