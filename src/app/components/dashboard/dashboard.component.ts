@@ -31,4 +31,25 @@ export class DashboardComponent {
     { title: 'Overdue', count: 0, icon: ExclamationIconComponent },
     { title: 'Due Soon', count: 2, icon: ClockIconComponent }
   ];
+
+  protected readonly tasks = [
+    {
+      title: 'Complete project proposal',
+      isAssigned: true,
+      assignedTo: 'Admin User',
+      dueDate: '2025-05-10',
+    },
+    {
+      title: 'Research Competitors',
+      isAssigned: true,
+      assignedTo: 'Team member',
+      dueDate: '2025-05-09',
+    },
+    {
+      title: 'Team meeting',
+      isAssigned: false,
+      assignedTo: null,
+      dueDate: '2025-05-09',
+    }
+  ]
 }
