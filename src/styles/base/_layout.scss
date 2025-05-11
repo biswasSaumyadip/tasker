@@ -1,0 +1,5 @@
+@use '../utils/functions' as fn;
+
+.tasker__layout {
+  padding: fn.spacing(16);
+}
