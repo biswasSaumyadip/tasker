@@ -1,2 +1,8 @@
 echo '🔎 Testing your project before pushing'
-pnpm run test:ci
+
+# Try to run the tests, capture the output
+if ! pnpm run test:ci; then
+    echo "❌ Test run failed. Please check your tests or run 'pnpm test' locally to debug."
+    echo "If you're sure you want to push anyway, use --no-verify"
+    exit 1
+fi

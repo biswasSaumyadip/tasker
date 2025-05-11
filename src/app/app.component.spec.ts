@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { testImports, testProviders } from './testing/test-helpers';
 
 describe('AppComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [AppComponent],
+			imports: [AppComponent, ...testImports],
+			providers: [...testProviders],
 		}).compileComponents();
 	});
 
@@ -19,11 +21,10 @@ describe('AppComponent', () => {
 		const app = fixture.componentInstance;
 		expect(app.title).toEqual('frontend');
 	});
-
-	it('should render title', () => {
+	it('should render the layout component', () => {
 		const fixture = TestBed.createComponent(AppComponent);
 		fixture.detectChanges();
 		const compiled = fixture.nativeElement as HTMLElement;
-		expect(compiled.querySelector('h1')?.textContent).toContain('Hello, frontend');
+		expect(compiled.querySelector('tasker-layout')).toBeTruthy();
 	});
 });

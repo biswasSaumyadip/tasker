@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CalendarComponent } from './calendar.component';
+import { testImports, testProviders } from '../../testing/test-helpers';
 
 describe('CalendarComponent', () => {
 	let component: CalendarComponent;
@@ -8,7 +8,8 @@ describe('CalendarComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [CalendarComponent],
+			imports: [CalendarComponent, ...testImports],
+			providers: [...testProviders],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(CalendarComponent);
