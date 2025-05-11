@@ -7,6 +7,10 @@
 	padding: spacing(0) spacing(2);
 	margin-top: spacing(5);
 
+  &__title {
+    color: color-shade($indigo, 500);
+  }
+
 	&__navigation {
 		display: flex;
 		flex-direction: column;
