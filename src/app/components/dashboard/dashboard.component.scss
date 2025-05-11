@@ -116,9 +116,9 @@
 	}
 
 	.view-tasks-button {
-		font-weight: 600;
+		font-weight: font-weight(semibold);
 		border-radius: 0.5rem;
-		background-color: #4f46e5;
+		background-color: color-shade($indigo, 500);
 		border: none;
 	}
 }

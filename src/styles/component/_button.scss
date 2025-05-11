@@ -1,0 +1,16 @@
+@use '../utils/functions' as fn;
+@use '../tokens/colors' as color;
+
+button.tasker__button {
+  &.p-button-primary {
+    font-weight: fn.font-weight(semibold);
+    border-radius: 0.5rem;
+    background-color: fn.color-shade(color.$indigo, 500);
+    border: none;
+
+    &:not(:disabled):hover {
+      background-color: fn.color-shade(color.$indigo, 700);
+      border: fn.color-shade(color.$indigo, 700);
+    }
+  }
+}
