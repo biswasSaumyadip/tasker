@@ -63,9 +63,8 @@ export default [
 					prefix: 'tasker',
 					style: 'kebab-case',
 				},
-			],
-			'@typescript-eslint/no-explicit-any': 'warn',
-			'no-console': 'warn',
+			],			'@typescript-eslint/no-explicit-any': 'warn',
+			'no-console': ['warn', { allow: ['warn', 'error'] }],
 		},
 	},
 	{
