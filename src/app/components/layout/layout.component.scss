@@ -1,44 +1,44 @@
 @use 'index' as *;
 
 .app-layout {
-  display:grid;
-  grid-template-columns: minmax(15rem, 25.6rem) minmax(76.8rem, auto);
-  grid-template-rows: 6.5rem auto;
-  grid-template-areas:
-    "sidebar topbar"
-    "sidebar content";
-  height: 100vh;
-  overflow: hidden;
+	display: grid;
+	grid-template-columns: minmax(15rem, 25.6rem) minmax(76.8rem, auto);
+	grid-template-rows: 6.5rem auto;
+	grid-template-areas:
+		'sidebar topbar'
+		'sidebar content';
+	height: 100vh;
+	overflow: hidden;
 }
 
 .content-area {
-  //background-color: #2563eb;
-  height: 100%;
+	//background-color: #2563eb;
+	height: 100%;
 }
 
 .sidebar {
-  grid-area: sidebar;
+	grid-area: sidebar;
 }
 
 .topbar {
-  //background-color: #1e3a8a;
-  grid-area: topbar;
-  grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	//background-color: #1e3a8a;
+	grid-area: topbar;
+	grid-row: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .content-area {
-  grid-area: content;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  background-color: color-shade($gray, 100);
+	grid-area: content;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	background-color: color-shade($gray, 100);
 }
 
 .sidebar {
-  border-style: solid;
-  border-color: #e5e7eb;
-  border-width: 1px;
+	border-style: solid;
+	border-color: #e5e7eb;
+	border-width: 1px;
 }

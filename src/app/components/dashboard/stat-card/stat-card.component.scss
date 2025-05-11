@@ -1,19 +1,18 @@
 @use 'index' as *;
 
 .dashboard__stats {
-  &--count {
-    font-size: font-size(5xl);
-  }
+	&--count {
+		font-size: font-size(5xl);
+	}
 
-  &--name {
-    color: color-shade($gray, 500);
-    font-size: font-size(2xl);
-  }
+	&--name {
+		color: color-shade($gray, 500);
+		font-size: font-size(2xl);
+	}
 
-  &--content {
-    display: flex;
-    gap: spacing(8);
-    padding: spacing(7);
-  }
-
+	&--content {
+		display: flex;
+		gap: spacing(8);
+		padding: spacing(7);
+	}
 }

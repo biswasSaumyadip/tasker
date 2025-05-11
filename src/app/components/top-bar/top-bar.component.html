@@ -1,22 +1,28 @@
 @let user = user$ | async;
 
 <div class="menu__bar">
-  <div class="search__bar">
-    <SearchIcon />
-    <input type="text" pInputText placeholder="Search tasks" class="menu__bar--input" />
-  </div>
-  <div class="right__section">
-    <div class="notification__button">
-      <span class="notification__count">
-        {{ ( notificationCount$ | async ) }}
-      </span>
-      <BellIcon />
-    </div>
-    <div class="user__info">
-      @if(user) {
-        <img [src]="user.profilePicture" alt="profilePicture" class="user__picture" width="35px" height="35">
-        <h3 class="userName">{{ user.name }}</h3>
-      }
-    </div>
-  </div>
+	<div class="search__bar">
+		<SearchIcon />
+		<input type="text" pInputText placeholder="Search tasks" class="menu__bar--input" />
+	</div>
+	<div class="right__section">
+		<div class="notification__button">
+			<span class="notification__count">
+				{{ notificationCount$ | async }}
+			</span>
+			<BellIcon />
+		</div>
+		<div class="user__info">
+			@if (user) {
+				<img
+					[src]="user.profilePicture"
+					alt="profilePicture"
+					class="user__picture"
+					width="35px"
+					height="35"
+				/>
+				<h3 class="userName">{{ user.name }}</h3>
+			}
+		</div>
+	</div>
 </div>

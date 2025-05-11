@@ -4,30 +4,30 @@
 @use 'sass:map';
 
 h1 {
-  font-size: map.get($font-sizes, 5xl);
-  font-weight: map.get($font-weights, bold);
-  color: map.get($text-colors, primary);
+	font-size: map.get($font-sizes, 5xl);
+	font-weight: map.get($font-weights, bold);
+	color: map.get($text-colors, primary);
 }
 
 h2 {
-  font-size: map.get($font-sizes, 4xl);
-  font-weight: map.get($font-weights, semibold);
-  color: map.get($text-colors, primary);
+	font-size: map.get($font-sizes, 4xl);
+	font-weight: map.get($font-weights, semibold);
+	color: map.get($text-colors, primary);
 }
 
 h3 {
-  font-size: map.get($font-sizes, 3xl);
-  font-weight: map.get($font-weights, semibold);
-  color: map.get($text-colors, primary);
+	font-size: map.get($font-sizes, 3xl);
+	font-weight: map.get($font-weights, semibold);
+	color: map.get($text-colors, primary);
 }
 
 p {
-  font-size: map.get($font-sizes, base);
-  color: map.get($text-colors, secondary);
-  line-height: 1.6;
+	font-size: map.get($font-sizes, base);
+	color: map.get($text-colors, secondary);
+	line-height: 1.6;
 }
 
 .text-muted {
-  color: map.get($text-colors, muted);
-  font-size: map.get($font-sizes, sm);
+	color: map.get($text-colors, muted);
+	font-size: map.get($font-sizes, sm);
 }

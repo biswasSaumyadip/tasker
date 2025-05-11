@@ -39,11 +39,13 @@ export default [
 				{
 					endOfLine: 'crlf',
 					singleQuote: true,
-					trailingComma: 'es5',
+					trailingComma: 'all',
 					tabWidth: 2,
+					useTabs: true,
 					semi: true,
 					printWidth: 100,
 					bracketSpacing: true,
+					arrowParens: 'always',
 				},
 			],
 			'@angular-eslint/directive-selector': [

@@ -1,27 +1,25 @@
-
 @use '../tokens/colors' as *;
 @use 'sass:map';
 
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-  font-size: 62.5%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-size: 62.5%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  line-height: 1.5;
-  font-family: 'Roboto', sans-serif;
-  background-color: #ffffff;
-  color: #111827;
+	line-height: 1.5;
+	font-family: 'Roboto', sans-serif;
+	background-color: #ffffff;
+	color: #111827;
 }
