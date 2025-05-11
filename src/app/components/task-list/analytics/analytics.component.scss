@@ -1,11 +1,9 @@
 @use 'index' as *;
 .analytics {
-
-  &__heading {
-    &--title {
-      font-weight: font-weight(normal);
-      font-size: font-size(2xl);
-    }
-  }
-
+	&__heading {
+		&--title {
+			font-weight: font-weight(normal);
+			font-size: font-size(2xl);
+		}
+	}
 }

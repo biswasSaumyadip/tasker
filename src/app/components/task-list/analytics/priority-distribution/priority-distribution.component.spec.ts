@@ -3,21 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PriorityDistributionComponent } from './priority-distribution.component';
 
 describe('PriorityDistributionComponent', () => {
-  let component: PriorityDistributionComponent;
-  let fixture: ComponentFixture<PriorityDistributionComponent>;
+	let component: PriorityDistributionComponent;
+	let fixture: ComponentFixture<PriorityDistributionComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PriorityDistributionComponent]
-    })
-    .compileComponents();
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			imports: [PriorityDistributionComponent],
+		}).compileComponents();
 
-    fixture = TestBed.createComponent(PriorityDistributionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+		fixture = TestBed.createComponent(PriorityDistributionComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });
