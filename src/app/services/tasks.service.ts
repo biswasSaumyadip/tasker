@@ -1,29 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Task, CreateTaskDto, TaskResponse } from '../models/task.model';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class TasksService {
+	private API = 'http://localhost:3000/api/tasks';
 
-  private API = 'http://localhost:3000/api/tasks';
+	private http: HttpClient = inject(HttpClient);
 
-  private http: HttpClient = inject(HttpClient);
+	getTasks(): Observable<Task[]> {
+		return this.http.get<Task[]>(this.API);
+	}
 
-  getTasks(): Observable<any[]> {
-    return this.http.get<any[]>(this.API);
-  }
+	createTask(name: string): Observable<TaskResponse> {
+		const dto: CreateTaskDto = { name };
+		return this.http.post<TaskResponse>(this.API, dto);
+	}
 
-  createTask(name: string): Observable<any> {
-    return this.http.post(this.API, { name });
-  }
+	startTask(id: string): Observable<TaskResponse> {
+		return this.http.post<TaskResponse>(`${this.API}/${id}/start`, {});
+	}
 
-  startTask(id: string): Observable<any> {
-    return this.http.post(`${this.API}/${id}/start`, {});
-  }
-
-  getTask(id: string): Observable<any> {
-    return this.http.get(`${this.API}/${id}`);
-  }
+	getTask(id: string): Observable<Task> {
+		return this.http.get<Task>(`${this.API}/${id}`);
+	}
 }

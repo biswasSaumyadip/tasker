@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
-import {of} from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class UserService {
+	constructor() {}
 
-  constructor() { }
-
-  getUserInfo() {
-    return of(
-      {
-        name: 'Admin User',
-        email: 'admin@example.com',
-        profilePicture: 'https://randomuser.me/api/portraits/men/30.jpg',
-      }
-    );
-  }
+	getUserInfo() {
+		return of({
+			name: 'Admin User',
+			email: 'admin@example.com',
+			profilePicture: 'https://randomuser.me/api/portraits/men/30.jpg',
+		});
+	}
 }
