@@ -10,3 +10,5 @@ import { LayoutComponent } from './components/layout/layout.component';
 export class AppComponent {
 	title = 'frontend';
 }
+
+// Test comment

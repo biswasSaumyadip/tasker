@@ -1,2 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
 echo '🔎 Testing your project before pushing'
 pnpm run test:ci
