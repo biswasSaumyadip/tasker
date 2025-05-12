@@ -1,4 +1,10 @@
-import { Component, input, InputSignal, ViewEncapsulation } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	input,
+	InputSignal,
+	ViewEncapsulation,
+} from '@angular/core';
 import { PieChartIconComponent } from '../../../icons/pie-chart-icon.component';
 
 @Component({
@@ -7,6 +13,7 @@ import { PieChartIconComponent } from '../../../icons/pie-chart-icon.component';
 	templateUrl: './completion-rate.component.html',
 	styleUrl: './completion-rate.component.scss',
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompletionRateComponent {
 	completionRate: InputSignal<number> = input<number>(0);

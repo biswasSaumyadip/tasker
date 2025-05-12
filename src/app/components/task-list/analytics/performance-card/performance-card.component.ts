@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { TrendingIconComponent } from '../../../icons/trending-icon.component';
 
 @Component({
@@ -7,6 +7,7 @@ import { TrendingIconComponent } from '../../../icons/trending-icon.component';
 	templateUrl: './performance-card.component.html',
 	styleUrl: './performance-card.component.scss',
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PerformanceCardComponent {
 	@Input() avgCompletionTime: number = 0;

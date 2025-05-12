@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BarChartIconComponent } from '../../../icons/bar-chart-icon.component';
 
 @Component({
@@ -6,6 +6,7 @@ import { BarChartIconComponent } from '../../../icons/bar-chart-icon.component';
 	imports: [BarChartIconComponent],
 	templateUrl: './priority-distribution.component.html',
 	styleUrl: './priority-distribution.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriorityDistributionComponent {
 	@Input() high = 0;
