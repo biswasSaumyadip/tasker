@@ -1,1 +1,41 @@
-<p>priority-distribution works!</p>
+<div class="priority-distribution-card">
+	<div class="priority-distribution-card__header">
+		<span class="priority-distribution-card__title">Priority Distribution</span>
+		<span class="priority-distribution-card__icon">
+			<BarChartIcon />
+		</span>
+	</div>
+
+	<div class="priority-distribution-card__row">
+		<span class="priority-distribution-card__label">High</span>
+		<div class="priority-distribution-card__bar-bg">
+			<div
+				class="priority-distribution-card__bar priority-distribution-card__bar--high"
+				[style.width.%]="(high / max) * 100"
+			></div>
+		</div>
+		<span class="priority-distribution-card__value">{{ high }}</span>
+	</div>
+
+	<div class="priority-distribution-card__row">
+		<span class="priority-distribution-card__label">Medium</span>
+		<div class="priority-distribution-card__bar-bg">
+			<div
+				class="priority-distribution-card__bar priority-distribution-card__bar--medium"
+				[style.width.%]="(medium / max) * 100"
+			></div>
+		</div>
+		<span class="priority-distribution-card__value">{{ medium }}</span>
+	</div>
+
+	<div class="priority-distribution-card__row">
+		<span class="priority-distribution-card__label">Low</span>
+		<div class="priority-distribution-card__bar-bg">
+			<div
+				class="priority-distribution-card__bar priority-distribution-card__bar--low"
+				[style.width.%]="(low / max) * 100"
+			></div>
+		</div>
+		<span class="priority-distribution-card__value">{{ low }}</span>
+	</div>
+</div>

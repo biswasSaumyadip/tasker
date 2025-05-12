@@ -1,0 +1,43 @@
+@use 'index' as *;
+
+.performance-card {
+	background-color: #f9f4ff;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	color: #7e22ce;
+	height: 100%;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+	}
+
+	&__title {
+		font-weight: font-weight(medium);
+		font-size: font-size(xl);
+	}
+
+	&__icon {
+		font-size: 1.2rem;
+	}
+
+	&__section {
+		margin-bottom: 0.8rem;
+	}
+
+	&__label {
+		display: block;
+		font-size: 0.9rem;
+		margin-bottom: 0.2rem;
+	}
+
+	&__value {
+		font-size: 1.2rem;
+		font-weight: font-weight(medium);
+
+		&--large {
+			font-size: 1.5rem;
+		}
+	}
+}

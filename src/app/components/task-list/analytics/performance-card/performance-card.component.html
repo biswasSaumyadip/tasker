@@ -1,1 +1,20 @@
-<p>performance-card works!</p>
+<div class="performance-card">
+	<div class="performance-card__header">
+		<span class="performance-card__title">Performance</span>
+		<span class="performance-card__icon">
+			<TrendingIconComponent />
+		</span>
+	</div>
+
+	<div class="performance-card__section">
+		<span class="performance-card__label">Average Completion Time</span>
+		<span class="performance-card__value performance-card__value--large">
+			{{ avgCompletionTime }} days
+		</span>
+	</div>
+
+	<div class="performance-card__section">
+		<span class="performance-card__label">Overdue Tasks</span>
+		<span class="performance-card__value">{{ overdueTasks }}</span>
+	</div>
+</div>

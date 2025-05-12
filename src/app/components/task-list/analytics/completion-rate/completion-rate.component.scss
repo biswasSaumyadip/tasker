@@ -1,0 +1,50 @@
+@use 'index' as *;
+
+.completion-rate-card {
+	background-color: color-shade($blue, 50);
+	padding: spacing(4);
+	border-radius: spacing(2);
+	color: color-shade($indigo, 500);
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+	height: 100%;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: spacing(2);
+	}
+
+	&__title {
+		font-weight: font-weight(medium);
+		font-size: font-size(xl);
+	}
+
+	&__content {
+		display: flex;
+		align-items: baseline;
+		gap: 0.3rem;
+		margin-bottom: spacing(2);
+	}
+
+	&__percentage {
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+
+	&__label {
+		font-size: 0.9rem;
+	}
+
+	&__progress {
+		background-color: #d5ddfb;
+		border-radius: 4px;
+		height: 6px;
+		overflow: hidden;
+	}
+
+	&__progress-bar {
+		background-color: color-shade($indigo, 300);
+		height: 100%;
+		transition: width 0.3s ease-in-out;
+	}
+}

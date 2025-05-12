@@ -1,1 +1,13 @@
-<p>completion-rate works!</p>
+<div class="completion-rate-card">
+	<div class="completion-rate-card__header">
+		<span class="completion-rate-card__title">Completion Rate</span>
+		<PieChartIcon />
+	</div>
+	<div class="completion-rate-card__content">
+		<span class="completion-rate-card__percentage">{{ completionRate() }}%</span>
+		<span class="completion-rate-card__label">completed</span>
+	</div>
+	<div class="completion-rate-card__progress">
+		<div class="completion-rate-card__progress-bar" [style.width.%]="completionRate()"></div>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+@use 'index' as *;
+
+.priority-distribution-card {
+	background-color: #effdf4;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	color: #0b9e51;
+	height: 100%;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 0.8rem;
+	}
+
+	&__title {
+		font-weight: font-weight(medium);
+		font-size: font-size(xl);
+	}
+
+	&__icon {
+		font-size: 1.2rem;
+	}
+
+	&__row {
+		display: flex;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		gap: 0.5rem;
+	}
+
+	&__label {
+		width: 4rem;
+		font-size: 0.9rem;
+	}
+
+	&__bar-bg {
+		flex-grow: 1;
+		background-color: #ccf2e5;
+		height: 6px;
+		border-radius: 3px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	&__bar {
+		height: 100%;
+		transition: width 0.3s;
+
+		&--high {
+			background-color: #f44336;
+		}
+
+		&--medium {
+			background-color: #ffc107;
+		}
+
+		&--low {
+			background-color: #8bc34a;
+		}
+	}
+
+	&__value {
+		width: 1.5rem;
+		text-align: right;
+		font-size: 0.9rem;
+	}
+}
