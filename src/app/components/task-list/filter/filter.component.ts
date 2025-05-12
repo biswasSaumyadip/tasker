@@ -3,26 +3,26 @@ import { FilterIconComponent } from '../../icons/filter-icon.component';
 import { Card } from 'primeng/card';
 import { AdvancedFilterIconComponent } from '../../icons/advanced-filter-icon.component';
 import { DropdownModule } from 'primeng/dropdown';
-import {AutoComplete, AutoCompleteCompleteEvent} from 'primeng/autocomplete';
-import {FormsModule} from '@angular/forms';
+import { AutoComplete } from 'primeng/autocomplete';
+import { FormsModule } from '@angular/forms';
 
 @Component({
 	selector: 'tasker-filter',
-  imports: [FilterIconComponent, Card, AdvancedFilterIconComponent, DropdownModule, AutoComplete, FormsModule],
+	imports: [
+		FilterIconComponent,
+		Card,
+		AdvancedFilterIconComponent,
+		DropdownModule,
+		AutoComplete,
+		FormsModule,
+	],
 	templateUrl: './filter.component.html',
 	styleUrl: './filter.component.scss',
 })
 export class FilterComponent {
-	statuses = [
-		'All', 'Active', 'Inactive', 'Deactivated', 'Finished',
-	];
+	statuses = ['All', 'Active', 'Inactive', 'Deactivated', 'Finished'];
 
-  status = {};
-
-  searchStatus(event: AutoCompleteCompleteEvent) {
-
-  }
-
+	status = {};
 
 	priorities = [
 		{
@@ -43,7 +43,7 @@ export class FilterComponent {
 		},
 	];
 
-  priority = {};
+	priority = {};
 
 	assignees = [
 		{
@@ -68,9 +68,9 @@ export class FilterComponent {
 		},
 	];
 
-  assignee = {};
+	assignee = {};
 
-  dueDate = {};
+	dueDate = {};
 
 	dueDates = [
 		{

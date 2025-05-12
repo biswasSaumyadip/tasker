@@ -1,50 +1,57 @@
 <div class="filter__layout">
-  <p-card>
-    <div class="filter__header">
-      <h3 class="filter__header--text flex-center">
-        <div class="filter__header--icon">
-          <FilterIcon/>
-        </div>
+	<p-card>
+		<div class="filter__header">
+			<h3 class="filter__header--text flex-center">
+				<div class="filter__header--icon">
+					<FilterIcon />
+				</div>
 
-        <div>
-          Filters
-        </div>
-      </h3>
-      <button class="advanced__filter--button icon__only indigo__button--text">
-        <div class="button__icon flex-center">
-          <AdvancedFilterIcon />
-        </div>
-        <div class="button__text flex-center">
-          Advanced
-        </div>
-      </button>
-    </div>
-    <div class="filter__actions">
-      <div class="filter__action">
-        <p class="filter__label">
-          Status
-        </p>
-        <p-autoComplete [style]="{ 'width': '100%' }" [(ngModel)]="status" [dropdown]="true" [suggestions]="statuses"></p-autoComplete>
-      </div>
-      <div class="filter__action">
-        <p class="filter__label">
-          Priority
-        </p>
-        <p-autoComplete [style]="{ 'width': '100%' }"  [(ngModel)]="priority" [dropdown]="true" [suggestions]="priorities"></p-autoComplete>
-      </div>
-      <div class="filter__action">
-        <p class="filter__label">
-          Assignee
-        </p>
-        <p-autoComplete [style]="{ 'width': '100%' }"  [(ngModel)]="assignee" [dropdown]="true" [suggestions]="assignees"></p-autoComplete>
-      </div>
-      <div class="filter__action">
-        <p class="filter__label">
-          Due Date
-        </p>
-        <p-autoComplete [style]="{ 'width': '100%' }"  [(ngModel)]="dueDate" [dropdown]="true" [suggestions]="dueDates"></p-autoComplete>
-      </div>
-    </div>
-
-  </p-card>
+				<div>Filters</div>
+			</h3>
+			<button class="advanced__filter--button icon__only indigo__button--text">
+				<div class="button__icon flex-center">
+					<AdvancedFilterIcon />
+				</div>
+				<div class="button__text flex-center">Advanced</div>
+			</button>
+		</div>
+		<div class="filter__actions">
+			<div class="filter__action">
+				<p class="filter__label">Status</p>
+				<p-autoComplete
+					[style]="{ width: '100%' }"
+					[(ngModel)]="status"
+					[dropdown]="true"
+					[suggestions]="statuses"
+				></p-autoComplete>
+			</div>
+			<div class="filter__action">
+				<p class="filter__label">Priority</p>
+				<p-autoComplete
+					[style]="{ width: '100%' }"
+					[(ngModel)]="priority"
+					[dropdown]="true"
+					[suggestions]="priorities"
+				></p-autoComplete>
+			</div>
+			<div class="filter__action">
+				<p class="filter__label">Assignee</p>
+				<p-autoComplete
+					[style]="{ width: '100%' }"
+					[(ngModel)]="assignee"
+					[dropdown]="true"
+					[suggestions]="assignees"
+				></p-autoComplete>
+			</div>
+			<div class="filter__action">
+				<p class="filter__label">Due Date</p>
+				<p-autoComplete
+					[style]="{ width: '100%' }"
+					[(ngModel)]="dueDate"
+					[dropdown]="true"
+					[suggestions]="dueDates"
+				></p-autoComplete>
+			</div>
+		</div>
+	</p-card>
 </div>
