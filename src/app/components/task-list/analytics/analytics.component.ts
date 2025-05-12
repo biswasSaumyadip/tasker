@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Card } from 'primeng/card';
 import { CompletionRateComponent } from './completion-rate/completion-rate.component';
 import { PriorityDistributionComponent } from './priority-distribution/priority-distribution.component';
@@ -9,5 +9,6 @@ import { PerformanceCardComponent } from './performance-card/performance-card.co
 	imports: [Card, CompletionRateComponent, PriorityDistributionComponent, PerformanceCardComponent],
 	templateUrl: './analytics.component.html',
 	styleUrl: './analytics.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnalyticsComponent {}

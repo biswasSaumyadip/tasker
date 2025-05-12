@@ -1,0 +1,24 @@
+@use 'index' as *;
+
+
+.filter {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &--text {
+      gap: spacing(4);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: spacing(4);
+
+    div {
+      flex: 1 1 25%;
+      width: 100%;
+    }
+  }
+}

@@ -3,3 +3,9 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.task-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: spacing(4);
+}
