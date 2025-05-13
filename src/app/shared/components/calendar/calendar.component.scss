@@ -1,0 +1,171 @@
+@use 'index' as *;
+
+.calendar {
+	display: flex;
+	flex-direction: column;
+	background: color-shade($gray, 50);
+	border-radius: spacing(2);
+	border: 1px solid color-shade($gray, 200);
+	overflow: hidden;
+}
+
+.calendar__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: spacing(4) spacing(5);
+	background: color-shade($gray, 50);
+	border-bottom: 1px solid color-shade($gray, 200);
+}
+
+.calendar__title {
+	font-size: font-size(2xl);
+	font-weight: font-weight(semibold);
+	color: color-shade($gray, 900);
+}
+
+.calendar__controls {
+	display: flex;
+	align-items: center;
+	gap: spacing(2);
+}
+
+.calendar__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: spacing(2) spacing(4);
+	background: transparent;
+	border: 1px solid color-shade($gray, 200);
+	border-radius: spacing(1);
+	color: color-shade($gray, 700);
+	font-size: font-size(base);
+	cursor: pointer;
+	transition: all 0.2s;
+
+	&:hover {
+		background: color-shade($gray, 100);
+		border-color: color-shade($gray, 300);
+	}
+
+	&--today {
+		background: color-shade($indigo, 500);
+		border-color: color-shade($indigo, 500);
+		color: white;
+
+		&:hover {
+			background: color-shade($indigo, 600);
+			border-color: color-shade($indigo, 600);
+		}
+	}
+
+	svg {
+		width: spacing(4);
+		height: spacing(4);
+		stroke: currentColor;
+	}
+}
+
+.calendar__week-days {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	background: color-shade($gray, 100);
+	border-bottom: 1px solid color-shade($gray, 200);
+}
+
+.calendar__week-day {
+	padding: spacing(3);
+	font-size: font-size(sm);
+	font-weight: font-weight(semibold);
+	color: color-shade($gray, 500);
+	text-align: center;
+}
+
+.calendar__body {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.calendar__week {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	flex: 1;
+}
+
+.calendar__day {
+	position: relative;
+	min-height: spacing(24);
+	padding: spacing(2);
+	border-right: 1px solid color-shade($gray, 200);
+	border-bottom: 1px solid color-shade($gray, 200);
+	cursor: pointer;
+	transition: background 0.2s;
+
+	&:hover {
+		background: color-shade($gray, 100);
+	}
+
+	&.other-month {
+		background: color-shade($gray, 50);
+
+		.calendar__date {
+			color: color-shade($gray, 400);
+		}
+	}
+
+	&.today {
+		.calendar__date {
+			background: color-shade($indigo, 500);
+			color: white;
+		}
+	}
+}
+
+.calendar__date {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: spacing(7);
+	height: spacing(7);
+	margin-bottom: spacing(1);
+	border-radius: 50%;
+	font-size: font-size(sm);
+	font-weight: font-weight(medium);
+	color: color-shade($gray, 900);
+}
+
+.calendar__events {
+	display: flex;
+	flex-direction: column;
+	gap: spacing(1);
+	margin-top: spacing(1);
+}
+
+.calendar__event {
+	padding: spacing(1) spacing(2);
+	border-radius: spacing(1);
+	background: color-shade($indigo, 100);
+	color: color-shade($indigo, 700);
+	font-size: font-size(xs);
+	font-weight: font-weight(medium);
+	line-height: 1.2;
+	cursor: pointer;
+	transition: all 0.2s;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	&:hover {
+		background: color-shade($indigo, 200);
+	}
+
+	&--overflow {
+		color: color-shade($gray, 500);
+		background: color-shade($gray, 100);
+
+		&:hover {
+			background: color-shade($gray, 200);
+		}
+	}
+}

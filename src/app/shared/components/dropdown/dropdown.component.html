@@ -1,0 +1,91 @@
+<div class="dropdown" [class.open]="isOpen()" #dropdown>
+	<!-- Dropdown Trigger -->
+	<div
+		class="dropdown__trigger"
+		[class.disabled]="disabled"
+		[class.error]="error"
+		(click)="toggleDropdown($event)"
+	>
+		<div class="dropdown__selected">
+			@if (selectedOption(); as option) {
+				<span class="dropdown__value">
+					@if (option.icon) {
+						<img [src]="option.icon" class="dropdown__option-icon" alt="" />
+					}
+					{{ option.label }}
+				</span>
+			} @else {
+				<span class="dropdown__placeholder">{{ placeholder }}</span>
+			}
+		</div>
+
+		<div class="dropdown__actions">
+			@if (clearable && selectedOption()) {
+				<button type="button" class="dropdown__clear" (click)="clearSelection($event)">
+					<svg width="16" height="16" viewBox="0 0 24 24">
+						<path
+							d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+						/>
+					</svg>
+				</button>
+			}
+
+			<div class="dropdown__arrow">
+				<svg width="16" height="16" viewBox="0 0 24 24">
+					<path d="M7 10l5 5 5-5z" />
+				</svg>
+			</div>
+		</div>
+	</div>
+
+	<!-- Dropdown Content -->
+	@if (isOpen()) {
+		<div class="dropdown__content" [@dropdownAnimation]>
+			@if (searchable) {
+				<div class="dropdown__search">
+					<input
+						type="text"
+						placeholder="Search..."
+						[ngModel]="searchTerm()"
+						(ngModelChange)="searchTerm.set($event)"
+						(click)="$event.stopPropagation()"
+					/>
+				</div>
+			}
+
+			@if (loading) {
+				<div class="dropdown__loading">
+					<div class="spinner"></div>
+					<span>Loading...</span>
+				</div>
+			} @else if (filteredOptions.length === 0) {
+				<div class="dropdown__empty">No options available</div>
+			} @else {
+				<div
+					class="dropdown__options"
+					role="listbox"
+					[attr.aria-activedescendant]="activeIndex() >= 0 ? 'option-' + activeIndex() : null"
+				>
+					@for (option of filteredOptions; track option.value; let i = $index) {
+						<div
+							[id]="'option-' + i"
+							class="dropdown__option"
+							[class.selected]="selectedOption()?.value === option.value"
+							[class.disabled]="option.disabled"
+							[class.active]="i === activeIndex()"
+							(click)="selectOption(option, $event)"
+							role="option"
+							[attr.aria-selected]="selectedOption()?.value === option.value"
+							[attr.aria-disabled]="option.disabled"
+						>
+							@if (option.icon) {
+								<img [src]="option.icon" class="dropdown__option-icon" alt="" />
+							}
+							<span>{{ option.label }}</span>
+						</div>
+					}
+				</div>
+			}
+		</div>
+	}
+</div>

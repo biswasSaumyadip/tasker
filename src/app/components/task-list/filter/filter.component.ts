@@ -5,6 +5,10 @@ import { AdvancedFilterIconComponent } from '../../icons/advanced-filter-icon.co
 import { DropdownModule } from 'primeng/dropdown';
 import { AutoComplete } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
+import {
+	DropdownComponent,
+	DropdownOption,
+} from '../../../shared/components/dropdown/dropdown.component';
 
 @Component({
 	selector: 'tasker-filter',
@@ -15,56 +19,62 @@ import { FormsModule } from '@angular/forms';
 		DropdownModule,
 		AutoComplete,
 		FormsModule,
+		DropdownComponent,
 	],
 	templateUrl: './filter.component.html',
 	styleUrl: './filter.component.scss',
 })
 export class FilterComponent {
-	statuses = ['All', 'Active', 'Inactive', 'Deactivated', 'Finished'];
+	statuses: DropdownOption<string>[] = [
+		{ label: 'All Status', value: 'all' },
+		{ label: 'Open', value: 'open' },
+		{ label: 'In Progress', value: 'in-progress' },
+		{ label: 'Completed', value: 'completed' },
+	];
 
 	status = {};
 
-	priorities = [
+	priorities: DropdownOption<string>[] = [
 		{
-			id: 1,
-			name: 'All Priority',
+			label: 'All Priority',
+			value: 'all',
 		},
 		{
-			id: 2,
-			name: 'High',
+			label: 'Low',
+			value: 'low',
 		},
 		{
-			id: 3,
-			name: 'Medium',
+			label: 'Medium',
+			value: 'medium',
 		},
 		{
-			id: 4,
-			name: 'Low',
+			label: 'High',
+			value: 'high',
+		},
+		{
+			label: 'Urgent',
+			value: 'urgent',
 		},
 	];
 
 	priority = {};
 
-	assignees = [
+	assignees: DropdownOption<string>[] = [
 		{
-			id: 1,
-			name: 'All Assignee',
+			label: 'All Assignees',
+			value: 'all',
 		},
 		{
-			id: 2,
-			name: 'Unassigned',
+			label: 'John Doe',
+			value: 'john-doe',
 		},
 		{
-			id: 3,
-			name: 'Admin User',
+			label: 'Jane Smith',
+			value: 'jane-smith',
 		},
 		{
-			id: 4,
-			name: 'Team Member',
-		},
-		{
-			id: 5,
-			name: 'Project Manager',
+			label: 'Bob Johnson',
+			value: 'bob-johnson',
 		},
 	];
 
@@ -74,24 +84,44 @@ export class FilterComponent {
 
 	dueDates = [
 		{
-			id: 1,
-			name: 'Any Time',
+			label: 'Today',
+			value: 'today',
 		},
 		{
-			id: 2,
-			name: 'Overdue',
+			label: 'Tomorrow',
+			value: 'tomorrow',
 		},
 		{
-			id: 3,
-			name: 'Today',
+			label: 'This Week',
+			value: 'this-week',
 		},
 		{
-			id: 4,
-			name: 'This Week',
+			label: 'Next Week',
+			value: 'next-week',
 		},
 		{
-			id: 5,
-			name: 'This Month',
+			label: 'This Month',
+			value: 'this-month',
 		},
 	];
+
+	onStatusSelect(data: DropdownOption<string> | undefined) {
+		if (!data) return;
+		this.status = data;
+	}
+
+	onPrioritySelect(data: DropdownOption<string> | undefined) {
+		if (!data) return;
+		this.priority = data;
+	}
+
+	onAssigneeSelect(data: DropdownOption<string> | undefined) {
+		if (!data) return;
+		this.assignee = data;
+	}
+
+	onDueDateSelect(data: DropdownOption<string> | undefined) {
+		if (!data) return;
+		this.dueDate = data;
+	}
 }

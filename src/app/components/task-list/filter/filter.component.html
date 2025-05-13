@@ -18,39 +18,43 @@
 		<div class="filter__actions">
 			<div class="filter__action">
 				<p class="filter__label">Status</p>
-				<p-autoComplete
-					[style]="{ width: '100%' }"
-					[(ngModel)]="status"
-					[dropdown]="true"
-					[suggestions]="statuses"
-				></p-autoComplete>
+				<tasker-dropdown
+					[options]="statuses"
+					[searchable]="true"
+					[clearable]="true"
+					(selectionChange)="onStatusSelect($event)"
+					placeholder="Select an item..."
+				></tasker-dropdown>
 			</div>
 			<div class="filter__action">
 				<p class="filter__label">Priority</p>
-				<p-autoComplete
-					[style]="{ width: '100%' }"
-					[(ngModel)]="priority"
-					[dropdown]="true"
-					[suggestions]="priorities"
-				></p-autoComplete>
+				<tasker-dropdown
+					[options]="priorities"
+					[searchable]="true"
+					[clearable]="true"
+					(selectionChange)="onPrioritySelect($event)"
+					placeholder="Select an item..."
+				></tasker-dropdown>
 			</div>
 			<div class="filter__action">
 				<p class="filter__label">Assignee</p>
-				<p-autoComplete
-					[style]="{ width: '100%' }"
-					[(ngModel)]="assignee"
-					[dropdown]="true"
-					[suggestions]="assignees"
-				></p-autoComplete>
+				<tasker-dropdown
+					[options]="assignees"
+					[searchable]="true"
+					[clearable]="true"
+					(selectionChange)="onAssigneeSelect($event)"
+					placeholder="Select an item..."
+				></tasker-dropdown>
 			</div>
 			<div class="filter__action">
 				<p class="filter__label">Due Date</p>
-				<p-autoComplete
-					[style]="{ width: '100%' }"
-					[(ngModel)]="dueDate"
-					[dropdown]="true"
-					[suggestions]="dueDates"
-				></p-autoComplete>
+				<tasker-dropdown
+					[options]="dueDates"
+					[searchable]="true"
+					[clearable]="true"
+					(selectionChange)="onDueDateSelect($event)"
+					placeholder="Select an item..."
+				></tasker-dropdown>
 			</div>
 		</div>
 	</p-card>

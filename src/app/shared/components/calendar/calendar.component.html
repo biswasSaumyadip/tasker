@@ -1,0 +1,76 @@
+<div class="calendar">
+	<header class="calendar__header">
+		<h2 class="calendar__title">{{ monthName() }}</h2>
+		<div class="calendar__controls">
+			<button class="calendar__btn" (click)="previousMonth()">
+				<svg
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<path d="M15 18l-6-6 6-6" />
+				</svg>
+			</button>
+			<button class="calendar__btn calendar__btn--today" (click)="goToToday()">Today</button>
+			<button class="calendar__btn" (click)="nextMonth()">
+				<svg
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<path d="M9 18l6-6-6-6" />
+				</svg>
+			</button>
+		</div>
+	</header>
+
+	<div class="calendar__week-days">
+		@for (day of weekDays; track day) {
+			<div class="calendar__week-day">{{ day }}</div>
+		}
+	</div>
+
+	<div class="calendar__body">
+		@for (week of weeks(); track $index) {
+			<div class="calendar__week">
+				@for (day of week; track trackByDate($index, day)) {
+					<div
+						class="calendar__day"
+						[class.other-month]="!day.isCurrentMonth"
+						[class.today]="day.isToday"
+						(click)="onDateClick(day.date)"
+					>
+						<div class="calendar__date">
+							{{ day.date.getDate() }}
+						</div>
+
+						@if (day.events?.length) {
+							<div class="calendar__events">
+								@for (event of day.events?.slice(0, 3) || []; track trackByEvent($index, event)) {
+									<div
+										class="calendar__event"
+										[style.background-color]="event.color"
+										(click)="onEventClick(event, $event)"
+									>
+										{{ event.title }}
+									</div>
+								}
+								@if ((day.events?.length || 0) > 3) {
+									<div class="calendar__event calendar__event--overflow">
+										+{{ (day.events?.length || 0) - 3 }} more
+									</div>
+								}
+							</div>
+						}
+					</div>
+				}
+			</div>
+		}
+	</div>
+</div>

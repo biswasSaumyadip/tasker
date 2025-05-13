@@ -11,7 +11,7 @@
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
 	"[html]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[scss]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"

@@ -1,0 +1,158 @@
+import { CommonModule } from '@angular/common';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	DestroyRef,
+	ElementRef,
+	EventEmitter,
+	HostListener,
+	Input,
+	OnInit,
+	Output,
+	ViewChild,
+	ViewEncapsulation,
+	inject,
+	signal,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { fromEvent } from 'rxjs';
+import { animate, style, transition, trigger } from '@angular/animations';
+
+export interface DropdownOption<T> {
+	label: string;
+	value: T;
+	disabled?: boolean;
+	icon?: string;
+}
+
+@Component({
+	selector: 'tasker-dropdown',
+	templateUrl: './dropdown.component.html',
+	styleUrls: ['./dropdown.component.scss'],
+	standalone: true,
+	imports: [CommonModule, FormsModule],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	encapsulation: ViewEncapsulation.None,
+	animations: [
+		trigger('dropdownAnimation', [
+			transition(':enter', [
+				style({ opacity: 0, transform: 'translateY(-8px)' }),
+				animate(
+					'150ms cubic-bezier(0.4, 0, 0.2, 1)',
+					style({ opacity: 1, transform: 'translateY(0)' }),
+				),
+			]),
+			transition(':leave', [
+				animate(
+					'100ms cubic-bezier(0.4, 0, 0.2, 1)',
+					style({ opacity: 0, transform: 'translateY(-8px)' }),
+				),
+			]),
+		]),
+	],
+})
+export class DropdownComponent<T> implements OnInit {
+	private destroyRef = inject(DestroyRef);
+
+	@Input() options: DropdownOption<T>[] = [];
+	@Input() placeholder = 'Select an option';
+	@Input() searchable = false;
+	@Input() clearable = false;
+	@Input() loading = false;
+	@Input() disabled = false;
+	@Input() error = false;
+
+	@Output() selectionChange = new EventEmitter<DropdownOption<T> | undefined>();
+
+	@ViewChild('dropdown') dropdownElement?: ElementRef;
+
+	isOpen = signal(false);
+	selectedOption = signal<DropdownOption<T> | null>(null);
+	searchTerm = signal('');
+	activeIndex = signal(-1);
+
+	get filteredOptions(): DropdownOption<T>[] {
+		const term = this.searchTerm().toLowerCase();
+		if (!term) return this.options;
+		return this.options.filter((option) => option.label.toLowerCase().includes(term));
+	}
+
+	ngOnInit() {
+		fromEvent(document, 'click')
+			.pipe(takeUntilDestroyed(this.destroyRef))
+			.subscribe((event: Event) => {
+				if (!this.dropdownElement?.nativeElement.contains(event.target)) {
+					this.isOpen.set(false);
+				}
+			});
+	}
+
+	toggleDropdown(event: Event) {
+		event.stopPropagation();
+		if (!this.disabled) {
+			this.isOpen.update((value) => !value);
+			if (this.isOpen()) {
+				this.activeIndex.set(
+					this.selectedOption() ? this.options.indexOf(this.selectedOption()!) : -1,
+				);
+			}
+		}
+	}
+
+	selectOption(option: DropdownOption<T>, event: Event) {
+		event.stopPropagation();
+		if (option.disabled) return;
+
+		this.selectedOption.set(option);
+		this.selectionChange.emit(option);
+		this.isOpen.set(false);
+		this.searchTerm.set('');
+	}
+
+	clearSelection(event: Event) {
+		event.stopPropagation();
+		this.selectedOption.set(null);
+		this.selectionChange.emit(undefined);
+		this.searchTerm.set('');
+	}
+
+	@HostListener('keydown', ['$event'])
+	handleKeydown(event: KeyboardEvent) {
+		if (!this.isOpen()) return;
+
+		switch (event.key) {
+			case 'Escape':
+				this.isOpen.set(false);
+				this.searchTerm.set('');
+				break;
+
+			case 'Enter':
+				if (this.activeIndex() >= 0 && this.activeIndex() < this.filteredOptions.length) {
+					this.selectOption(this.filteredOptions[this.activeIndex()], event);
+				}
+				break;
+
+			case 'ArrowDown':
+				event.preventDefault();
+				this.activeIndex.update((current) =>
+					Math.min(current + 1, this.filteredOptions.length - 1),
+				);
+				this.scrollActiveOptionIntoView();
+				break;
+
+			case 'ArrowUp':
+				event.preventDefault();
+				this.activeIndex.update((current) => Math.max(current - 1, 0));
+				this.scrollActiveOptionIntoView();
+				break;
+		}
+	}
+
+	private scrollActiveOptionIntoView() {
+		const activeOption = document.querySelector('.dropdown__option--active');
+		if (activeOption) {
+			activeOption.scrollIntoView({ block: 'nearest' });
+		}
+	}
+}
