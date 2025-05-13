@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-download-icon',
 	standalone: true,
 	template: `
@@ -22,6 +23,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 			<line x1="12" x2="12" y1="15" y2="3" />
 		</svg>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DownloadIconComponent {}

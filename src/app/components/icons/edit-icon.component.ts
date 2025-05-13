@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-edit-icon',
 	standalone: true,
 	template: `
@@ -23,6 +24,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 			/>
 		</svg>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditIconComponent {}

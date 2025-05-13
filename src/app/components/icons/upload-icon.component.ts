@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-upload-icon',
 	standalone: true,
 	template: `
@@ -22,6 +23,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 			<line x1="12" x2="12" y1="3" y2="15" />
 		</svg>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UploadIconComponent {}

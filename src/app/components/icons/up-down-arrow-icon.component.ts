@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-up-down-arrow-icon',
 	standalone: true,
 	template: `
@@ -23,6 +24,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 			<path d="M7 4v16" />
 		</svg>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpDownArrowIconComponent {}

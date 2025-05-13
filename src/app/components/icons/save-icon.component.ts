@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-save-icon',
 	standalone: true,
 	template: `
@@ -24,6 +25,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 			<path d="M7 3v4a1 1 0 0 0 1 1h7" />
 		</svg>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SaveIconComponent {}
