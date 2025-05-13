@@ -1,0 +1,25 @@
+@use '../utils/functions' as fn;
+@use '../tokens/colors' as color;
+
+:host ::ng-deep .p-card {
+	border-radius: fn.spacing(2);
+	background: white;
+	box-shadow:
+		0 1px 3px 0 rgba(0, 0, 0, 0.1),
+		0 1px 2px -1px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.2s ease-in-out;
+
+	&:hover {
+		box-shadow:
+			0 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0 2px 4px -2px rgba(0, 0, 0, 0.1);
+	}
+
+	.p-card-body {
+		padding: fn.spacing(6);
+	}
+
+	.p-card-content {
+		padding: 0;
+	}
+}
