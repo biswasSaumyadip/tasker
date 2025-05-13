@@ -3,7 +3,6 @@ import { FilterIconComponent } from '../../icons/filter-icon.component';
 import { Card } from 'primeng/card';
 import { AdvancedFilterIconComponent } from '../../icons/advanced-filter-icon.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { AutoComplete } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import {
 	DropdownComponent,
@@ -17,7 +16,6 @@ import {
 		Card,
 		AdvancedFilterIconComponent,
 		DropdownModule,
-		AutoComplete,
 		FormsModule,
 		DropdownComponent,
 	],

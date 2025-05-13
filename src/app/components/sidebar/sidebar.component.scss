@@ -3,18 +3,22 @@
 .sidebar {
 	height: 100%;
 	width: 100%;
-
-	padding: spacing(0) spacing(2);
-	margin-top: spacing(5);
+	padding: spacing(8) spacing(4);
+	border-right: 1px solid color-shade($gray, 200);
 
 	&__title {
-		color: color-shade($indigo, 500);
+		color: color-shade($indigo, 600);
+		font-size: font-size(3xl);
+		font-weight: font-weight(bold);
+		padding: 0 spacing(4);
+		letter-spacing: -0.5px;
 	}
 
 	&__navigation {
 		display: flex;
 		flex-direction: column;
-		margin-top: spacing(5);
+		margin-top: spacing(10);
+		gap: spacing(2);
 	}
 
 	&__link {
@@ -23,31 +27,45 @@
 		color: color-shade($gray, 600);
 		display: flex;
 		font-weight: font-weight(medium);
-		font-size: font-size(2xl);
+		font-size: font-size(xl);
 		line-height: 1.25rem;
-		padding: spacing(2);
-		border-radius: spacing(1-5);
-
-		transition: background 200ms ease-out;
+		padding: spacing(3) spacing(4);
+		border-radius: spacing(2);
+		position: relative;
+		transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 
 		&:hover {
-			background-color: color-shade($gray, 100);
+			background-color: color-shade($gray, 50);
 			color: color-shade($gray, 900);
 
 			::ng-deep {
 				svg {
 					stroke: color-shade($gray, 900);
+					transform: scale(1.05);
 				}
 			}
 		}
 
 		&.active {
-			background-color: color-shade($indigo, 100);
+			background-color: color-shade($indigo, 50);
 			color: color-shade($indigo, 700);
+			font-weight: font-weight(semibold);
+
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 3px;
+				height: 24px;
+				background-color: color-shade($indigo, 500);
+				border-radius: 0 spacing(1) spacing(1) 0;
+			}
 
 			::ng-deep {
 				svg {
-					stroke: color-shade($indigo, 700);
+					stroke: color-shade($indigo, 500);
 				}
 			}
 		}
@@ -56,6 +74,7 @@
 			svg {
 				stroke: color-shade($gray, 400);
 				margin-right: spacing(3);
+				transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 			}
 		}
 
