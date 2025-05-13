@@ -2,8 +2,14 @@
 
 <div class="menu__bar">
 	<div class="search__bar">
-		<SearchIcon />
-		<input type="text" pInputText placeholder="Search tasks" class="menu__bar--input" />
+		<SearchIcon />		<input
+			#searchInput
+			type="text"
+			pInputText
+			placeholder="Search tasks (Ctrl + K)"
+			class="menu__bar--input"
+			(keydown.escape)="onEscape()"
+		/>
 	</div>
 	<div class="right__section">
 		<div class="notification__button">
