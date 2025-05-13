@@ -1,68 +1,87 @@
 @use 'index' as *;
 
 .priority-distribution-card {
-	background-color: #effdf4;
-	padding: 1rem;
-	border-radius: 0.5rem;
-	color: #0b9e51;
+	background-color: color-shade($green, 50);
+	padding: spacing(6);
+	border-radius: spacing(3);
+	color: color-shade($green, 700);
 	height: 100%;
+	transition: all 0.2s ease;
 
 	&__header {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 0.8rem;
+		align-items: center;
+		margin-bottom: spacing(6);
 	}
 
 	&__title {
 		font-weight: font-weight(medium);
-		font-size: font-size(xl);
+		font-size: font-size(2xl);
+		letter-spacing: -0.3px;
 	}
 
 	&__icon {
-		font-size: 1.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&__row {
 		display: flex;
 		align-items: center;
-		margin-bottom: 0.5rem;
-		gap: 0.5rem;
+		margin-bottom: spacing(4);
+		gap: spacing(3);
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	&__label {
-		width: 4rem;
-		font-size: 0.9rem;
+		width: spacing(20);
+		font-size: font-size(lg);
+		font-weight: font-weight(medium);
+		color: color-shade($green, 600);
 	}
 
 	&__bar-bg {
 		flex-grow: 1;
-		background-color: #ccf2e5;
-		height: 6px;
-		border-radius: 3px;
+		background-color: color-shade($green, 100);
+		height: spacing(3);
+		border-radius: spacing(4);
 		position: relative;
 		overflow: hidden;
 	}
 
 	&__bar {
 		height: 100%;
-		transition: width 0.3s;
+		transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 		&--high {
-			background-color: #f44336;
+			background-color: color-shade($red, 500);
 		}
 
 		&--medium {
-			background-color: #ffc107;
+			background-color: color-shade($yellow, 400);
 		}
 
 		&--low {
-			background-color: #8bc34a;
+			background-color: color-shade($green, 400);
 		}
 	}
 
 	&__value {
-		width: 1.5rem;
+		width: spacing(8);
 		text-align: right;
-		font-size: 0.9rem;
+		font-size: font-size(sm);
+		font-weight: font-weight(medium);
+		color: color-shade($green, 800);
+	}
+
+	::ng-deep svg {
+		color: color-shade($green, 400);
+		width: spacing(6);
+		height: spacing(6);
 	}
 }

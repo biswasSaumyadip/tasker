@@ -2,49 +2,60 @@
 
 .completion-rate-card {
 	background-color: color-shade($blue, 50);
-	padding: spacing(4);
-	border-radius: spacing(2);
-	color: color-shade($indigo, 500);
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+	padding: spacing(6);
+	border-radius: spacing(3);
+	color: color-shade($indigo, 700);
 	height: 100%;
+	transition: all 0.2s ease;
 
 	&__header {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: spacing(2);
+		align-items: center;
+		margin-bottom: spacing(4);
 	}
 
 	&__title {
 		font-weight: font-weight(medium);
-		font-size: font-size(xl);
+		font-size: font-size(2xl);
+		letter-spacing: -0.3px;
 	}
 
 	&__content {
 		display: flex;
 		align-items: baseline;
-		gap: 0.3rem;
-		margin-bottom: spacing(2);
+		gap: spacing(2);
+		margin-bottom: spacing(4);
 	}
 
 	&__percentage {
-		font-size: 1.5rem;
-		font-weight: 600;
+		font-size: font-size(4xl);
+		font-weight: font-weight(semibold);
+		letter-spacing: -1px;
+		line-height: 1;
 	}
 
 	&__label {
-		font-size: 0.9rem;
+		font-size: font-size(lg);
+		color: color-shade($indigo, 500);
 	}
 
 	&__progress {
-		background-color: #d5ddfb;
-		border-radius: 4px;
-		height: 6px;
+		background-color: color-shade($indigo, 100);
+		border-radius: spacing(4);
+		height: spacing(2);
 		overflow: hidden;
 	}
 
 	&__progress-bar {
-		background-color: color-shade($indigo, 300);
+		background-color: color-shade($indigo, 500);
 		height: 100%;
-		transition: width 0.3s ease-in-out;
+		transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	::ng-deep svg {
+		color: color-shade($indigo, 400);
+		width: spacing(6);
+		height: spacing(6);
 	}
 }

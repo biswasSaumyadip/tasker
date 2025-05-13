@@ -1,43 +1,63 @@
 @use 'index' as *;
 
 .performance-card {
-	background-color: #f9f4ff;
-	padding: 1rem;
-	border-radius: 0.5rem;
-	color: #7e22ce;
+	background-color: color-shade($purple, 50);
+	padding: spacing(6);
+	border-radius: spacing(3);
+	color: color-shade($purple, 700);
 	height: 100%;
+	transition: all 0.2s ease;
 
 	&__header {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 1rem;
+		align-items: center;
+		margin-bottom: spacing(6);
 	}
 
 	&__title {
 		font-weight: font-weight(medium);
-		font-size: font-size(xl);
+		font-size: font-size(3xl);
+		letter-spacing: -0.3px;
 	}
 
 	&__icon {
-		font-size: 1.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&__section {
-		margin-bottom: 0.8rem;
+		margin-bottom: spacing(6);
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	&__label {
 		display: block;
-		font-size: 0.9rem;
-		margin-bottom: 0.2rem;
+		font-size: font-size(lg);
+		color: color-shade($purple, 500);
+		margin-bottom: spacing(2);
+		font-weight: font-weight(medium);
 	}
 
 	&__value {
-		font-size: 1.2rem;
-		font-weight: font-weight(medium);
+		font-size: font-size(2xl);
+		font-weight: font-weight(semibold);
+		color: color-shade($purple, 800);
 
 		&--large {
-			font-size: 1.5rem;
+			font-size: font-size(4xl);
+			letter-spacing: -1px;
+			line-height: 1;
 		}
+	}
+
+	::ng-deep svg {
+		color: color-shade($purple, 400);
+		width: spacing(6);
+		height: spacing(6);
 	}
 }
