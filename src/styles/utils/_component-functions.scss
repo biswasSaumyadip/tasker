@@ -1,66 +1,76 @@
-@use '../tokens/components' as *;
+@use '../tokens/components' as components;
 @use 'sass:map';
 @use './functions' as fn;
 
 // Component Token Access Functions
 @function get-button($variant: 'primary', $prop: null, $size: null) {
 	@if $size and $prop {
-		@return map.get($button, $prop, $size);
+		@return map.get(components.$button, $prop, $size);
 	} @else if $prop {
-		@return map.get($button, $prop);
+		@return map.get(components.$button, $prop);
 	}
-	@return map.get($button, 'variants', $variant);
+	@return map.get(components.$button, 'variants', $variant);
 }
 
 @function get-card($prop: null, $size: 'md') {
 	@if $prop == 'shadow' {
-		@return map.get($card, 'shadow', 'default');
+		@return map.get(components.$card, 'shadow', 'default');
 	} @else if $prop {
-		@return map.get($card, $prop, $size);
+		@return map.get(components.$card, $prop, $size);
 	}
-	@return $card;
+	@return components.$card;
 }
 
 @function get-analytics($variant: 'primary', $prop: null) {
-	@if $prop {
-		@return map.get($analytics-card, 'variants', $variant, $prop);
+	@if $prop == null {
+		@return map.get(components.$analytics-card, 'variants', $variant);
+	} @else if $variant and $prop {
+		@return map.get(components.$analytics-card, 'variants', $variant, $prop);
+	} @else {
+		@return map.get(components.$analytics-card, $prop);
 	}
-	@return map.get($analytics-card, 'variants', $variant);
 }
 
 @function get-badge($variant: 'info', $prop: null) {
 	@if $prop {
-		@return map.get($badge, $prop);
+		@return map.get(components.$badge, $prop);
 	}
-	@return map.get($badge, 'variants', $variant);
+	@return map.get(components.$badge, 'variants', $variant);
 }
 
 @function get-icon($size: 'md', $state: 'default') {
 	@if $state {
-		@return map.get($icon, 'color', $state);
+		@return map.get(components.$icon, 'color', $state);
 	}
-	@return map.get($icon, 'size', $size);
+	@return map.get(components.$icon, 'size', $size);
 }
 
 @function get-sidebar($prop: null) {
 	@if $prop {
-		@return map.get($sidebar, $prop);
+		@return map.get(components.$sidebar, $prop);
 	}
-	@return $sidebar;
+	@return components.$sidebar;
 }
 
 @function get-dropdown($prop: null) {
 	@if $prop {
-		@return map.get($dropdown, $prop);
+		@return map.get(components.$dropdown, $prop);
 	}
-	@return $dropdown;
+	@return components.$dropdown;
 }
 
 @function get-input($prop: null, $state: null) {
 	@if $state and $prop {
-		@return map.get($input, $prop, $state);
+		@return map.get(components.$input, $prop, $state);
 	} @else if $prop {
-		@return map.get($input, $prop);
+		@return map.get(components.$input, $prop);
 	}
-	@return $input;
+	@return components.$input;
+}
+
+@function get-interactive($prop: null) {
+	@if $prop {
+		@return map.get(components.$interactive, $prop);
+	}
+	@return components.$interactive;
 }

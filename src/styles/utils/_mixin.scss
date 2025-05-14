@@ -43,11 +43,13 @@
 }
 
 @mixin interactive-element {
+	$interactive: comp.get-interactive();
+
 	transition: all 0.2s ease;
 	cursor: pointer;
 	&:focus {
 		outline: none;
-		box-shadow: 0 0 0 3px rgba(fn.color-shade($indigo, 500), 0.1);
+		box-shadow: comp.get-interactive('focus-shadow');
 	}
 }
 
@@ -70,15 +72,15 @@
 	padding: comp.get-button(null, 'padding', $size);
 	border-radius: comp.get-button(null, 'radius', $size);
 	font-size: comp.get-button(null, 'font-size', $size);
-	font-weight: map.get($font-weights, 'medium');
-	background-color: map.get($button, 'bg');
-	color: map.get($button, 'text');
+	font-weight: fn.font-weight('medium');
+	background-color: comp.get-button($variant, 'bg');
+	color: comp.get-button($variant, 'text');
 	border: none;
 	transition: all 0.2s ease;
 	cursor: pointer;
 
 	&:hover:not(:disabled) {
-		background-color: map.get($button, 'hover-bg');
+		background-color: comp.get-button($variant, 'hover-bg');
 	}
 
 	&:disabled {
@@ -103,41 +105,23 @@
 }
 
 @mixin badge($variant: 'info') {
-	$badge: comp.get-badge($variant);
-
-	@if $badge {
-		padding: comp.get-badge(null, 'padding');
-		font-size: comp.get-badge(null, 'font-size');
-		border-radius: comp.get-badge(null, 'radius');
-		background: map.get($badge, 'bg');
-		color: map.get($badge, 'color');
-		font-weight: map.get($font-weights, 'medium');
-	}
+	padding: comp.get-badge(null, 'padding');
+	font-size: comp.get-badge(null, 'font-size');
+	border-radius: comp.get-badge(null, 'radius');
+	background: comp.get-badge($variant, 'bg');
+	color: comp.get-badge($variant, 'color');
+	font-weight: fn.font-weight('medium');
 }
 
 @mixin analytics-card($variant: 'primary') {
-	@if $variant == 'primary' {
-		background-color: map.get($indigo, 50);
-		color: map.get($indigo, 700);
-	} @else if $variant == 'success' {
-		background-color: map.get($green, 50);
-		color: map.get($green, 700);
-	} @else if $variant == 'warning' {
-		background-color: map.get($yellow, 50);
-		color: map.get($yellow, 700);
-	} @else if $variant == 'danger' {
-		background-color: map.get($red, 50);
-		color: map.get($red, 700);
-	} @else {
-		background-color: map.get($gray, 50);
-		color: map.get($gray, 700);
-	}
-
-	padding: spacing(6);
-	border-radius: spacing(3);
+	background-color: comp.get-analytics($variant, 'bg');
+	color: comp.get-analytics($variant, 'color');
+	padding: comp.get-analytics(null, 'padding');
+	border-radius: comp.get-analytics(null, 'radius');
 	transition: transform 0.2s ease;
 
 	&:hover {
 		transform: translateY(-2px);
+		box-shadow: comp.get-analytics($variant, 'shadow');
 	}
 }
