@@ -1,0 +1,182 @@
+@use 'colors' as *;
+@use 'spacing' as *;
+@use 'typography' as *;
+@use 'sass:map';
+
+// Card Component Tokens
+$card: (
+	padding: (
+		sm: map.get($spacing, 4),
+		md: map.get($spacing, 6),
+		lg: map.get($spacing, 8),
+	),
+	radius: (
+		sm: map.get($spacing, 1),
+		md: map.get($spacing, 2),
+		lg: map.get($spacing, 3),
+	),
+	shadow: (
+		default: (
+			0 1px 3px 0 rgba(0, 0, 0, 0.1),
+			0 1px 2px -1px rgba(0, 0, 0, 0.1),
+		),
+		hover: (
+			0 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0 2px 4px -2px rgba(0, 0, 0, 0.1),
+		),
+	),
+);
+
+// Button Component Tokens
+$button: (
+	padding: (
+		sm: map.get($spacing, 2) map.get($spacing, 3),
+		md: map.get($spacing, 3) map.get($spacing, 4),
+		lg: map.get($spacing, 4) map.get($spacing, 6),
+	),
+	radius: (
+		sm: map.get($spacing, 1),
+		md: map.get($spacing, 2),
+		lg: map.get($spacing, 3),
+	),
+	font-size: (
+		sm: map.get($font-sizes, sm),
+		md: map.get($font-sizes, base),
+		lg: map.get($font-sizes, lg),
+	),
+);
+
+// Input Component Tokens
+$input: (
+	padding: (
+		sm: map.get($spacing, 2) map.get($spacing, 3),
+		md: map.get($spacing, 3) map.get($spacing, 4),
+		lg: map.get($spacing, 4) map.get($spacing, 6),
+	),
+	radius: (
+		sm: map.get($spacing, 1),
+		md: map.get($spacing, 2),
+		lg: map.get($spacing, 3),
+	),
+	border-color: (
+		default: map.get($gray, 200),
+		focus: map.get($indigo, 500),
+		error: map.get($red, 500),
+	),
+);
+
+// Icon Component Tokens
+$icon: (
+	size: (
+		xs: map.get($spacing, 4),
+		sm: map.get($spacing, 5),
+		md: map.get($spacing, 6),
+		lg: map.get($spacing, 8),
+	),
+	color: (
+		default: map.get($gray, 400),
+		hover: map.get($gray, 600),
+		active: map.get($indigo, 500),
+	),
+);
+
+// Badge Component Tokens
+$badge: (
+	padding: map.get($spacing, 1) map.get($spacing, 2),
+	font-size: map.get($font-sizes, xs),
+	radius: map.get($spacing, 4),
+	variants: (
+		success: (
+			bg: map.get($green, 100),
+			color: map.get($green, 700),
+		),
+		warning: (
+			bg: map.get($yellow, 100),
+			color: map.get($yellow, 700),
+		),
+		error: (
+			bg: map.get($red, 100),
+			color: map.get($red, 700),
+		),
+		info: (
+			bg: map.get($indigo, 100),
+			color: map.get($indigo, 700),
+		),
+	),
+);
+
+// Dropdown Component Tokens
+$dropdown: (
+	padding: map.get($spacing, 2),
+	max-height: map.get($spacing, 64),
+	item-padding: map.get($spacing, 2) map.get($spacing, 3),
+	radius: map.get($spacing, 2),
+	border-color: map.get($gray, 200),
+	shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+	states: (
+		hover: (
+			bg: map.get($gray, 100),
+		),
+		selected: (
+			bg: map.get($indigo, 50),
+			color: map.get($indigo, 500),
+		),
+		disabled: (
+			opacity: 0.5,
+		),
+	),
+);
+
+// Sidebar Component Tokens
+$sidebar: (
+	width: (
+		collapsed: map.get($spacing, 20),
+		expanded: map.get($spacing, 64),
+	),
+	padding: map.get($spacing, 6),
+	item: (
+		padding: map.get($spacing, 3) map.get($spacing, 4),
+		radius: map.get($spacing, 2),
+		states: (
+			default: (
+				color: map.get($gray, 600),
+				bg: transparent,
+			),
+			hover: (
+				color: map.get($gray, 900),
+				bg: map.get($gray, 50),
+			),
+			active: (
+				color: map.get($indigo, 700),
+				bg: map.get($indigo, 50),
+			),
+		),
+	),
+);
+
+// Analytics Card Component Tokens
+$analytics-card: (
+	padding: map.get($spacing, 6),
+	radius: map.get($spacing, 3),
+	variants: (
+		purple: (
+			bg: map.get($purple, 50),
+			color: map.get($purple, 700),
+			accent: map.get($purple, 500),
+		),
+		green: (
+			bg: map.get($green, 50),
+			color: map.get($green, 700),
+			accent: map.get($green, 500),
+		),
+		indigo: (
+			bg: map.get($indigo, 50),
+			color: map.get($indigo, 700),
+			accent: map.get($indigo, 500),
+		),
+	),
+	title: (
+		size: map.get($font-sizes, 2xl),
+		weight: map.get($font-weights, medium),
+	),
+);

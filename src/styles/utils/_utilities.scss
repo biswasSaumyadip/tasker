@@ -1,5 +1,145 @@
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/typography' as *;
+@use '../tokens/components' as components;
+@use 'sass:map';
+@use 'functions' as fn;
+@use 'mixin';
+
+// Layout utilities
 .flex-center {
+	@include mixin.flex-center;
+}
+
+.flex-between {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+// Card utilities
+.card-sm {
+	@include mixin.card-base('sm');
+}
+
+.card-md {
+	@include mixin.card-base('md');
+}
+
+.card-lg {
+	@include mixin.card-base('lg');
+}
+
+// Button utilities
+.btn-sm {
+	@include mixin.button-base('sm');
+}
+
+.btn-md {
+	@include mixin.button-base('md');
+}
+
+.btn-lg {
+	@include mixin.button-base('lg');
+}
+
+// Badge utilities
+.badge-success {
+	@include mixin.badge('success');
+}
+
+.badge-warning {
+	@include mixin.badge('warning');
+}
+
+.badge-error {
+	@include mixin.badge('error');
+}
+
+.badge-info {
+	@include mixin.badge('info');
+}
+
+// Analytics card utilities
+.analytics-card-purple {
+	@include mixin.analytics-card('purple');
+}
+
+.analytics-card-green {
+	@include mixin.analytics-card('green');
+}
+
+.analytics-card-indigo {
+	@include mixin.analytics-card('indigo');
+}
+
+// Icon utilities
+.icon {
+	@each $size, $value in map.get(components.$icon, 'size') {
+		&-#{$size} {
+			width: $value;
+			height: $value;
+		}
+	}
+}
+
+// Typography utilities
+.text-truncate {
+	@include mixin.truncate;
+}
+
+.text-clamp-2 {
+	@include mixin.line-clamp(2);
+}
+
+.text-clamp-3 {
+	@include mixin.line-clamp(3);
+}
+
+// Interactive utilities
+.hoverable {
+	@include mixin.card-hover;
+}
+
+.interactive {
+	@include mixin.interactive-element;
+}
+
+// Spacing utilities
+@each $key, $value in $spacing {
+	.gap-#{$key} {
+		gap: $value;
+	}
+
+	.p-#{$key} {
+		padding: $value;
+	}
+
+	.m-#{$key} {
+		margin: $value;
+	}
+}
+
+// Color utilities
+@each $weight in (50, 100, 200, 300, 400, 500, 600, 700, 800, 900) {
+	.text-gray-#{$weight} {
+		color: map.get($gray, $weight);
+	}
+
+	.bg-gray-#{$weight} {
+		background-color: map.get($gray, $weight);
+	}
+
+	.text-indigo-#{$weight} {
+		color: map.get($indigo, $weight);
+	}
+
+	.bg-indigo-#{$weight} {
+		background-color: map.get($indigo, $weight);
+	}
 }

@@ -1,3 +1,9 @@
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/typography' as *;
+@use '../tokens/components' as components;
+@use 'sass:map';
+
 @mixin visually-hidden {
 	position: absolute;
 	width: 1px;
@@ -15,4 +21,92 @@
 	-webkit-line-clamp: $lines;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin card-hover {
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow:
+			0 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0 2px 4px -2px rgba(0, 0, 0, 0.1);
+	}
+}
+
+@mixin interactive-element {
+	transition: all 0.2s ease;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(color-shade($indigo, 500), 0.1);
+	}
+}
+
+@mixin truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin card-base($size: 'md') {
+	padding: map.get(components.$card, 'padding', $size);
+	border-radius: map.get(components.$card, 'radius', $size);
+	box-shadow: map.get(components.$card, 'shadow', 'default');
+	background: white;
+}
+
+@mixin button-base($size: 'md') {
+	padding: map.get(components.$button, 'padding', $size);
+	border-radius: map.get(components.$button, 'radius', $size);
+	font-size: map.get(components.$button, 'font-size', $size);
+	font-weight: map.get($font-weights, medium);
+	transition: all 0.2s ease;
+}
+
+@mixin input-base($size: 'md') {
+	padding: map.get(components.$input, 'padding', $size);
+	border-radius: map.get(components.$input, 'radius', $size);
+	border: 1px solid map.get(components.$input, 'border-color', 'default');
+	transition: all 0.2s ease;
+
+	&:focus {
+		outline: none;
+		border-color: map.get(components.$input, 'border-color', 'focus');
+		box-shadow: 0 0 0 3px rgba(map.get($indigo, 500), 0.1);
+	}
+}
+
+@mixin badge($variant: 'info') {
+	$variants: map.get(components.$badge, 'variants');
+	$variant-props: map.get($variants, $variant);
+
+	padding: map.get(components.$badge, 'padding');
+	font-size: map.get(components.$badge, 'font-size');
+	border-radius: map.get(components.$badge, 'radius');
+	background: map.get($variant-props, 'bg');
+	color: map.get($variant-props, 'color');
+	font-weight: map.get($font-weights, medium);
+}
+
+@mixin analytics-card($variant: 'purple') {
+	$variants: map.get(components.$analytics-card, 'variants');
+	$variant-props: map.get($variants, $variant);
+
+	padding: map.get(components.$analytics-card, 'padding');
+	border-radius: map.get(components.$analytics-card, 'radius');
+	background: map.get($variant-props, 'bg');
+	color: map.get($variant-props, 'color');
+	transition: transform 0.2s ease;
+
+	&:hover {
+		transform: translateY(-2px);
+	}
 }
