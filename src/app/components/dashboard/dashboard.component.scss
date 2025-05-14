@@ -18,18 +18,15 @@
 }
 
 :host ::ng-deep .p-card.my-tasks-card {
-	border-radius: spacing(2);
-	padding: spacing(8);
+	@include card-base('lg');
 
 	.task__card {
-		display: flex;
-		flex-direction: column;
+		@include flex-column;
 		gap: spacing(11);
 
 		&--list {
 			&-item {
-				display: flex;
-				justify-content: space-between;
+				@include flex-between;
 
 				&:not(:first-child) {
 					padding: spacing(6) 0;
@@ -40,23 +37,21 @@
 				}
 
 				.task__date {
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@include flex-center;
 					p {
-						font-size: font-size(xl);
+						font-size: font-size('xl');
 					}
 				}
 
 				.task__text {
 					h3 {
-						font-size: font-size(xl);
-						font-weight: font-weight(medium);
+						font-size: font-size('xl');
+						font-weight: font-weight('medium');
 					}
 
 					p {
-						font-size: font-size(xl);
-						color: #6b7280;
+						font-size: font-size('xl');
+						color: color-shade($gray, 500);
 					}
 				}
 			}
@@ -64,11 +59,10 @@
 	}
 
 	.task-item {
-		display: flex;
-		justify-content: space-between;
+		@include flex-between;
 		align-items: start;
-		margin-bottom: 1.5rem;
-		gap: 1rem;
+		gap: spacing(4);
+		margin-bottom: spacing(6);
 	}
 
 	.task-info {
@@ -77,27 +71,26 @@
 
 		.task-title {
 			h3 {
-				font-size: 1.4rem;
-				font-weight: font-weight(medium);
-				margin-bottom: 0.25rem;
-				color: #111827;
+				font-size: font-size('lg');
+				font-weight: font-weight('medium');
+				margin-bottom: spacing(1);
+				color: text-color('primary');
 			}
 		}
 
 		.task-description {
-			font-size: 1.2rem;
-			color: #6b7280;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
+			@include truncate;
+			font-size: font-size('base');
+			color: text-color('secondary');
 		}
 	}
 
 	.task-meta {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: spacing(2);
 
+		//TODO: requires resuable component css
 		.priority-tag {
 			font-size: 1.1rem;
 			padding: 0.2rem 0.6rem;
@@ -108,10 +101,9 @@
 		}
 
 		.due-date {
-			font-size: 1.1rem;
-			color: #9ca3af;
-			display: flex;
-			align-items: center;
+			font-size: font-size('sm');
+			color: text-color('muted');
+			@include flex-center;
 		}
 	}
 
@@ -124,7 +116,7 @@
 }
 
 .card__title {
-	font-weight: font-weight(medium);
+	font-weight: font-weight('medium');
 	padding-bottom: spacing(8);
 }
 
@@ -135,13 +127,13 @@
 .horizontal__line {
 	position: relative;
 	&:not(:last-child) {
-		border-bottom: 1px solid rgb(229 231 235 / var(--tw-border-opacity, 1));
+		border-bottom: 1px solid color-shade($gray, 200);
 	}
 }
 
 .task__viewer {
 	display: flex;
-	gap: 1%;
+	gap: spacing(4);
 	padding-top: spacing(13);
 }
 
