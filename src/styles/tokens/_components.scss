@@ -40,9 +40,26 @@ $button: (
 		lg: map.get($spacing, 3),
 	),
 	font-size: (
-		sm: map.get($font-sizes, sm),
-		md: map.get($font-sizes, base),
-		lg: map.get($font-sizes, lg),
+		sm: map.get($font-sizes, 'sm'),
+		md: map.get($font-sizes, 'base'),
+		lg: map.get($font-sizes, 'lg'),
+	),
+	variants: (
+		primary: (
+			bg: map.get($indigo, 500),
+			hover-bg: map.get($indigo, 600),
+			text: white,
+		),
+		secondary: (
+			bg: map.get($gray, 100),
+			hover-bg: map.get($gray, 200),
+			text: map.get($gray, 800),
+		),
+		danger: (
+			bg: map.get($red, 500),
+			hover-bg: map.get($red, 600),
+			text: white,
+		),
 	),
 );
 
@@ -83,7 +100,7 @@ $icon: (
 // Badge Component Tokens
 $badge: (
 	padding: map.get($spacing, 1) map.get($spacing, 2),
-	font-size: map.get($font-sizes, xs),
+	font-size: map.get($font-sizes, 'xs'),
 	radius: map.get($spacing, 4),
 	variants: (
 		success: (
@@ -159,12 +176,12 @@ $analytics-card: (
 	padding: map.get($spacing, 6),
 	radius: map.get($spacing, 3),
 	variants: (
-		purple: (
-			bg: map.get($purple, 50),
-			color: map.get($purple, 700),
-			accent: map.get($purple, 500),
+		primary: (
+			bg: map.get($indigo, 50),
+			color: map.get($indigo, 700),
+			accent: map.get($indigo, 500),
 		),
-		green: (
+		success: (
 			bg: map.get($green, 50),
 			color: map.get($green, 700),
 			accent: map.get($green, 500),
@@ -176,7 +193,7 @@ $analytics-card: (
 		),
 	),
 	title: (
-		size: map.get($font-sizes, 2xl),
-		weight: map.get($font-weights, medium),
+		size: map.get($font-sizes, '2xl'),
+		weight: map.get($font-weights, 'medium'),
 	),
 );

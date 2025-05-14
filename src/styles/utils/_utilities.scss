@@ -66,16 +66,20 @@
 }
 
 // Analytics card utilities
-.analytics-card-purple {
-	@include mixin.analytics-card('purple');
+.analytics-card-primary {
+	@include mixin.analytics-card('primary');
 }
 
-.analytics-card-green {
-	@include mixin.analytics-card('green');
+.analytics-card-success {
+	@include mixin.analytics-card('success');
 }
 
-.analytics-card-indigo {
-	@include mixin.analytics-card('indigo');
+.analytics-card-warning {
+	@include mixin.analytics-card('warning');
+}
+
+.analytics-card-danger {
+	@include mixin.analytics-card('danger');
 }
 
 // Icon utilities

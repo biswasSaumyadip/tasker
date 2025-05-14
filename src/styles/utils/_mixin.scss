@@ -3,6 +3,7 @@
 @use '../tokens/typography' as *;
 @use '../tokens/components' as components;
 @use 'sass:map';
+@use '../utils/functions' as fn;
 
 @mixin visually-hidden {
 	position: absolute;
@@ -46,7 +47,7 @@
 	cursor: pointer;
 	&:focus {
 		outline: none;
-		box-shadow: 0 0 0 3px rgba(color-shade($indigo, 500), 0.1);
+		box-shadow: 0 0 0 3px rgba(fn.color-shade($indigo, 500), 0.1);
 	}
 }
 
@@ -63,12 +64,28 @@
 	background: white;
 }
 
-@mixin button-base($size: 'md') {
+@mixin button-base($size: 'md', $variant: 'primary') {
+	$variants: map.get(components.$button, 'variants');
+	$variant-props: map.get($variants, $variant);
+
 	padding: map.get(components.$button, 'padding', $size);
 	border-radius: map.get(components.$button, 'radius', $size);
 	font-size: map.get(components.$button, 'font-size', $size);
-	font-weight: map.get($font-weights, medium);
+	font-weight: map.get($font-weights, 'medium');
+	background-color: map.get($variant-props, 'bg');
+	color: map.get($variant-props, 'text');
+	border: none;
 	transition: all 0.2s ease;
+	cursor: pointer;
+
+	&:hover:not(:disabled) {
+		background-color: map.get($variant-props, 'hover-bg');
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 }
 
 @mixin input-base($size: 'md') {
@@ -86,24 +103,38 @@
 
 @mixin badge($variant: 'info') {
 	$variants: map.get(components.$badge, 'variants');
-	$variant-props: map.get($variants, $variant);
+	$variant-props: if($variants, map.get($variants, $variant), null);
 
-	padding: map.get(components.$badge, 'padding');
-	font-size: map.get(components.$badge, 'font-size');
-	border-radius: map.get(components.$badge, 'radius');
-	background: map.get($variant-props, 'bg');
-	color: map.get($variant-props, 'color');
-	font-weight: map.get($font-weights, medium);
+	@if $variant-props {
+		padding: map.get(components.$badge, 'padding');
+		font-size: map.get(components.$badge, 'font-size');
+		border-radius: map.get(components.$badge, 'radius');
+		background: map.get($variant-props, 'bg');
+		color: map.get($variant-props, 'color');
+		font-weight: map.get($font-weights, 'medium');
+	}
 }
 
-@mixin analytics-card($variant: 'purple') {
-	$variants: map.get(components.$analytics-card, 'variants');
-	$variant-props: map.get($variants, $variant);
+@mixin analytics-card($variant: 'primary') {
+	@if $variant == 'primary' {
+		background-color: map.get($indigo, 50);
+		color: map.get($indigo, 700);
+	} @else if $variant == 'success' {
+		background-color: map.get($green, 50);
+		color: map.get($green, 700);
+	} @else if $variant == 'warning' {
+		background-color: map.get($yellow, 50);
+		color: map.get($yellow, 700);
+	} @else if $variant == 'danger' {
+		background-color: map.get($red, 50);
+		color: map.get($red, 700);
+	} @else {
+		background-color: map.get($gray, 50);
+		color: map.get($gray, 700);
+	}
 
-	padding: map.get(components.$analytics-card, 'padding');
-	border-radius: map.get(components.$analytics-card, 'radius');
-	background: map.get($variant-props, 'bg');
-	color: map.get($variant-props, 'color');
+	padding: spacing(6);
+	border-radius: spacing(3);
 	transition: transform 0.2s ease;
 
 	&:hover {
