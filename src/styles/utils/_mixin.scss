@@ -1,9 +1,9 @@
 @use '../tokens/colors' as *;
 @use '../tokens/spacing' as *;
 @use '../tokens/typography' as *;
-@use '../tokens/components' as components;
 @use 'sass:map';
 @use '../utils/functions' as fn;
+@use '../utils/component-functions' as comp;
 
 @mixin visually-hidden {
 	position: absolute;
@@ -58,28 +58,27 @@
 }
 
 @mixin card-base($size: 'md') {
-	padding: map.get(components.$card, 'padding', $size);
-	border-radius: map.get(components.$card, 'radius', $size);
-	box-shadow: map.get(components.$card, 'shadow', 'default');
+	padding: comp.get-card('padding', $size);
+	border-radius: comp.get-card('radius', $size);
+	box-shadow: comp.get-card('shadow');
 	background: white;
 }
 
 @mixin button-base($size: 'md', $variant: 'primary') {
-	$variants: map.get(components.$button, 'variants');
-	$variant-props: map.get($variants, $variant);
+	$button: comp.get-button($variant);
 
-	padding: map.get(components.$button, 'padding', $size);
-	border-radius: map.get(components.$button, 'radius', $size);
-	font-size: map.get(components.$button, 'font-size', $size);
+	padding: comp.get-button(null, 'padding', $size);
+	border-radius: comp.get-button(null, 'radius', $size);
+	font-size: comp.get-button(null, 'font-size', $size);
 	font-weight: map.get($font-weights, 'medium');
-	background-color: map.get($variant-props, 'bg');
-	color: map.get($variant-props, 'text');
+	background-color: map.get($button, 'bg');
+	color: map.get($button, 'text');
 	border: none;
 	transition: all 0.2s ease;
 	cursor: pointer;
 
 	&:hover:not(:disabled) {
-		background-color: map.get($variant-props, 'hover-bg');
+		background-color: map.get($button, 'hover-bg');
 	}
 
 	&:disabled {
@@ -89,28 +88,29 @@
 }
 
 @mixin input-base($size: 'md') {
-	padding: map.get(components.$input, 'padding', $size);
-	border-radius: map.get(components.$input, 'radius', $size);
-	border: 1px solid map.get(components.$input, 'border-color', 'default');
+	$input: comp.get-input();
+
+	padding: comp.get-input('padding', $size);
+	border-radius: comp.get-input('radius', $size);
+	border: 1px solid comp.get-input('border-color', 'default');
 	transition: all 0.2s ease;
 
 	&:focus {
 		outline: none;
-		border-color: map.get(components.$input, 'border-color', 'focus');
-		box-shadow: 0 0 0 3px rgba(map.get($indigo, 500), 0.1);
+		border-color: comp.get-input('border-color', 'focus');
+		box-shadow: 0 0 0 3px rgba(fn.color-shade($indigo, 500), 0.1);
 	}
 }
 
 @mixin badge($variant: 'info') {
-	$variants: map.get(components.$badge, 'variants');
-	$variant-props: if($variants, map.get($variants, $variant), null);
+	$badge: comp.get-badge($variant);
 
-	@if $variant-props {
-		padding: map.get(components.$badge, 'padding');
-		font-size: map.get(components.$badge, 'font-size');
-		border-radius: map.get(components.$badge, 'radius');
-		background: map.get($variant-props, 'bg');
-		color: map.get($variant-props, 'color');
+	@if $badge {
+		padding: comp.get-badge(null, 'padding');
+		font-size: comp.get-badge(null, 'font-size');
+		border-radius: comp.get-badge(null, 'radius');
+		background: map.get($badge, 'bg');
+		color: map.get($badge, 'color');
 		font-weight: map.get($font-weights, 'medium');
 	}
 }

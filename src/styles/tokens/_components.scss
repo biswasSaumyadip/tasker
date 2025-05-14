@@ -2,18 +2,19 @@
 @use 'spacing' as *;
 @use 'typography' as *;
 @use 'sass:map';
+@use '../utils/functions' as fn;
 
 // Card Component Tokens
 $card: (
 	padding: (
-		sm: map.get($spacing, 4),
-		md: map.get($spacing, 6),
-		lg: map.get($spacing, 8),
+		sm: fn.spacing(4),
+		md: fn.spacing(6),
+		lg: fn.spacing(8),
 	),
 	radius: (
-		sm: map.get($spacing, 1),
-		md: map.get($spacing, 2),
-		lg: map.get($spacing, 3),
+		sm: fn.spacing(1),
+		md: fn.spacing(2),
+		lg: fn.spacing(3),
 	),
 	shadow: (
 		default: (
@@ -30,34 +31,34 @@ $card: (
 // Button Component Tokens
 $button: (
 	padding: (
-		sm: map.get($spacing, 2) map.get($spacing, 3),
-		md: map.get($spacing, 3) map.get($spacing, 4),
-		lg: map.get($spacing, 4) map.get($spacing, 6),
+		sm: fn.spacing(2) fn.spacing(3),
+		md: fn.spacing(3) fn.spacing(4),
+		lg: fn.spacing(4) fn.spacing(6),
 	),
 	radius: (
-		sm: map.get($spacing, 1),
-		md: map.get($spacing, 2),
-		lg: map.get($spacing, 3),
+		sm: fn.spacing(1),
+		md: fn.spacing(2),
+		lg: fn.spacing(3),
 	),
 	font-size: (
-		sm: map.get($font-sizes, 'sm'),
-		md: map.get($font-sizes, 'base'),
-		lg: map.get($font-sizes, 'lg'),
+		sm: fn.font-size('sm'),
+		md: fn.font-size('base'),
+		lg: fn.font-size('lg'),
 	),
 	variants: (
 		primary: (
-			bg: map.get($indigo, 500),
-			hover-bg: map.get($indigo, 600),
+			bg: fn.color-shade($indigo, 500),
+			hover-bg: fn.color-shade($indigo, 600),
 			text: white,
 		),
 		secondary: (
-			bg: map.get($gray, 100),
-			hover-bg: map.get($gray, 200),
-			text: map.get($gray, 800),
+			bg: fn.color-shade($gray, 100),
+			hover-bg: fn.color-shade($gray, 200),
+			text: fn.color-shade($gray, 800),
 		),
 		danger: (
-			bg: map.get($red, 500),
-			hover-bg: map.get($red, 600),
+			bg: fn.color-shade($red, 500),
+			hover-bg: fn.color-shade($red, 600),
 			text: white,
 		),
 	),
@@ -66,77 +67,77 @@ $button: (
 // Input Component Tokens
 $input: (
 	padding: (
-		sm: map.get($spacing, 2) map.get($spacing, 3),
-		md: map.get($spacing, 3) map.get($spacing, 4),
-		lg: map.get($spacing, 4) map.get($spacing, 6),
+		sm: fn.spacing(2) fn.spacing(3),
+		md: fn.spacing(3) fn.spacing(4),
+		lg: fn.spacing(4) fn.spacing(6),
 	),
 	radius: (
-		sm: map.get($spacing, 1),
-		md: map.get($spacing, 2),
-		lg: map.get($spacing, 3),
+		sm: fn.spacing(1),
+		md: fn.spacing(2),
+		lg: fn.spacing(3),
 	),
 	border-color: (
-		default: map.get($gray, 200),
-		focus: map.get($indigo, 500),
-		error: map.get($red, 500),
+		default: fn.color-shade($gray, 200),
+		focus: fn.color-shade($indigo, 500),
+		error: fn.color-shade($red, 500),
 	),
 );
 
 // Icon Component Tokens
 $icon: (
 	size: (
-		xs: map.get($spacing, 4),
-		sm: map.get($spacing, 5),
-		md: map.get($spacing, 6),
-		lg: map.get($spacing, 8),
+		xs: fn.spacing(4),
+		sm: fn.spacing(5),
+		md: fn.spacing(6),
+		lg: fn.spacing(8),
 	),
 	color: (
-		default: map.get($gray, 400),
-		hover: map.get($gray, 600),
-		active: map.get($indigo, 500),
+		default: fn.color-shade($gray, 400),
+		hover: fn.color-shade($gray, 600),
+		active: fn.color-shade($indigo, 500),
 	),
 );
 
 // Badge Component Tokens
 $badge: (
-	padding: map.get($spacing, 1) map.get($spacing, 2),
-	font-size: map.get($font-sizes, 'xs'),
-	radius: map.get($spacing, 4),
+	padding: fn.spacing(1) fn.spacing(2),
+	font-size: fn.font-size('xs'),
+	radius: fn.spacing(4),
 	variants: (
 		success: (
-			bg: map.get($green, 100),
-			color: map.get($green, 700),
+			bg: fn.color-shade($green, 100),
+			color: fn.color-shade($green, 700),
 		),
 		warning: (
-			bg: map.get($yellow, 100),
-			color: map.get($yellow, 700),
+			bg: fn.color-shade($yellow, 100),
+			color: fn.color-shade($yellow, 700),
 		),
 		error: (
-			bg: map.get($red, 100),
-			color: map.get($red, 700),
+			bg: fn.color-shade($red, 100),
+			color: fn.color-shade($red, 700),
 		),
 		info: (
-			bg: map.get($indigo, 100),
-			color: map.get($indigo, 700),
+			bg: fn.color-shade($indigo, 100),
+			color: fn.color-shade($indigo, 700),
 		),
 	),
 );
 
 // Dropdown Component Tokens
 $dropdown: (
-	padding: map.get($spacing, 2),
-	max-height: map.get($spacing, 64),
-	item-padding: map.get($spacing, 2) map.get($spacing, 3),
-	radius: map.get($spacing, 2),
-	border-color: map.get($gray, 200),
+	padding: fn.spacing(2),
+	max-height: fn.spacing(64),
+	item-padding: fn.spacing(2) fn.spacing(3),
+	radius: fn.spacing(2),
+	border-color: fn.color-shade($gray, 200),
 	shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
 	states: (
 		hover: (
-			bg: map.get($gray, 100),
+			bg: fn.color-shade($gray, 100),
 		),
 		selected: (
-			bg: map.get($indigo, 50),
-			color: map.get($indigo, 500),
+			bg: fn.color-shade($indigo, 50),
+			color: fn.color-shade($indigo, 500),
 		),
 		disabled: (
 			opacity: 0.5,
@@ -147,25 +148,25 @@ $dropdown: (
 // Sidebar Component Tokens
 $sidebar: (
 	width: (
-		collapsed: map.get($spacing, 20),
-		expanded: map.get($spacing, 64),
+		collapsed: fn.spacing(20),
+		expanded: fn.spacing(64),
 	),
-	padding: map.get($spacing, 6),
+	padding: fn.spacing(6),
 	item: (
-		padding: map.get($spacing, 3) map.get($spacing, 4),
-		radius: map.get($spacing, 2),
+		padding: fn.spacing(3) fn.spacing(4),
+		radius: fn.spacing(2),
 		states: (
 			default: (
-				color: map.get($gray, 600),
+				color: fn.color-shade($gray, 600),
 				bg: transparent,
 			),
 			hover: (
-				color: map.get($gray, 900),
-				bg: map.get($gray, 50),
+				color: fn.color-shade($gray, 900),
+				bg: fn.color-shade($gray, 50),
 			),
 			active: (
-				color: map.get($indigo, 700),
-				bg: map.get($indigo, 50),
+				color: fn.color-shade($indigo, 700),
+				bg: fn.color-shade($indigo, 50),
 			),
 		),
 	),
@@ -173,27 +174,27 @@ $sidebar: (
 
 // Analytics Card Component Tokens
 $analytics-card: (
-	padding: map.get($spacing, 6),
-	radius: map.get($spacing, 3),
+	padding: fn.spacing(6),
+	radius: fn.spacing(3),
 	variants: (
 		primary: (
-			bg: map.get($indigo, 50),
-			color: map.get($indigo, 700),
-			accent: map.get($indigo, 500),
+			bg: fn.color-shade($indigo, 50),
+			color: fn.color-shade($indigo, 700),
+			accent: fn.color-shade($indigo, 500),
 		),
 		success: (
-			bg: map.get($green, 50),
-			color: map.get($green, 700),
-			accent: map.get($green, 500),
+			bg: fn.color-shade($green, 50),
+			color: fn.color-shade($green, 700),
+			accent: fn.color-shade($green, 500),
 		),
 		indigo: (
-			bg: map.get($indigo, 50),
-			color: map.get($indigo, 700),
-			accent: map.get($indigo, 500),
+			bg: fn.color-shade($indigo, 50),
+			color: fn.color-shade($indigo, 700),
+			accent: fn.color-shade($indigo, 500),
 		),
 	),
 	title: (
-		size: map.get($font-sizes, '2xl'),
-		weight: map.get($font-weights, 'medium'),
+		size: fn.font-size('2xl'),
+		weight: fn.font-weight('medium'),
 	),
 );

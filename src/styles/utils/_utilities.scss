@@ -1,9 +1,9 @@
 @use '../tokens/colors' as *;
 @use '../tokens/spacing' as *;
 @use '../tokens/typography' as *;
-@use '../tokens/components' as components;
 @use 'sass:map';
 @use 'functions' as fn;
+@use 'component-functions' as comp;
 @use 'mixin';
 
 // Layout utilities
@@ -84,10 +84,10 @@
 
 // Icon utilities
 .icon {
-	@each $size, $value in map.get(components.$icon, 'size') {
+	@each $size in ('xs', 'sm', 'md', 'lg') {
 		&-#{$size} {
-			width: $value;
-			height: $value;
+			width: comp.get-icon($size);
+			height: comp.get-icon($size);
 		}
 	}
 }

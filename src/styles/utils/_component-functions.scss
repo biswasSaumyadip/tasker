@@ -1,0 +1,66 @@
+@use '../tokens/components' as *;
+@use 'sass:map';
+@use './functions' as fn;
+
+// Component Token Access Functions
+@function get-button($variant: 'primary', $prop: null, $size: null) {
+	@if $size and $prop {
+		@return map.get($button, $prop, $size);
+	} @else if $prop {
+		@return map.get($button, $prop);
+	}
+	@return map.get($button, 'variants', $variant);
+}
+
+@function get-card($prop: null, $size: 'md') {
+	@if $prop == 'shadow' {
+		@return map.get($card, 'shadow', 'default');
+	} @else if $prop {
+		@return map.get($card, $prop, $size);
+	}
+	@return $card;
+}
+
+@function get-analytics($variant: 'primary', $prop: null) {
+	@if $prop {
+		@return map.get($analytics-card, 'variants', $variant, $prop);
+	}
+	@return map.get($analytics-card, 'variants', $variant);
+}
+
+@function get-badge($variant: 'info', $prop: null) {
+	@if $prop {
+		@return map.get($badge, $prop);
+	}
+	@return map.get($badge, 'variants', $variant);
+}
+
+@function get-icon($size: 'md', $state: 'default') {
+	@if $state {
+		@return map.get($icon, 'color', $state);
+	}
+	@return map.get($icon, 'size', $size);
+}
+
+@function get-sidebar($prop: null) {
+	@if $prop {
+		@return map.get($sidebar, $prop);
+	}
+	@return $sidebar;
+}
+
+@function get-dropdown($prop: null) {
+	@if $prop {
+		@return map.get($dropdown, $prop);
+	}
+	@return $dropdown;
+}
+
+@function get-input($prop: null, $state: null) {
+	@if $state and $prop {
+		@return map.get($input, $prop, $state);
+	} @else if $prop {
+		@return map.get($input, $prop);
+	}
+	@return $input;
+}
