@@ -1,4 +1,4 @@
-# Task Management Application
+# Tasker
 
 A modern task management application built with Angular, featuring a clean and intuitive interface for managing your daily tasks.
 
