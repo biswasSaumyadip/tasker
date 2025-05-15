@@ -1,1 +1,7 @@
-<p-card> </p-card>
+<p-card>
+	@for (task of tasks$ | async; track task.id) {
+		<div class="task-list">
+			<tasker-accordion [title]="task.title" [task]="task"></tasker-accordion>
+		</div>
+	}
+</p-card>
