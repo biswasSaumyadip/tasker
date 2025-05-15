@@ -1,8 +1,8 @@
-import { CapitalizeFirstPipePipe } from './capitalize-first-pipe.pipe';
+import { CapitalizeFirstPipe } from './capitalize-first-pipe.pipe';
 
-describe('CapitalizeFirstPipePipe', () => {
+describe('CapitalizeFirstPipe', () => {
 	it('create an instance', () => {
-		const pipe = new CapitalizeFirstPipePipe();
+		const pipe = new CapitalizeFirstPipe();
 		expect(pipe).toBeTruthy();
 	});
 });
