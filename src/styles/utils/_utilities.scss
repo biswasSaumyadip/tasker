@@ -49,6 +49,43 @@
 }
 
 // Badge utilities
+.badge {
+	padding: comp.get-badge(null, 'padding');
+	font-size: comp.get-badge(null, 'font-size');
+	border-radius: comp.get-badge(null, 'radius');
+	text-transform: capitalize;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: fn.font-weight('medium');
+	line-height: 1;
+
+	&.badge-success {
+		background-color: fn.color-shade($green, 100);
+		color: fn.color-shade($green, 700);
+	}
+
+	&.badge-warning {
+		background-color: fn.color-shade($yellow, 100);
+		color: fn.color-shade($yellow, 700);
+	}
+
+	&.badge-error {
+		background-color: fn.color-shade($red, 100);
+		color: fn.color-shade($red, 700);
+	}
+
+	&.badge-info {
+		background-color: fn.color-shade($indigo, 100);
+		color: fn.color-shade($indigo, 700);
+	}
+
+	&.badge-neutral {
+		background-color: fn.color-shade($gray, 100);
+		color: fn.color-shade($gray, 700);
+	}
+}
+
 .badge-success {
 	@include mixin.badge('success');
 }
