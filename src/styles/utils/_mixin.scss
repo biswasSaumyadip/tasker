@@ -154,9 +154,9 @@
 }
 
 @mixin profile-picture($size) {
-  width: $size;
-  height: $size;
-  border-radius: 50%;
-  object-fit: cover;
-  display: inline-block;
+	width: $size;
+	height: $size;
+	border-radius: 50%;
+	object-fit: cover;
+	display: inline-block;
 }
