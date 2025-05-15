@@ -1,0 +1,36 @@
+@use 'index' as *;
+
+.tasker__accordion {
+	background-color: color-shade($gray, 50);
+	border: 1px solid color-shade($gray, 200);
+	border-radius: spacing(1-5);
+	padding: spacing(3);
+
+	&--title {
+		color: color-shade($gray, 900);
+		font-weight: font-weight(medium);
+		font-size: font-size(xl);
+	}
+
+	&--body {
+		margin-top: spacing(1);
+	}
+
+	&--footer {
+		margin-top: spacing(1);
+	}
+
+	--tw-space-y-reverse: 0;
+	margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+
+	//&:not([hidden])~:not([hidden]) {
+	//  --tw-space-y-reverse: 0;
+	//  margin-top: calc(.5rem * calc(1 - var(--tw-space-y-reverse)));
+	//  margin-bottom: calc(.5rem * var(--tw-space-y-reverse));
+	//}
+
+	&--profilePicture {
+		@include profile-picture(spacing(8));
+	}
+}
