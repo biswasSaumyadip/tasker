@@ -1,10 +1,4 @@
-import {
-	Component,
-	DebugElement,
-	ViewContainerRef,
-	EnvironmentInjector,
-	Renderer2,
-} from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DateColorDirective } from './date-color.directive';
@@ -30,25 +24,24 @@ describe('DateColorDirective', () => {
 		const spy = jasmine.createSpyObj('UtilityService', ['getDueDateStatus']);
 
 		await TestBed.configureTestingModule({
-			declarations: [TestComponent],
-			imports: [DateColorDirective],
+			declarations: [],
+			imports: [DateColorDirective, TestComponent],
 			providers: [{ provide: UtilityService, useValue: spy }],
 		}).compileComponents();
 
 		utilityServiceSpy = TestBed.inject(UtilityService) as jasmine.SpyObj<UtilityService>;
+
 		fixture = TestBed.createComponent(TestComponent);
 		component = fixture.componentInstance;
 		divElement = fixture.debugElement.query(By.css('div'));
 	});
 
 	it('should create an instance', () => {
-		const directive = new DateColorDirective(
-			divElement.nativeElement,
-			TestBed.inject(Renderer2),
-			TestBed.inject(ViewContainerRef),
-			TestBed.inject(EnvironmentInjector),
-		);
-		expect(directive).toBeTruthy();
+		const directiveEl = fixture.debugElement.query(By.directive(DateColorDirective));
+		expect(directiveEl).toBeTruthy();
+
+		const directiveInstance = directiveEl.injector.get(DateColorDirective);
+		expect(directiveInstance).toBeTruthy();
 	});
 
 	it('should add past-due class when date is in the past', () => {

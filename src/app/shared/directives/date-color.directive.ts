@@ -1,16 +1,12 @@
 import {
-	ComponentRef,
-	createComponent,
 	Directive,
 	ElementRef,
 	EnvironmentInjector,
+	inject,
 	Input,
 	OnInit,
 	Renderer2,
-	ViewContainerRef,
 } from '@angular/core';
-import { ClockIconComponent } from '../../components/icons/clock-icon.component';
-import { ExclamationIconComponent } from '../../components/icons/exclamation-icon.component';
 import { UtilityService } from '../services/utility.service';
 
 @Directive({
@@ -25,16 +21,9 @@ export class DateColorDirective implements OnInit {
 	private readonly APPROACHING_DUE_CLASS = 'date-approaching-due';
 	private readonly FUTURE_DUE_CLASS = 'date-future-due';
 
-	// Icon component references
-	private iconComponentRef: ComponentRef<ClockIconComponent | ExclamationIconComponent> | null =
-		null;
-
-	constructor(
-		private el: ElementRef,
-		private renderer: Renderer2,
-		private _: ViewContainerRef,
-		private injector: EnvironmentInjector,
-	) {}
+	private el = inject(ElementRef);
+	private renderer = inject(Renderer2);
+	private injector = inject(EnvironmentInjector);
 
 	ngOnInit(): void {
 		this.applyColorClass();
@@ -68,39 +57,4 @@ export class DateColorDirective implements OnInit {
 		}
 	}
 
-	private createAndInsertIcon(isPastDue: boolean): void {
-		// Clear any existing icon
-		if (this.iconComponentRef) {
-			this.iconComponentRef.destroy();
-			this.iconComponentRef = null;
-		}
-
-		// Create the appropriate icon component
-		if (isPastDue) {
-			this.iconComponentRef = createComponent(ExclamationIconComponent, {
-				environmentInjector: this.injector,
-				hostElement: this.el.nativeElement,
-			});
-		} else {
-			this.iconComponentRef = createComponent(ClockIconComponent, {
-				environmentInjector: this.injector,
-				hostElement: this.el.nativeElement,
-			});
-		}
-
-		// Insert the icon before the text
-		const iconElement = this.iconComponentRef.location.nativeElement;
-		this.renderer.setStyle(iconElement, 'display', 'inline-block');
-		this.renderer.setStyle(iconElement, 'vertical-align', 'middle');
-		this.renderer.setStyle(iconElement, 'margin-right', '4px');
-		this.renderer.setStyle(iconElement, 'width', '16px');
-		this.renderer.setStyle(iconElement, 'height', '16px');
-
-		// Insert the icon at the beginning of the element
-		this.renderer.insertBefore(
-			this.el.nativeElement,
-			iconElement,
-			this.el.nativeElement.firstChild,
-		);
-	}
 }

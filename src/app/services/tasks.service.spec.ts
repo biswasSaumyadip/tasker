@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TasksService } from './tasks.service';
 import { environment } from '../../environments/environment';
 import { Task, TaskResponse } from '../models/task.model';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('TasksService', () => {
 	let service: TasksService;
@@ -30,8 +31,7 @@ describe('TasksService', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [provideHttpClientTesting],
-			providers: [TasksService],
+			providers: [TasksService, provideHttpClient(), provideHttpClientTesting()],
 		});
 		service = TestBed.inject(TasksService);
 		httpMock = TestBed.inject(HttpTestingController);

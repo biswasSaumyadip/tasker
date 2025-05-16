@@ -2,9 +2,38 @@
 
 .tasker__accordion {
 	background-color: color-shade($gray, 50);
+
+	&.approaching-due {
+		background-color: color-shade($yellow, 50);
+
+		&:hover {
+			background-color: color-shade($gray, 50);
+		}
+	}
+
+	&.future {
+		background-color: color-shade($gray, 0);
+
+		&:hover {
+			background-color: color-shade($gray, 50);
+		}
+	}
+
 	border: 1px solid color-shade($gray, 200);
 	border-radius: spacing(1-5);
 	padding: spacing(3);
+
+	&--header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&-left {
+			display: flex;
+			align-items: center;
+			gap: spacing(3);
+		}
+	}
 
 	&--title {
 		color: color-shade($gray, 900);
@@ -14,6 +43,10 @@
 
 	&--body {
 		margin-top: spacing(1);
+
+		p {
+			color: color-shade($gray, 500);
+		}
 	}
 
 	&--footer {
@@ -32,5 +65,17 @@
 
 	&--profilePicture {
 		@include profile-picture(spacing(8));
+	}
+
+	&--assigned {
+		font-size: font-size(x);
+	}
+
+	&--dueDate {
+		font-size: font-size(x);
+	}
+
+	&--priorilty {
+		font-size: font-size(x);
 	}
 }

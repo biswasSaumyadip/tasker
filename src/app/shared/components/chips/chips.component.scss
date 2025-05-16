@@ -1,0 +1,14 @@
+@use 'index' as *;
+
+.chip {
+	background-color: color-shade($indigo, 100);
+	color: color-shade($indigo, 800);
+	font-weight: font-weight(medium);
+	border-radius: spacing(1);
+	padding: spacing(0-5) spacing(2);
+
+	&__wrapper {
+		display: flex;
+		gap: spacing(2);
+	}
+}

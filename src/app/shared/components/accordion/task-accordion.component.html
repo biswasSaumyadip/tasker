@@ -1,21 +1,32 @@
-<div class="tasker__accordion">
+<div
+	class="tasker__accordion"
+	[ngClass]="{
+		'approaching-due': dueDateStatus(task().dueDate) === 'approaching',
+		future: dueDateStatus(task().dueDate) === 'future',
+	}"
+>
 	<div class="tasker__accordion--header">
 		<h2 class="tasker__accordion--title">{{ task().title }}</h2>
-		<span
-			class="tasker__accordion--priority badge"
-			taskerPriorityBadge
-			[priority]="task().priority"
-			>{{ task().priority | capitalizeFirst }}</span
-		>
-		<span class="tasker__accordion--dueDate">{{ task().dueDate | date: 'MMMM d, y' }}</span>
-		<span class="tasker__accordion--assigned">{{ task().assignedTo }}</span>
-		@if (task().profilePicture) {
-			<img
-				[src]="task().profilePicture"
-				alt="profile picture"
-				class="tasker__accordion--profilePicture"
-			/>
-		}
+		<div class="tasker__accordion--header-left">
+			<div
+				class="tasker__accordion--priority badge"
+				taskerPriorityBadge
+				[priority]="task().priority"
+			>
+				{{ task().priority | capitalizeFirst }}
+			</div>
+			<div class="tasker__accordion--dueDate" taskerDateColor [dueDate]="task().dueDate">
+				{{ task().dueDate | date: 'MMMM d, y' }}
+			</div>
+			@if (task().profilePicture) {
+				<img
+					[src]="task().profilePicture"
+					alt="profile picture"
+					class="tasker__accordion--profilePicture"
+				/>
+			}
+			<div class="tasker__accordion--assigned">{{ task().assignedTo }}</div>
+		</div>
 	</div>
 	<div class="tasker__accordion--body">
 		<p>
@@ -23,6 +34,6 @@
 		</p>
 	</div>
 	<div class="tasker__accordion--footer">
-		{{ task().tags }}
+		<tasker-chips [chips]="task().tags"></tasker-chips>
 	</div>
 </div>

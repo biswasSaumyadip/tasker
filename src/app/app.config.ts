@@ -5,6 +5,8 @@ import Material from '@primeng/themes/material';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { API_URL } from './shared/tokens/api-url-injection-token';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -12,6 +14,7 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes),
 		provideHttpClient(),
 		provideAnimations(),
+		{ provide: API_URL, useValue: environment.apiUrl },
 		// provideAnimationsAsync(),
 		providePrimeNG({
 			theme: {
