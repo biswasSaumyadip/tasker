@@ -110,7 +110,7 @@
 	border-radius: comp.get-badge(null, 'radius');
 	background: comp.get-badge($variant, 'bg');
 	color: comp.get-badge($variant, 'color');
-	font-weight: fn.font-weight('medium');
+	font-weight: fn.font-weight('semibold');
 }
 
 @mixin analytics-card($variant: 'primary') {

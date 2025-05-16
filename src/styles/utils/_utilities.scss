@@ -183,4 +183,33 @@
 	.bg-indigo-#{$weight} {
 		background-color: map.get($indigo, $weight);
 	}
+
+	.text-red-#{$weight} {
+		color: map.get($red, $weight);
+	}
+
+	.bg-red-#{$weight} {
+		background-color: map.get($red, $weight);
+	}
+
+	.text-yellow-#{$weight} {
+		color: map.get($yellow, $weight);
+	}
+
+	.bg-yellow-#{$weight} {
+		background-color: map.get($yellow, $weight);
+	}
+}
+
+// Date status color utilities
+.date-past-due {
+	color: map.get($red, 500);
+}
+
+.date-approaching-due {
+	color: map.get($yellow, 500);
+}
+
+.date-future-due {
+	color: map.get($gray, 500);
 }

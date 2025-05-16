@@ -101,8 +101,9 @@ $icon: (
 // Badge Component Tokens
 $badge: (
 	padding: fn.spacing(1) fn.spacing(2),
-	font-size: fn.font-size('xs'),
-	radius: fn.spacing(4),
+	font-size: fn.font-size('x'),
+	radius: fn.spacing(1),
+	font-weight: fn.font-weight(semibold),
 	variants: (
 		success: (
 			bg: fn.color-shade($green, 100),
