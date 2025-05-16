@@ -56,5 +56,4 @@ export class DateColorDirective implements OnInit {
 				break;
 		}
 	}
-
 }

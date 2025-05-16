@@ -1,8 +1,10 @@
 import { Component, input, InputSignal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'tasker-chips',
-	imports: [],
+	standalone: true,
+	imports: [CommonModule],
 	template: `
 		<div class="chip__wrapper">
 			@for (chip of chips(); track chip) {
