@@ -23,14 +23,12 @@
 		<div class="tasker__accordion--header">
 			<div class="tasker__accordion--title-container">
 				@if (hasChildren()) {
-					<button 
-						class="tasker__accordion--expand-button" 
+					<button
+						class="tasker__accordion--expand-button"
 						(click)="toggleExpand()"
 						[attr.aria-expanded]="isExpanded()"
 					>
-						<span class="expand-icon" [ngClass]="{'expanded': isExpanded()}">
-							▶
-						</span>
+						<span class="expand-icon" [ngClass]="{ expanded: isExpanded() }"> ▶ </span>
 					</button>
 				}
 				<h2 class="tasker__accordion--title" [ngClass]="{ 'text-strike': isTaskCompleted }">
@@ -71,8 +69,8 @@
 		@if (hasChildren() && isExpanded()) {
 			<div class="tasker__accordion--children">
 				@for (childTask of task().children; track childTask.id) {
-					<tasker-accordion 
-						[task]="childTask" 
+					<tasker-accordion
+						[task]="childTask"
 						[title]="childTask.title"
 						class="tasker__accordion--child"
 					></tasker-accordion>
