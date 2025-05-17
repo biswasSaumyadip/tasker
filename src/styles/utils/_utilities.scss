@@ -142,6 +142,22 @@
 	@include mixin.line-clamp(3);
 }
 
+.text-strike {
+	@include mixin.strike-through;
+}
+
+.text-strike-thin {
+	@include mixin.strike-through($thickness: 0.5px);
+}
+
+.text-strike-thick {
+	@include mixin.strike-through($thickness: 2px);
+}
+
+.text-strike-dashed {
+	@include mixin.strike-through($style: dashed);
+}
+
 // Interactive utilities
 .hoverable {
 	@include mixin.card-hover;

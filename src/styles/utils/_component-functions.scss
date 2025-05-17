@@ -1,6 +1,6 @@
 @use '../tokens/components' as components;
 @use 'sass:map';
-@use './functions' as fn;
+@use 'functions' as fn;
 
 // Component Token Access Functions
 @function get-button($variant: 'primary', $prop: null, $size: null) {

@@ -1,199 +1,198 @@
 @use 'functions' as *;
 
 .dropdown {
-  position: relative;
-  width: 100%;
-  font-family: 'Roboto', sans-serif;
+	position: relative;
+	width: 100%;
+	font-family: 'Roboto', sans-serif;
 
-  &.disabled {
-    opacity: 0.6;
-    pointer-events: none;
-  }
+	&.disabled {
+		opacity: 0.6;
+		pointer-events: none;
+	}
 }
 
 .dropdown__trigger {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: spacing(10);
-  padding: spacing(2) spacing(3);
-  background: color-shade($gray, 50);
-  border: 1px solid color-shade($gray, 200);
-  border-radius: spacing(1-5);
-  cursor: pointer;
-  transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	min-height: spacing(10);
+	padding: spacing(2) spacing(3);
+	background: color-shade($gray, 50);
+	border: 1px solid color-shade($gray, 200);
+	border-radius: spacing(1-5);
+	cursor: pointer;
+	transition: all 0.2s ease;
 
-  &:hover:not(.error) {
-    border-color: color-shade($indigo, 500);
-  }
+	&:hover:not(.error) {
+		border-color: color-shade($indigo, 500);
+	}
 
-  &.error {
-    border-color: color-shade($red, 500);
-  }
+	&.error {
+		border-color: color-shade($red, 500);
+	}
 
-  .open & {
-    border-color: color-shade($indigo, 500);
-    box-shadow: 0 0 0 2px color-shade($indigo, 100);
-  }
+	.open & {
+		border-color: color-shade($indigo, 500);
+		box-shadow: 0 0 0 2px color-shade($indigo, 100);
+	}
 }
 
 .dropdown__selected {
-  flex: 1;
-  min-width: 0;
-  margin-right: spacing(2);
+	flex: 1;
+	min-width: 0;
+	margin-right: spacing(2);
 }
 
 .dropdown__value {
-  display: block;
-  color: color-shade($gray, 900);
-  font-size: font-size(xl);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	display: block;
+	color: color-shade($gray, 900);
+	font-size: font-size(xl);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .dropdown__placeholder {
-  color: color-shade($gray, 400);
-  font-size: font-size(xl);
+	color: color-shade($gray, 400);
+	font-size: font-size(xl);
 }
 
 .dropdown__actions {
-  display: flex;
-  align-items: center;
-  gap: spacing(1);
+	display: flex;
+	align-items: center;
+	gap: spacing(1);
 }
 
 .dropdown__clear {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: spacing(0-5);
-  background: transparent;
-  border: none;
-  border-radius: spacing(1);
-  cursor: pointer;
-  transition: background-color 0.2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: spacing(0-5);
+	background: transparent;
+	border: none;
+	border-radius: spacing(1);
+	cursor: pointer;
+	transition: background-color 0.2s;
 
-  &:hover {
-    background-color: color-shade($gray, 100);
-  }
+	&:hover {
+		background-color: color-shade($gray, 100);
+	}
 
-  svg {
-    fill: color-shade($gray, 400);
-  }
+	svg {
+		fill: color-shade($gray, 400);
+	}
 }
 
 .dropdown__arrow {
-  display: flex;
-  transition: transform 0.2s ease;
+	display: flex;
+	transition: transform 0.2s ease;
 
-  svg {
-    fill: color-shade($gray, 400);
-  }
+	svg {
+		fill: color-shade($gray, 400);
+	}
 
-  .open & {
-    transform: rotate(180deg);
-  }
+	.open & {
+		transform: rotate(180deg);
+	}
 }
 
 .dropdown__content {
-  position: absolute;
-  top: calc(100% + #{spacing(1)
-});
-  left: 0;
-  width: 100%;
-  background: color-shade($gray, 50);
-  border: 1px solid color-shade($gray, 200);
-  border-radius: spacing(1-5);
-  box-shadow: 0 spacing(1) spacing(3) rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+	position: absolute;
+	top: calc(100% + #{spacing(1)});
+	left: 0;
+	width: 100%;
+	background: color-shade($gray, 50);
+	border: 1px solid color-shade($gray, 200);
+	border-radius: spacing(1-5);
+	box-shadow: 0 spacing(1) spacing(3) rgba(0, 0, 0, 0.1);
+	z-index: 1000;
 }
 
 .dropdown__search {
-  padding: spacing(2);
-  border-bottom: 1px solid color-shade($gray, 200);
+	padding: spacing(2);
+	border-bottom: 1px solid color-shade($gray, 200);
 
-  input {
-    width: 100%;
-    padding: spacing(2);
-    background: color-shade($gray, 100);
-    border: 1px solid color-shade($gray, 200);
-    border-radius: spacing(1);
-    font-size: font-size(xl);
-    transition: border-color 0.2s;
+	input {
+		width: 100%;
+		padding: spacing(2);
+		background: color-shade($gray, 100);
+		border: 1px solid color-shade($gray, 200);
+		border-radius: spacing(1);
+		font-size: font-size(xl);
+		transition: border-color 0.2s;
 
-    &:focus {
-      outline: none;
-      border-color: color-shade($indigo, 500);
-    }
-  }
+		&:focus {
+			outline: none;
+			border-color: color-shade($indigo, 500);
+		}
+	}
 }
 
 .dropdown__options {
-  max-height: spacing(64);
-  overflow-y: auto;
-  padding: spacing(1);
+	max-height: spacing(64);
+	overflow-y: auto;
+	padding: spacing(1);
 }
 
 .dropdown__option {
-  display: flex;
-  align-items: center;
-  gap: spacing(2);
-  padding: spacing(2) spacing(3);
-  color: color-shade($gray, 900);
-  font-size: font-size(xl);
-  border-radius: spacing(1);
-  cursor: pointer;
-  transition: all 0.2s;
+	display: flex;
+	align-items: center;
+	gap: spacing(2);
+	padding: spacing(2) spacing(3);
+	color: color-shade($gray, 900);
+	font-size: font-size(xl);
+	border-radius: spacing(1);
+	cursor: pointer;
+	transition: all 0.2s;
 
-  &:hover:not(.disabled) {
-    background: color-shade($gray, 100);
-  }
+	&:hover:not(.disabled) {
+		background: color-shade($gray, 100);
+	}
 
-  &.selected {
-    color: color-shade($indigo, 500);
-    background: color-shade($indigo, 50);
-  }
+	&.selected {
+		color: color-shade($indigo, 500);
+		background: color-shade($indigo, 50);
+	}
 
-  &.active {
-    background: color-shade($gray, 100);
-  }
+	&.active {
+		background: color-shade($gray, 100);
+	}
 
-  &.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+	&.disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 }
 
 .dropdown__option-icon {
-  width: spacing(4);
-  height: spacing(4);
-  object-fit: contain;
+	width: spacing(4);
+	height: spacing(4);
+	object-fit: contain;
 }
 
 .dropdown__empty,
 .dropdown__loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: spacing(2);
-  padding: spacing(4);
-  color: color-shade($gray, 400);
-  font-size: font-size(xl);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: spacing(2);
+	padding: spacing(4);
+	color: color-shade($gray, 400);
+	font-size: font-size(xl);
 }
 
 .spinner {
-  width: spacing(4);
-  height: spacing(4);
-  border: 2px solid color-shade($gray, 200);
-  border-top-color: color-shade($indigo, 500);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+	width: spacing(4);
+	height: spacing(4);
+	border: 2px solid color-shade($gray, 200);
+	border-top-color: color-shade($indigo, 500);
+	border-radius: 50%;
+	animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+	to {
+		transform: rotate(360deg);
+	}
 }

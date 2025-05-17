@@ -1,10 +1,17 @@
-import { Component, input, InputSignal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	input,
+	InputSignal,
+	ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
 	selector: 'tasker-check-icon',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [],
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +19,7 @@ import { CommonModule } from '@angular/common';
 			[attr.height]="size()"
 			viewBox="0 0 24 24"
 			[attr.fill]="fill()"
-			[attr.stroke]="stroke()"
+			[attr.stroke]="isGreen() ? '#10B981' : stroke()"
 			[attr.stroke-width]="strokeWidth()"
 			stroke-linecap="round"
 			stroke-linejoin="round"
@@ -30,4 +37,6 @@ export class CheckIconComponent {
 	stroke: InputSignal<string> = input('currentColor');
 	strokeWidth: InputSignal<string> = input('2');
 	className: InputSignal<string> = input('');
+	// Add a new input property for the stroke color with a default value
+	isGreen: InputSignal<boolean> = input(false);
 }

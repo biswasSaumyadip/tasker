@@ -1,6 +1,9 @@
 @use 'functions' as *;
 
 .tasker__accordion {
+	display: flex;
+	gap: 8px;
+
 	background-color: color-shade($gray, 50);
 
 	&.approaching-due {
@@ -47,6 +50,63 @@
 		p {
 			color: color-shade($gray, 500);
 		}
+	}
+
+	&--checkbox {
+		position: relative;
+		flex: 1 1 1%;
+
+		input[type='checkbox'] {
+			height: spacing(7);
+			left: 50%;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: spacing(7);
+			z-index: 1;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		&-icon {
+			@include circle(spacing(7), transparent, 2px solid color-shade($gray, 400));
+			left: 50%;
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			transition: all 0.2s ease;
+
+			&:hover {
+				border-color: color-shade($gray, 600);
+				cursor: pointer;
+			}
+		}
+
+		tasker-check-icon {
+			left: 50%;
+			position: absolute;
+			top: 52%;
+			transform: translate(-50%, -50%);
+			transition: all 0.2s ease;
+
+			svg {
+				&.set-green,
+				&.tasker__accordion--checkbox-icon.set-green {
+					stroke: color-shade($green, 500);
+				}
+			}
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	&--content {
+		flex: 1 1 98%;
 	}
 
 	&--assigned {

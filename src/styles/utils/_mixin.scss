@@ -2,8 +2,8 @@
 @use '../tokens/spacing' as *;
 @use '../tokens/typography' as *;
 @use 'sass:map';
-@use '../utils/functions' as fn;
-@use '../utils/component-functions' as comp;
+@use 'functions' as fn;
+@use 'component-functions' as comp;
 
 @mixin visually-hidden {
 	position: absolute;
@@ -159,4 +159,20 @@
 	border-radius: 50%;
 	object-fit: cover;
 	display: inline-block;
+}
+
+@mixin circle($size, $bg-color: transparent, $border: none) {
+	width: $size;
+	height: $size;
+	border-radius: 50%;
+	background-color: $bg-color;
+	border: $border;
+	display: inline-block;
+}
+
+@mixin strike-through($color: currentColor, $thickness: 1px, $style: solid) {
+	text-decoration: line-through;
+	text-decoration-color: $color;
+	text-decoration-thickness: $thickness;
+	text-decoration-style: $style;
 }

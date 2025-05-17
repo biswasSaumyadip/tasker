@@ -1,11 +1,22 @@
-import { ChangeDetectionStrategy, Component, inject, input, InputSignal } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	inject,
+	input,
+	InputSignal,
+	OnDestroy,
+	OnInit,
+} from '@angular/core';
 import { Task } from '../../../models/task.model';
-import { DatePipe, NgClass } from '@angular/common';
+import { AsyncPipe, DatePipe, NgClass } from '@angular/common';
 import { CapitalizeFirstPipe } from '../../pipe/capitalize-first-pipe.pipe';
 import { PriorityBadgeDirective } from '../../directives/priority-badge.directive';
 import { DateColorDirective } from '../../directives/date-color.directive';
 import { UtilityService } from '../../services/utility.service';
 import { ChipsComponent } from '../chips/chips.component';
+import { FormsModule } from '@angular/forms';
+import { CheckIconComponent } from '../../../components/icons/check-icon.component';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Component({
 	selector: 'tasker-accordion',
@@ -15,18 +26,52 @@ import { ChipsComponent } from '../chips/chips.component';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		DatePipe,
+		AsyncPipe,
 		CapitalizeFirstPipe,
 		PriorityBadgeDirective,
 		DateColorDirective,
 		NgClass,
 		ChipsComponent,
+		FormsModule,
+		CheckIconComponent,
 	],
 })
-export class TaskerAccordionComponent {
+export class TaskerAccordionComponent implements OnInit, OnDestroy {
 	// Accordion component logic goes here
 	title: InputSignal<string> = input.required();
 	task: InputSignal<Task> = input.required();
 
 	private _utilityService: UtilityService = inject(UtilityService);
 	dueDateStatus = this._utilityService.getDueDateStatus;
+
+	// Reactive approach for checkbox state
+	private isCompletedSubject = new BehaviorSubject<boolean>(false);
+	isCompleted$: Observable<boolean> = this.isCompletedSubject.asObservable();
+
+	// For two-way binding compatibility
+	get isCompleted(): boolean {
+		return this.isCompletedSubject.value;
+	}
+
+	set isCompleted(value: boolean) {
+		this.isCompletedSubject.next(value);
+	}
+
+	// For cleanup
+	private destroy$ = new Subject<void>();
+
+	ngOnInit(): void {
+		// Initialize the completed state from the task
+		this.isCompletedSubject.next(this.task().completed);
+	}
+
+	toggleTask(): void {
+		const newCompletedState = !this.isCompleted;
+		this.isCompletedSubject.next(newCompletedState);
+	}
+
+	ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
+	}
 }
