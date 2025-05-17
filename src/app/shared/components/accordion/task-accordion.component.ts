@@ -53,15 +53,10 @@ export class TaskerAccordionComponent implements OnInit, OnDestroy {
 		return this.isCompletedSubject.value;
 	}
 
-	set isCompleted(value: boolean) {
-		this.isCompletedSubject.next(value);
-	}
-
 	// For cleanup
 	private destroy$ = new Subject<void>();
 
 	ngOnInit(): void {
-		// Initialize the completed state from the task
 		this.isCompletedSubject.next(this.task().completed);
 	}
 
