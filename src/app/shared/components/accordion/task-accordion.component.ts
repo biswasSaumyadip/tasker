@@ -18,6 +18,8 @@ import { ChipsComponent } from '../chips/chips.component';
 import { FormsModule } from '@angular/forms';
 import { CheckIconComponent } from '../../../components/icons/check-icon.component';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { EditIconComponent } from '../../../components/icons/edit-icon.component';
+import { TrashIconComponent } from '../../../components/icons/trash-icon.component';
 
 @Component({
 	selector: 'tasker-accordion',
@@ -35,6 +37,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 		ChipsComponent,
 		FormsModule,
 		CheckIconComponent,
+		EditIconComponent,
+		TrashIconComponent,
 	],
 })
 export class TaskerAccordionComponent implements OnInit, OnDestroy {

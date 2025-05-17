@@ -54,7 +54,15 @@
 					/>
 				}
 				<div class="tasker__accordion--assigned">{{ task().assignedTo }}</div>
-				<div class="tasker__accordion--actions"></div>
+				<div class="tasker__accordion--actions">
+					@let iconSize = '15';
+					<div class="edit-icon">
+						<EditIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
+					</div>
+					<div class="delete-icon">
+						<TrashIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="tasker__accordion--body">

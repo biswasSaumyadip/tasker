@@ -1,20 +1,28 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	input,
+	InputSignal,
+	ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'SettingsIcon',
+	standalone: true,
+	encapsulation: ViewEncapsulation.None,
 	template: `
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
+			[attr.width]="size()"
+			[attr.height]="size()"
 			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="2"
+			[attr.fill]="fill()"
+			[attr.stroke]="stroke()"
+			[attr.stroke-width]="strokeWidth()"
 			stroke-linecap="round"
 			stroke-linejoin="round"
-			class="lucide lucide-settings mr-3 flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+			[class]="className()"
 			aria-hidden="true"
 			data-id="element-62"
 		>
@@ -25,4 +33,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 		</svg>
 	`,
 })
-export class SettingsIconComponent {}
+export class SettingsIconComponent {
+	// Input properties with default values
+	size: InputSignal<string> = input('24');
+	fill: InputSignal<string> = input('none');
+	stroke: InputSignal<string> = input('currentColor');
+	strokeWidth: InputSignal<string> = input('2');
+	className: InputSignal<string> = input(
+		'lucide lucide-settings mr-3 flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500',
+	);
+}

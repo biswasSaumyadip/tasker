@@ -182,6 +182,35 @@
 		font-size: font-size(x);
 	}
 
+	&--actions {
+		display: flex;
+		gap: 5px;
+
+		.edit-icon {
+			padding-top: 1px;
+		}
+
+		div {
+			.color__grey {
+				stroke: color-shade($gray, 400);
+			}
+
+			&.delete-icon {
+				.color__grey {
+					transition: all 0.2s ease;
+
+					&:hover {
+						stroke: color-shade($red, 500);
+					}
+				}
+			}
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
 	&--dueDate {
 		font-size: font-size(x);
 	}
