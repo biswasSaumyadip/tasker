@@ -3,145 +3,145 @@
 @use 'tokens/colors' as *;
 
 .tasker__accordion {
-  display: flex;
-  gap: 8px;
+	display: flex;
+	gap: 8px;
 
-  background-color: color-shade($gray, 50);
+	background-color: color-shade($gray, 50);
 
-  &.approaching-due {
-    background-color: color-shade($yellow, 50);
+	&.approaching-due {
+		background-color: color-shade($yellow, 50);
 
-    &:hover {
-      background-color: color-shade($gray, 50);
-    }
-  }
+		&:hover {
+			background-color: color-shade($gray, 50);
+		}
+	}
 
-  &.future {
-    background-color: color-shade($gray, 0);
+	&.future {
+		background-color: color-shade($gray, 0);
 
-    &:hover {
-      background-color: color-shade($gray, 50);
-    }
-  }
+		&:hover {
+			background-color: color-shade($gray, 50);
+		}
+	}
 
-  border: 1px solid color-shade($gray, 200);
-  border-radius: spacing(1-5);
-  padding: spacing(3);
+	border: 1px solid color-shade($gray, 200);
+	border-radius: spacing(1-5);
+	padding: spacing(3);
 
-  &--header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	&--header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 
-    &-left {
-      display: flex;
-      align-items: center;
-      gap: spacing(3);
-    }
-  }
+		&-left {
+			display: flex;
+			align-items: center;
+			gap: spacing(3);
+		}
+	}
 
-  &--title {
-    color: color-shade($gray, 900);
-    font-weight: font-weight(medium);
-    font-size: font-size(xl);
-  }
+	&--title {
+		color: color-shade($gray, 900);
+		font-weight: font-weight(medium);
+		font-size: font-size(xl);
+	}
 
-  &--body {
-    margin-top: spacing(1);
+	&--body {
+		margin-top: spacing(1);
 
-    p {
-      color: color-shade($gray, 500);
-    }
-  }
+		p {
+			color: color-shade($gray, 500);
+		}
+	}
 
-  &--checkbox {
-    position: relative;
-    flex: 1 1 1%;
+	&--checkbox {
+		position: relative;
+		flex: 1 1 1%;
 
-    input[type='checkbox'] {
-      height: spacing(7);
-      left: 50%;
-      opacity: 0;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: spacing(7);
-      z-index: 1;
+		input[type='checkbox'] {
+			height: spacing(7);
+			left: 50%;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: spacing(7);
+			z-index: 1;
 
-      &:hover {
-        cursor: pointer;
-      }
-    }
+			&:hover {
+				cursor: pointer;
+			}
+		}
 
-    &-icon {
-      @include circle(spacing(7), transparent, 2px solid color-shade($gray, 400));
-      left: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 0.2s ease;
+		&-icon {
+			@include circle(spacing(7), transparent, 2px solid color-shade($gray, 400));
+			left: 50%;
+			position: absolute;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			transition: all 0.2s ease;
 
-      &:hover {
-        border-color: color-shade($gray, 600);
-        cursor: pointer;
-      }
-    }
+			&:hover {
+				border-color: color-shade($gray, 600);
+				cursor: pointer;
+			}
+		}
 
-    tasker-check-icon {
-      left: 50%;
-      position: absolute;
-      top: 52%;
-      transform: translate(-50%, -50%);
-      transition: all 0.2s ease;
+		tasker-check-icon {
+			left: 50%;
+			position: absolute;
+			top: 52%;
+			transform: translate(-50%, -50%);
+			transition: all 0.2s ease;
 
-      svg {
-        &.set-green,
-        &.tasker__accordion--checkbox-icon.set-green {
-          stroke: color-shade($green, 500);
-        }
-      }
+			svg {
+				&.set-green,
+				&.tasker__accordion--checkbox-icon.set-green {
+					stroke: color-shade($green, 500);
+				}
+			}
 
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
 
-  &--content {
-    flex: 1 1 98%;
-  }
+	&--content {
+		flex: 1 1 98%;
+	}
 
-  &--assigned {
-    color: color-shade($gray, 600);
-  }
+	&--assigned {
+		color: color-shade($gray, 600);
+	}
 
-  &--footer {
-    margin-top: spacing(1);
-  }
+	&--footer {
+		margin-top: spacing(1);
+	}
 
-  $tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - #{$tw-space-y-reverse}));
-  margin-bottom: calc(0.5rem * #{$tw-space-y-reverse});
+	$tw-space-y-reverse: 0;
+	margin-top: calc(0.5rem * calc(1 - #{$tw-space-y-reverse}));
+	margin-bottom: calc(0.5rem * #{$tw-space-y-reverse});
 
-  //&:not([hidden])~:not([hidden]) {
-  //  --tw-space-y-reverse: 0;
-  //  margin-top: calc(.5rem * calc(1 - var(--tw-space-y-reverse)));
-  //  margin-bottom: calc(.5rem * var(--tw-space-y-reverse));
-  //}
+	//&:not([hidden])~:not([hidden]) {
+	//  --tw-space-y-reverse: 0;
+	//  margin-top: calc(.5rem * calc(1 - var(--tw-space-y-reverse)));
+	//  margin-bottom: calc(.5rem * var(--tw-space-y-reverse));
+	//}
 
-  &--profilePicture {
-    @include profile-picture(spacing(8));
-  }
+	&--profilePicture {
+		@include profile-picture(spacing(8));
+	}
 
-  &--assigned {
-    font-size: font-size(x);
-  }
+	&--assigned {
+		font-size: font-size(x);
+	}
 
-  &--dueDate {
-    font-size: font-size(x);
-  }
+	&--dueDate {
+		font-size: font-size(x);
+	}
 
-  &--priorilty {
-    font-size: font-size(x);
-  }
+	&--priorilty {
+		font-size: font-size(x);
+	}
 }
