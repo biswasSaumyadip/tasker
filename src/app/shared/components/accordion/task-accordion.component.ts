@@ -56,6 +56,10 @@ export class TaskerAccordionComponent implements OnInit, OnDestroy {
 	private isCompletedSubject = new BehaviorSubject<boolean>(false);
 	isCompleted$: Observable<boolean> = this.isCompletedSubject.asObservable();
 
+	// Reactive approach for hover state
+	private isHoveredSubject = new BehaviorSubject<boolean>(false);
+	isHovered$: Observable<boolean> = this.isHoveredSubject.asObservable();
+
 	// For two-way binding compatibility
 	get isCompleted(): boolean {
 		return this.isCompletedSubject.value;
@@ -79,6 +83,15 @@ export class TaskerAccordionComponent implements OnInit, OnDestroy {
 
 	hasChildren(): boolean {
 		return !!this.task().children && this.task().children!.length > 0;
+	}
+
+	// Methods to handle hover state
+	onMouseEnter(): void {
+		this.isHoveredSubject.next(true);
+	}
+
+	onMouseLeave(): void {
+		this.isHoveredSubject.next(false);
 	}
 
 	ngOnDestroy(): void {
