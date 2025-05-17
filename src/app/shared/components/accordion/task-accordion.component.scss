@@ -1,4 +1,4 @@
-@use 'index' as *;
+@use 'functions' as *;
 
 .tasker__accordion {
 	background-color: color-shade($gray, 50);
@@ -47,6 +47,10 @@
 		p {
 			color: color-shade($gray, 500);
 		}
+	}
+
+	&--assigned {
+		color: color-shade($gray, 600);
 	}
 
 	&--footer {
