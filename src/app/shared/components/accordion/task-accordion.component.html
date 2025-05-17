@@ -56,7 +56,7 @@
 					/>
 				}
 				<div class="tasker__accordion--assigned">{{ task().assignedTo }}</div>
-				<div class="tasker__accordion--actions" [class.visible]="(isHovered$ | async)">
+				<div class="tasker__accordion--actions" [class.visible]="isHovered$ | async">
 					@let iconSize = '15';
 					<div class="edit-icon">
 						<EditIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
