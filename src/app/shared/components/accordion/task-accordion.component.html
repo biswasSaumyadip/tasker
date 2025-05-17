@@ -21,9 +21,22 @@
 	</div>
 	<div class="tasker__accordion--content">
 		<div class="tasker__accordion--header">
-			<h2 class="tasker__accordion--title" [ngClass]="{ 'text-strike': isTaskCompleted }">
-				{{ task().title }}
-			</h2>
+			<div class="tasker__accordion--title-container">
+				@if (hasChildren()) {
+					<button 
+						class="tasker__accordion--expand-button" 
+						(click)="toggleExpand()"
+						[attr.aria-expanded]="isExpanded()"
+					>
+						<span class="expand-icon" [ngClass]="{'expanded': isExpanded()}">
+							▶
+						</span>
+					</button>
+				}
+				<h2 class="tasker__accordion--title" [ngClass]="{ 'text-strike': isTaskCompleted }">
+					{{ task().title }}
+				</h2>
+			</div>
 			<div class="tasker__accordion--header-left">
 				<div
 					class="tasker__accordion--priority badge"
@@ -54,5 +67,17 @@
 		<div class="tasker__accordion--footer">
 			<tasker-chips [chips]="task().tags"></tasker-chips>
 		</div>
+
+		@if (hasChildren() && isExpanded()) {
+			<div class="tasker__accordion--children">
+				@for (childTask of task().children; track childTask.id) {
+					<tasker-accordion 
+						[task]="childTask" 
+						[title]="childTask.title"
+						class="tasker__accordion--child"
+					></tasker-accordion>
+				}
+			</div>
+		}
 	</div>
 </div>

@@ -3,7 +3,7 @@ import { Card } from 'primeng/card';
 import { TaskerAccordionComponent } from '../../../shared/components/accordion/task-accordion.component';
 import { TasksService } from '../../../services/tasks.service';
 import { Observable } from 'rxjs';
-import { Task } from '../../../models/task.model';
+import { TaskWithChildren } from '../../../models/task.model';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -14,5 +14,5 @@ import { AsyncPipe } from '@angular/common';
 })
 export class TasksComponent {
 	private _taskService: TasksService = inject(TasksService);
-	tasks$: Observable<Task[]> = this._taskService.getTasks();
+	tasks$: Observable<TaskWithChildren[]> = this._taskService.getTasks();
 }

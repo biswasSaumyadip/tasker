@@ -21,6 +21,10 @@ export interface CreateTaskDto {
 	dueDate?: string;
 }
 
+export interface TaskWithChildren extends Task {
+	children?: TaskWithChildren[];
+}
+
 export interface TaskResponse {
 	data: Task;
 	message: string;

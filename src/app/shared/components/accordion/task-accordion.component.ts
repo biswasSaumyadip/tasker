@@ -6,8 +6,9 @@ import {
 	InputSignal,
 	OnDestroy,
 	OnInit,
+	signal,
 } from '@angular/core';
-import { Task } from '../../../models/task.model';
+import { TaskWithChildren } from '../../../models/task.model';
 import { AsyncPipe, DatePipe, NgClass } from '@angular/common';
 import { CapitalizeFirstPipe } from '../../pipe/capitalize-first-pipe.pipe';
 import { PriorityBadgeDirective } from '../../directives/priority-badge.directive';
@@ -39,7 +40,10 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class TaskerAccordionComponent implements OnInit, OnDestroy {
 	// Accordion component logic goes here
 	title: InputSignal<string> = input.required();
-	task: InputSignal<Task> = input.required();
+	task: InputSignal<TaskWithChildren> = input.required();
+
+	// Track expanded state
+	isExpanded = signal<boolean>(false);
 
 	private _utilityService: UtilityService = inject(UtilityService);
 	dueDateStatus = this._utilityService.getDueDateStatus;
@@ -63,6 +67,14 @@ export class TaskerAccordionComponent implements OnInit, OnDestroy {
 	toggleTask(): void {
 		const newCompletedState = !this.isCompleted;
 		this.isCompletedSubject.next(newCompletedState);
+	}
+
+	toggleExpand(): void {
+		this.isExpanded.update((state) => !state);
+	}
+
+	hasChildren(): boolean {
+		return !!this.task().children && this.task().children!.length > 0;
 	}
 
 	ngOnDestroy(): void {
