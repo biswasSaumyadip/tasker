@@ -4,86 +4,86 @@
 @use 'tokens/colors' as *;
 
 .rich-text-editor-container {
-  @include flex-column(0);
-  width: 100%;
-  margin-bottom: spacing(4);
+	@include flex-column(0);
+	width: 100%;
+	margin-bottom: spacing(4);
 
-  // Custom styling for the editor
-  .p-editor-container {
-    //@include card-base('md');
-    overflow: hidden;
+	// Custom styling for the editor
+	.p-editor-container {
+		//@include card-base('md');
+		overflow: hidden;
 
-    .p-editor-toolbar {
-      //background-color: color-shade($gray, 50);
-      //border-bottom: 1px solid color-shade($gray, 200);
-      //padding: spacing(2);
+		.p-editor-toolbar {
+			//background-color: color-shade($gray, 50);
+			//border-bottom: 1px solid color-shade($gray, 200);
+			//padding: spacing(2);
 
-      .ql-formats {
-        margin-right: spacing(2);
-      }
+			.ql-formats {
+				margin-right: spacing(2);
+			}
 
-      // Style for enabled action buttons
-      .ql-picker.ql-expanded .ql-picker-label,
-      .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) .ql-picker-label.ql-active,
-      .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) .ql-picker-item.ql-selected,
-      button.ql-active,
-      button:hover {
-        color: color-shade($indigo, 500) !important;
-      }
+			// Style for enabled action buttons
+			.ql-picker.ql-expanded .ql-picker-label,
+			.ql-picker:not(.ql-color-picker):not(.ql-icon-picker) .ql-picker-label.ql-active,
+			.ql-picker:not(.ql-color-picker):not(.ql-icon-picker) .ql-picker-item.ql-selected,
+			button.ql-active,
+			button:hover {
+				color: color-shade($indigo, 500) !important;
+			}
 
-      .ql-picker-label:hover,
-      .ql-picker-item:hover {
-        color: color-shade($indigo, 500) !important;
-      }
+			.ql-picker-label:hover,
+			.ql-picker-item:hover {
+				color: color-shade($indigo, 500) !important;
+			}
 
-      button.ql-active .ql-stroke,
-      button:hover .ql-stroke,
-      .ql-picker-label:hover .ql-stroke,
-      .ql-picker-label.ql-active .ql-stroke,
-      .ql-picker-item.ql-selected .ql-stroke {
-        stroke: color-shade($indigo, 500) !important;
-      }
+			button.ql-active .ql-stroke,
+			button:hover .ql-stroke,
+			.ql-picker-label:hover .ql-stroke,
+			.ql-picker-label.ql-active .ql-stroke,
+			.ql-picker-item.ql-selected .ql-stroke {
+				stroke: color-shade($indigo, 500) !important;
+			}
 
-      button.ql-active .ql-fill,
-      button:hover .ql-fill,
-      .ql-picker-label:hover .ql-fill,
-      .ql-picker-label.ql-active .ql-fill,
-      .ql-picker-item.ql-selected .ql-fill {
-        fill: color-shade($indigo, 500) !important;
-      }
-    }
+			button.ql-active .ql-fill,
+			button:hover .ql-fill,
+			.ql-picker-label:hover .ql-fill,
+			.ql-picker-label.ql-active .ql-fill,
+			.ql-picker-item.ql-selected .ql-fill {
+				fill: color-shade($indigo, 500) !important;
+			}
+		}
 
-    .p-editor-content {
-      @include interactive-element;
+		.p-editor-content {
+			@include interactive-element;
 
-      .ql-editor {
-        min-height: 150px;
-        font-family: inherit;
-        font-size: font-size('base');
-        line-height: 1.5;
-        padding: spacing(3);
+			.ql-editor {
+				min-height: 150px;
+				font-family: inherit;
+				font-size: font-size('base');
+				line-height: 1.5;
+				padding: spacing(3);
 
-        &.ql-blank::before {
-          font-style: italic;
-          color: text-color('secondary');
-        }
-      }
-    }
-  }
+				&.ql-blank::before {
+					font-style: italic;
+					color: text-color('secondary');
+				}
+			}
+		}
+	}
 
-  // Disabled state
-  .p-disabled {
-    .p-editor-container {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-  }
+	// Disabled state
+	.p-disabled {
+		.p-editor-container {
+			opacity: 0.6;
+			cursor: not-allowed;
+		}
+	}
 }
 
 // Focus state
 :host ::ng-deep .p-editor-container:focus-within {
-  .p-editor-content {
-    border-color: color-shade($blue, 500);
-    box-shadow: comp.get-interactive('focus-shadow');
-  }
+	.p-editor-content {
+		border-color: color-shade($blue, 500);
+		box-shadow: comp.get-interactive('focus-shadow');
+	}
 }
