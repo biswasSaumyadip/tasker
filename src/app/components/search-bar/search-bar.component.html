@@ -1,0 +1,10 @@
+<div class="search__bar">
+	<tasker-input
+		#searchInput
+		placeholder="Search tasks (Ctrl + K)"
+		(valueChange)="onInput($event)"
+		(inputKeydown)="$event.key === 'Escape' ? onEscape() : null"
+	>
+		<SearchIcon icon />
+	</tasker-input>
+</div>
