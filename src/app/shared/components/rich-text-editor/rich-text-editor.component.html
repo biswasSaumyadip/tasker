@@ -1,0 +1,66 @@
+<div class="rich-text-editor-container" [class]="className()">
+    <p-editor
+        #pEditor
+        [(ngModel)]="editorContent"
+        [style]="{ height: height() }"
+        [placeholder]="placeholder()"
+        [disabled]="disabled()"
+        [modules]="modules"
+        (onTextChange)="onContentChange($event.htmlValue)"
+        (onInit)="onEditorInit($event)"
+    >
+        <ng-template pTemplate="header">
+      <span class="ql-formats">
+        <button type="button" class="ql-bold" aria-label="Bold"></button>
+        <button type="button" class="ql-italic" aria-label="Italic"></button>
+        <button type="button" class="ql-underline" aria-label="Underline"></button>
+        <button type="button" class="ql-strike" aria-label="Strike"></button>
+      </span>
+            <span class="ql-formats">
+        <select class="ql-color" aria-label="Text Color"></select>
+        <select class="ql-background" aria-label="Background Color"></select>
+      </span>
+            <span class="ql-formats">
+        <button type="button" class="ql-script" value="sub" aria-label="Subscript"></button>
+        <button type="button" class="ql-script" value="super" aria-label="Superscript"></button>
+      </span>
+            <span class="ql-formats">
+        <select class="ql-header" aria-label="Heading">
+          <option value="1">Heading</option>
+          <option value="2">Subheading</option>
+          <option value="3">Small Heading</option>
+          <option selected>Normal</option>
+        </select>
+        <select class="ql-font" aria-label="Font">
+          <option selected>Sans Serif</option>
+          <option value="serif">Serif</option>
+          <option value="monospace">Monospace</option>
+        </select>
+        <select class="ql-size" aria-label="Text Size">
+          <option value="small">Small</option>
+          <option selected>Normal</option>
+          <option value="large">Large</option>
+          <option value="huge">Huge</option>
+        </select>
+      </span>
+            <span class="ql-formats">
+        <button type="button" class="ql-list" value="ordered" aria-label="Ordered List"></button>
+        <button type="button" class="ql-list" value="bullet" aria-label="Bullet List"></button>
+        <button type="button" class="ql-indent" value="-1" aria-label="Decrease Indent"></button>
+        <button type="button" class="ql-indent" value="+1" aria-label="Increase Indent"></button>
+      </span>
+            <span class="ql-formats">
+        <button type="button" class="ql-direction" value="rtl" aria-label="Text Direction"></button>
+        <select class="ql-align" aria-label="Text Alignment"></select>
+      </span>
+            <span class="ql-formats">
+        <button type="button" class="ql-link" aria-label="Insert Link"></button>
+        <button type="button" class="ql-image" aria-label="Insert Image"></button>
+        <button type="button" class="ql-code-block" aria-label="Insert Code Block"></button>
+      </span>
+            <span class="ql-formats">
+        <button type="button" class="ql-clean" aria-label="Remove Formatting"></button>
+      </span>
+        </ng-template>
+    </p-editor>
+</div>
