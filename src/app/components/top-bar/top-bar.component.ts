@@ -1,15 +1,14 @@
-import { Component, inject, ViewChild, ElementRef, HostBinding, HostListener } from '@angular/core';
-import { InputText } from 'primeng/inputtext';
-import { SearchIconComponent } from '../icons/search-icon.component';
+import { Component, HostBinding, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { BellIconComponent } from '../icons/bell-icon.component';
 import { UserService } from '../../services/user.service';
-import { AsyncPipe } from '@angular/common';
 import { NotificationService } from '../../services/notification.service';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
 	selector: 'tasker-top-bar',
 	standalone: true,
-	imports: [InputText, SearchIconComponent, BellIconComponent, AsyncPipe],
+	imports: [BellIconComponent, AsyncPipe, SearchBarComponent],
 	templateUrl: './top-bar.component.html',
 	styleUrl: './top-bar.component.scss',
 })
@@ -21,21 +20,11 @@ export class TopBarComponent {
 	private _userService: UserService = inject(UserService);
 	private _notificationService: NotificationService = inject(NotificationService);
 
-	@ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
-
 	user$ = this._userService.getUserInfo();
 	notificationCount$ = this._notificationService.notificationCount();
 
-	@HostListener('window:keydown', ['$event'])
-	handleKeydown(event: KeyboardEvent) {
-		// Check for Ctrl+K or Command+K (Mac)
-		if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
-			event.preventDefault();
-			this.searchInput.nativeElement.focus();
-		}
-	}
-
-	onEscape() {
-		this.searchInput.nativeElement.blur();
+	onSearch(searchTerm: string) {
+		// Handle search functionality
+		console.log('Search term:', searchTerm);
 	}
 }

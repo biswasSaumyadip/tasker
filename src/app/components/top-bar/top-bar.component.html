@@ -1,17 +1,7 @@
 @let user = user$ | async;
 
 <div class="menu__bar">
-	<div class="search__bar">
-		<SearchIcon />
-		<input
-			#searchInput
-			type="text"
-			pInputText
-			placeholder="Search tasks (Ctrl + K)"
-			class="menu__bar--input"
-			(keydown.escape)="onEscape()"
-		/>
-	</div>
+	<tasker-search-bar (searchChange)="onSearch($event)"></tasker-search-bar>
 	<div class="right__section">
 		<div class="notification__button">
 			<span class="notification__count">

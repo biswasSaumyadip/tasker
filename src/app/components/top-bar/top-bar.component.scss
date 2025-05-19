@@ -59,44 +59,4 @@
 			}
 		}
 	}
-	.search__bar {
-		align-items: center;
-		display: flex;
-		width: 400px;
-		position: relative;
-
-		::ng-deep {
-			SearchIcon {
-				position: absolute;
-				left: spacing(3);
-				svg {
-					stroke: color-shade($gray, 600);
-					width: spacing(6);
-					height: spacing(6);
-				}
-			}
-		}
-	}
-
-	.menu__bar--input {
-		width: 100%;
-		padding: spacing(3) spacing(4);
-		padding-left: spacing(12);
-		border-radius: spacing(2);
-		border: 1px solid color-shade($gray, 200);
-		background-color: color-shade($gray, 50);
-		font-size: font-size(lg);
-		transition: all 0.2s ease;
-
-		&:focus {
-			outline: none;
-			border-color: color-shade($indigo, 400);
-			background-color: white;
-			box-shadow: 0 0 0 3px rgba(color-shade($indigo, 500), 0.1);
-		}
-
-		&::placeholder {
-			color: color-shade($gray, 400);
-		}
-	}
 }
