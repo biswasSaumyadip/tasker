@@ -1,0 +1,26 @@
+<div class="tasker-input">
+	@if (!icon()) {
+		<ng-content select="[icon]"></ng-content>
+	}
+	@if (icon()) {
+		<div class="icon-container">
+			<ng-container *ngComponentOutlet="icon()"></ng-container>
+		</div>
+	}
+	<input
+		#inputElement
+		[type]="type()"
+		[placeholder]="placeholder()"
+		[class]="'tasker-input__field ' + className()"
+		[value]="value()"
+		(input)="onInput($event)"
+		(blur)="onBlur()"
+		(focus)="onFocus()"
+		(keydown)="onKeydown($event)"
+		[autocomplete]="autocomplete()"
+		[disabled]="disabled()"
+		[required]="required()"
+		[readonly]="readonly()"
+		[autofocus]="autofocus()"
+	/>
+</div>
