@@ -6,6 +6,7 @@
 			styleClass="p-button-primary tasker__button"
 			[style]="{ height: '38px', 'font-weight': '500', 'font-size': '12px' }"
 			class="mt-4 w-full"
+			(click)="createTask()"
 		>
 		</p-button>
 	</div>
@@ -17,7 +18,6 @@
 		<!--    <app-task-view-toggle></app-task-view-toggle>-->
 		<!--    <app-task-calendar-toggle></app-task-calendar-toggle>-->
 	</div>
-
 	<!--  <app-task-toolbar></app-task-toolbar>-->
 
 	<div class="task-list-section">
