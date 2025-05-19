@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskCreateComponent } from './task-create.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('TaskCreateComponent', () => {
 	let component: TaskCreateComponent;
@@ -9,6 +10,7 @@ describe('TaskCreateComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			imports: [TaskCreateComponent],
+			providers: [provideAnimations()],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TaskCreateComponent);
