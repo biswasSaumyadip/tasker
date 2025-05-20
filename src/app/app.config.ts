@@ -21,6 +21,7 @@ export const appConfig: ApplicationConfig = {
 				preset: Material,
 				options: {
 					darkModeSelector: 'none',
+					primaryColor: '#6366f1', // Indigo-500 color
 				},
 			},
 		}),

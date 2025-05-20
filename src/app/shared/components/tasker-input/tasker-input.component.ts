@@ -4,10 +4,20 @@ import {
 	ElementRef,
 	input,
 	output,
+	Type,
 	viewChild,
 	ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+// Interface for icon components
+interface IconComponent {
+	size?: unknown;
+	fill?: unknown;
+	stroke?: unknown;
+	strokeWidth?: unknown;
+	className?: unknown;
+}
 
 @Component({
 	selector: 'tasker-input',
@@ -25,7 +35,20 @@ export class TaskerInputComponent {
 	inputElement = viewChild.required<ElementRef<HTMLInputElement>>('inputElement');
 	placeholder = input<string>('');
 	type = input<string>('text');
-	icon = input<Component | null>(null);
+	icon = input<string | Type<IconComponent> | null>(null);
+
+	isStringIcon() {
+		return typeof this.icon() === 'string';
+	}
+
+	isComponentIcon() {
+		return this.icon() !== null && typeof this.icon() !== 'string';
+	}
+
+	getComponentIcon(): Type<IconComponent> | null {
+		return this.isComponentIcon() ? (this.icon() as Type<IconComponent>) : null;
+	}
+
 	value = input<string>('');
 	className = input<string>('');
 	disabled = input<boolean>(false);

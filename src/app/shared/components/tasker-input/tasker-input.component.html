@@ -4,7 +4,12 @@
 	}
 	@if (icon()) {
 		<div class="icon-container">
-			<ng-container *ngComponentOutlet="icon()"></ng-container>
+			@if (isStringIcon()) {
+				<i class="{{ icon() }}"></i>
+			}
+			@if (isComponentIcon()) {
+				<ng-container *ngComponentOutlet="getComponentIcon()"></ng-container>
+			}
 		</div>
 	}
 	<input
