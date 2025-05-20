@@ -1,72 +1,72 @@
 @use 'functions' as *;
 
 .tasker-input {
-  align-items: center;
-  border-radius: spacing(2);
-  border: 1px solid color-shade($gray, 200);
-  background-color: color-shade($gray, 50);
-  display: flex;
-  padding: spacing(2);
-  position: relative;
-  width: 100%;
+	align-items: center;
+	border-radius: spacing(2);
+	border: 1px solid color-shade($gray, 200);
+	background-color: color-shade($gray, 50);
+	display: flex;
+	padding: spacing(2);
+	position: relative;
+	width: 100%;
 
-  &:focus-within {
-    outline: none;
-    border-color: color-shade($indigo, 400);
-    background-color: white;
-    box-shadow: 0 0 0 3px rgba(color-shade($indigo, 500), 0.1);
-  }
+	&:focus-within {
+		outline: none;
+		border-color: color-shade($indigo, 400);
+		background-color: white;
+		box-shadow: 0 0 0 3px rgba(color-shade($indigo, 500), 0.1);
+	}
 
+	.icon-container {
+		position: absolute;
+		left: spacing(3);
+		z-index: 1;
 
-  .icon-container {
-    position: absolute;
-    left: spacing(3);
-    z-index: 1;
+		::ng-deep {
+			svg {
+				stroke: color-shade($gray, 600);
+				width: spacing(6);
+				height: spacing(6);
+			}
+		}
+	}
 
-    ::ng-deep {
-      svg {
-        stroke: color-shade($gray, 600);
-        width: spacing(6);
-        height: spacing(6);
-      }
-    }
-  }
+	::ng-deep {
+		[icon] {
+			position: absolute;
+			left: spacing(3);
+			z-index: 1;
 
-  ::ng-deep {
-    [icon] {
-      position: absolute;
-      left: spacing(3);
-      z-index: 1;
-
-      svg {
-        stroke: color-shade($gray, 600);
-        width: spacing(6);
-        height: spacing(6);
-      }
-    }
-  }
+			svg {
+				stroke: color-shade($gray, 600);
+				width: spacing(6);
+				height: spacing(6);
+			}
+		}
+	}
 }
 
 .tasker-input__field {
-  all: unset;
-  animation: caretBlink 1s steps(1) infinite;
-  caret-color: #333;
-  padding: spacing(3);
-  line-height: 1.25rem;
-  font-size: font-size(xl);
-  transition: all 0.3s ease;
-  width: 100%;
+	all: unset;
+	animation: caretBlink 1s steps(1) infinite;
+	caret-color: #333;
+	padding: spacing(3);
+	line-height: 1.25rem;
+	font-size: font-size(xl);
+	transition: all 0.3s ease;
+	width: 100%;
 
-  &::placeholder {
-    color: color-shade($gray, 400);
-  }
+	&::placeholder {
+		color: color-shade($gray, 400);
+	}
 }
 
 @keyframes caretBlink {
-  0%, 100% {
-    caret-color: transparent;
-  }
-  50% {
-    caret-color: #333;
-  }
+	0%,
+	100% {
+		caret-color: transparent;
+	}
+	50% {
+		caret-color: #333;
+	}
 }
