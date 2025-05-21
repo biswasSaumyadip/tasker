@@ -1,16 +1,18 @@
 @use 'functions' as *;
 
 .tasker {
-	&__basic {
-		&--label {
-			display: block;
-			font-size: font-size(xl);
-			padding: spacing(4) 0;
-		}
+  &__basic {
+    &--label {
+      display: block;
+      font-size: font-size(xl);
+      font-weight: font-weight(medium);
+      line-height: 1.25rem;
+      padding: spacing(4) 0;
+    }
 
-		&--input {
-			display: block;
-			padding: spacing(4) 0;
-		}
-	}
+    &--input {
+      display: block;
+      padding: spacing(4) 0;
+    }
+  }
 }
