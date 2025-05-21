@@ -1,37 +1,35 @@
 <div class="tasker__form">
-    <div class="tasker__form--header">
-        <a href="#" (click)="goBack(); $event.preventDefault()" class="tasker__form--back">
-            <BackIcon></BackIcon>
-            <span> Back </span>
-        </a>
+	<div class="tasker__form--header">
+		<a href="#" (click)="goBack(); $event.preventDefault()" class="tasker__form--back">
+			<BackIcon></BackIcon>
+			<span> Back </span>
+		</a>
 
-        <h1 class="task__form--title">Create new task</h1>
-    </div>
-    <div class="tasker__basic--information">
-        <p-accordion value="1">
-            <p-accordion-panel>
-                <p-accordion-header>
-                    <h2>Basic Information</h2>
-                </p-accordion-header>
-                <p-accordion-content>
-                    <div class="tasker__basic--title">
-                        <label for="title" class="tasker__basic--label">Task title</label>
-                        <tasker-input
-                                placeholder="Enter task title"
-                                className="tasker__basic--input"
-                        ></tasker-input>
-                    </div>
-                    <div class="tasker__basic--description">
-                        <label for="description" class="tasker__basic--label">Task
-                            description</label>
-                        <tasker-rich-text-editor/>
-                    </div>
-                    <div class="tasker__basic--attachments">
-                        <label for="attachments" class="tasker__basic--label">Attachments</label>
-
-                    </div>
-                </p-accordion-content>
-            </p-accordion-panel>
-        </p-accordion>
-    </div>
+		<h1 class="task__form--title">Create new task</h1>
+	</div>
+	<div class="tasker__basic--information">
+		<p-accordion value="1">
+			<p-accordion-panel>
+				<p-accordion-header>
+					<h2>Basic Information</h2>
+				</p-accordion-header>
+				<p-accordion-content>
+					<div class="tasker__basic--title">
+						<label for="title" class="tasker__basic--label">Task title</label>
+						<tasker-input
+							placeholder="Enter task title"
+							className="tasker__basic--input"
+						></tasker-input>
+					</div>
+					<div class="tasker__basic--description">
+						<label for="description" class="tasker__basic--label">Task description</label>
+						<tasker-rich-text-editor />
+					</div>
+					<div class="tasker__basic--attachments">
+						<label for="attachments" class="tasker__basic--label">Attachments</label>
+					</div>
+				</p-accordion-content>
+			</p-accordion-panel>
+		</p-accordion>
+	</div>
 </div>
