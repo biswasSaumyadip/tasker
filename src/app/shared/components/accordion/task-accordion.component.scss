@@ -164,9 +164,11 @@
 		padding-left: spacing(2);
 	}
 
-	$tw-space-y-reverse: 0;
-	margin-top: calc(0.5rem * calc(1 - #{$tw-space-y-reverse}));
-	margin-bottom: calc(0.5rem * #{$tw-space-y-reverse});
+	& {
+		$tw-space-y-reverse: 0;
+		margin-top: calc(0.5rem * calc(1 - #{$tw-space-y-reverse}));
+		margin-bottom: calc(0.5rem * #{$tw-space-y-reverse});
+	}
 
 	//&:not([hidden])~:not([hidden]) {
 	//  --tw-space-y-reverse: 0;
