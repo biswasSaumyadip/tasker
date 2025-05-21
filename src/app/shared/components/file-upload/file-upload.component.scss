@@ -1,42 +1,41 @@
 @use 'functions' as *;
 
 .tasker__upload {
-  &--layout {
-    border-radius: spacing(1-5);
-    border: 2px dashed color-shade($gray, 200);
-    @include flex-center;
-    flex-direction: column;
-    height: 100%;
-    padding: spacing(5) spacing(6) spacing(6) spacing(6);
+	&--layout {
+		border-radius: spacing(1-5);
+		border: 2px dashed color-shade($gray, 200);
+		@include flex-center;
+		flex-direction: column;
+		height: 100%;
+		padding: spacing(5) spacing(6) spacing(6) spacing(6);
 
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-    transition-duration: .15s;
-    width: 100%;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+		width: 100%;
 
+		&:hover {
+			border-color: color-shade($indigo, 500);
+		}
+	}
 
-    &:hover {
-      border-color: color-shade($indigo, 500);
-    }
-  }
+	&--text.only__text.indigo__button--text {
+		color: color-shade($indigo, 500);
+		font-size: font-size(2xl);
+		font-weight: font-weight(medium);
+		margin-bottom: spacing(4);
+		line-height: 1.25rem;
+	}
 
-  &--text.only__text.indigo__button--text {
-    color: color-shade($indigo, 500);
-    font-size: font-size(2xl);
-    font-weight: font-weight(medium);
-    margin-bottom: spacing(4);
-    line-height: 1.25rem;
-  }
+	&--drag {
+		color: color-shade($gray, 500);
+		font-size: font-size(xl);
+		font-weight: font-weight(normal);
+		line-height: 1.25rem;
+	}
 
-  &--drag {
-    color: color-shade($gray, 500);
-    font-size: font-size(xl);
-    font-weight: font-weight(normal);
-    line-height: 1.25rem;
-  }
-
-  &--limit {
-    color: color-shade($gray, 500);
-    font-size: font-size(sm);
-  }
+	&--limit {
+		color: color-shade($gray, 500);
+		font-size: font-size(sm);
+	}
 }

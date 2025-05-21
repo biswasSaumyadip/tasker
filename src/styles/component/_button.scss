@@ -2,68 +2,68 @@
 @use '../tokens/colors' as color;
 
 button.tasker__button {
-  &.p-button-primary {
-    font-weight: fn.font-weight(semibold);
-    border-radius: 0.5rem;
-    background-color: fn.color-shade(color.$indigo, 500);
-    border: none;
+	&.p-button-primary {
+		font-weight: fn.font-weight(semibold);
+		border-radius: 0.5rem;
+		background-color: fn.color-shade(color.$indigo, 500);
+		border: none;
 
-    &:not(:disabled):hover {
-      background-color: fn.color-shade(color.$indigo, 700);
-      border: fn.color-shade(color.$indigo, 700);
-    }
-  }
+		&:not(:disabled):hover {
+			background-color: fn.color-shade(color.$indigo, 700);
+			border: fn.color-shade(color.$indigo, 700);
+		}
+	}
 }
 
 button.icon__only {
-  align-items: center;
-  all: unset;
-  display: flex;
-  justify-content: center;
-  gap: fn.spacing(4);
-  font-size: fn.font-size(xl);
+	align-items: center;
+	all: unset;
+	display: flex;
+	justify-content: center;
+	gap: fn.spacing(4);
+	font-size: fn.font-size(xl);
 
-  &:not(:disabled):hover {
-    cursor: pointer;
-  }
+	&:not(:disabled):hover {
+		cursor: pointer;
+	}
 }
 
 button.indigo__button {
-  & {
-    background-color: fn.color-shade(color.$indigo, 500);
-  }
+	& {
+		background-color: fn.color-shade(color.$indigo, 500);
+	}
 
-  &--text {
-    color: fn.color-shade(color.$indigo, 500);
+	&--text {
+		color: fn.color-shade(color.$indigo, 500);
 
-    &:not(:disabled):hover {
-      color: fn.color-shade(color.$indigo, 700);
-    }
+		&:not(:disabled):hover {
+			color: fn.color-shade(color.$indigo, 700);
+		}
 
-    &.only__text {
-      all: unset;
+		&.only__text {
+			all: unset;
 
-      &:not(:disabled):hover {
-        cursor: pointer;
-      }
-    }
-  }
+			&:not(:disabled):hover {
+				cursor: pointer;
+			}
+		}
+	}
 
-  &.icon__only {
-    svg {
-      stroke: fn.color-shade(color.$indigo, 500);
-    }
-  }
+	&.icon__only {
+		svg {
+			stroke: fn.color-shade(color.$indigo, 500);
+		}
+	}
 
-  &:not(:disabled):hover {
-    & {
-      background-color: fn.color-shade(color.$indigo, 700);
-    }
+	&:not(:disabled):hover {
+		& {
+			background-color: fn.color-shade(color.$indigo, 700);
+		}
 
-    &.icon__only {
-      svg {
-        stroke: fn.color-shade(color.$indigo, 700);
-      }
-    }
-  }
+		&.icon__only {
+			svg {
+				stroke: fn.color-shade(color.$indigo, 700);
+			}
+		}
+	}
 }

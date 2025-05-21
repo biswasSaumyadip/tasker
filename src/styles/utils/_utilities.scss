@@ -3,8 +3,8 @@
 @use '../tokens/typography' as *;
 @use 'sass:map';
 @use 'functions' as fn;
-@use 'component-functions' as comp;
-@use 'mixin';
+@use '../../styles/utils/mixin' as mixin;
+@use '../../styles/utils/component-functions' as comp;
 
 // Layout utilities
 .flex-center {
