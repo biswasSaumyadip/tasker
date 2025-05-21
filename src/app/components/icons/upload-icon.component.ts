@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	selector: 'app-upload-icon',
+	selector: 'UploadIcon',
 	standalone: true,
 	template: `
 		<svg

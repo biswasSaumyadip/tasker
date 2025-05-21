@@ -8,224 +8,228 @@
 
 // Layout utilities
 .flex-center {
-	@include mixin.flex-center;
+  @include mixin.flex-center;
 }
 
 .flex-between {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flex-column {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 // Card utilities
 .card-sm {
-	@include mixin.card-base('sm');
+  @include mixin.card-base('sm');
 }
 
 .card-md {
-	@include mixin.card-base('md');
+  @include mixin.card-base('md');
 }
 
 .card-lg {
-	@include mixin.card-base('lg');
+  @include mixin.card-base('lg');
 }
 
 // Button utilities
 .btn-sm {
-	@include mixin.button-base('sm');
+  @include mixin.button-base('sm');
 }
 
 .btn-md {
-	@include mixin.button-base('md');
+  @include mixin.button-base('md');
 }
 
 .btn-lg {
-	@include mixin.button-base('lg');
+  @include mixin.button-base('lg');
 }
 
 // Badge utilities
 .badge {
-	padding: comp.get-badge(null, 'padding');
-	font-size: comp.get-badge(null, 'font-size');
-	border-radius: comp.get-badge(null, 'radius');
-	text-transform: capitalize;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: fn.font-weight('medium');
-	line-height: 1;
+  padding: comp.get-badge(null, 'padding');
+  font-size: comp.get-badge(null, 'font-size');
+  border-radius: comp.get-badge(null, 'radius');
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: fn.font-weight('medium');
+  line-height: 1;
 
-	&.badge-success {
-		background-color: fn.color-shade($green, 100);
-		color: fn.color-shade($green, 700);
-	}
+  &.badge-success {
+    background-color: fn.color-shade($green, 100);
+    color: fn.color-shade($green, 700);
+  }
 
-	&.badge-warning {
-		background-color: fn.color-shade($yellow, 100);
-		color: fn.color-shade($yellow, 700);
-	}
+  &.badge-warning {
+    background-color: fn.color-shade($yellow, 100);
+    color: fn.color-shade($yellow, 700);
+  }
 
-	&.badge-error {
-		background-color: fn.color-shade($red, 100);
-		color: fn.color-shade($red, 700);
-	}
+  &.badge-error {
+    background-color: fn.color-shade($red, 100);
+    color: fn.color-shade($red, 700);
+  }
 
-	&.badge-info {
-		background-color: fn.color-shade($indigo, 100);
-		color: fn.color-shade($indigo, 700);
-	}
+  &.badge-info {
+    background-color: fn.color-shade($indigo, 100);
+    color: fn.color-shade($indigo, 700);
+  }
 
-	&.badge-neutral {
-		background-color: fn.color-shade($gray, 100);
-		color: fn.color-shade($gray, 700);
-	}
+  &.badge-neutral {
+    background-color: fn.color-shade($gray, 100);
+    color: fn.color-shade($gray, 700);
+  }
 }
 
 .badge-success {
-	@include mixin.badge('success');
+  @include mixin.badge('success');
 }
 
 .badge-warning {
-	@include mixin.badge('warning');
+  @include mixin.badge('warning');
 }
 
 .badge-error {
-	@include mixin.badge('error');
+  @include mixin.badge('error');
 }
 
 .badge-info {
-	@include mixin.badge('info');
+  @include mixin.badge('info');
 }
 
 // Analytics card utilities
 .analytics-card-primary {
-	@include mixin.analytics-card('primary');
+  @include mixin.analytics-card('primary');
 }
 
 .analytics-card-success {
-	@include mixin.analytics-card('success');
+  @include mixin.analytics-card('success');
 }
 
 .analytics-card-warning {
-	@include mixin.analytics-card('warning');
+  @include mixin.analytics-card('warning');
 }
 
 .analytics-card-danger {
-	@include mixin.analytics-card('danger');
+  @include mixin.analytics-card('danger');
 }
 
 // Icon utilities
 .icon {
-	@each $size in ('xs', 'sm', 'md', 'lg') {
-		&-#{$size} {
-			width: comp.get-icon($size);
-			height: comp.get-icon($size);
-		}
-	}
+  @each $size in ('xs', 'sm', 'md', 'lg') {
+    &-#{$size} {
+      width: comp.get-icon($size);
+      height: comp.get-icon($size);
+    }
+  }
 }
 
 // Typography utilities
 .text-truncate {
-	@include mixin.truncate;
+  @include mixin.truncate;
 }
 
 .text-clamp-2 {
-	@include mixin.line-clamp(2);
+  @include mixin.line-clamp(2);
 }
 
 .text-clamp-3 {
-	@include mixin.line-clamp(3);
+  @include mixin.line-clamp(3);
 }
 
 .text-strike {
-	@include mixin.strike-through;
+  @include mixin.strike-through;
 }
 
 .text-strike-thin {
-	@include mixin.strike-through($thickness: 0.5px);
+  @include mixin.strike-through($thickness: 0.5px);
 }
 
 .text-strike-thick {
-	@include mixin.strike-through($thickness: 2px);
+  @include mixin.strike-through($thickness: 2px);
 }
 
 .text-strike-dashed {
-	@include mixin.strike-through($style: dashed);
+  @include mixin.strike-through($style: dashed);
 }
 
 // Interactive utilities
 .hoverable {
-	@include mixin.card-hover;
+  @include mixin.card-hover;
 }
 
 .interactive {
-	@include mixin.interactive-element;
+  @include mixin.interactive-element;
 }
 
 // Spacing utilities
 @each $key, $value in $spacing {
-	.gap-#{$key} {
-		gap: $value;
-	}
+  .gap-#{$key} {
+    gap: $value;
+  }
 
-	.p-#{$key} {
-		padding: $value;
-	}
+  .p-#{$key} {
+    padding: $value;
+  }
 
-	.m-#{$key} {
-		margin: $value;
-	}
+  .m-#{$key} {
+    margin: $value;
+  }
 }
 
 // Color utilities
 @each $weight in (50, 100, 200, 300, 400, 500, 600, 700, 800, 900) {
-	.text-gray-#{$weight} {
-		color: map.get($gray, $weight);
-	}
+  .text-gray-#{$weight} {
+    color: map.get($gray, $weight);
+  }
 
-	.bg-gray-#{$weight} {
-		background-color: map.get($gray, $weight);
-	}
+  .bg-gray-#{$weight} {
+    background-color: map.get($gray, $weight);
+  }
 
-	.text-indigo-#{$weight} {
-		color: map.get($indigo, $weight);
-	}
+  .text-indigo-#{$weight} {
+    color: map.get($indigo, $weight);
+  }
 
-	.bg-indigo-#{$weight} {
-		background-color: map.get($indigo, $weight);
-	}
+  .bg-indigo-#{$weight} {
+    background-color: map.get($indigo, $weight);
+  }
 
-	.text-red-#{$weight} {
-		color: map.get($red, $weight);
-	}
+  .text-red-#{$weight} {
+    color: map.get($red, $weight);
+  }
 
-	.bg-red-#{$weight} {
-		background-color: map.get($red, $weight);
-	}
+  .bg-red-#{$weight} {
+    background-color: map.get($red, $weight);
+  }
 
-	.text-yellow-#{$weight} {
-		color: map.get($yellow, $weight);
-	}
+  .text-yellow-#{$weight} {
+    color: map.get($yellow, $weight);
+  }
 
-	.bg-yellow-#{$weight} {
-		background-color: map.get($yellow, $weight);
-	}
+  .bg-yellow-#{$weight} {
+    background-color: map.get($yellow, $weight);
+  }
 }
 
 // Date status color utilities
 .date-past-due {
-	color: map.get($red, 500);
+  color: map.get($red, 500);
 }
 
 .date-approaching-due {
-	color: map.get($yellow, 500);
+  color: map.get($yellow, 500);
 }
 
 .date-future-due {
-	color: map.get($gray, 500);
+  color: map.get($gray, 500);
+}
+
+.hidden {
+  display: none;
 }
