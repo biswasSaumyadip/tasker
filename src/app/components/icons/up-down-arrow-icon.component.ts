@@ -1,21 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { IconAttributeDirective } from './icon-attribute.directive';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	selector: 'app-up-down-arrow-icon',
+	selector: 'UpDownArrowIcon',
 	standalone: true,
+	encapsulation: ViewEncapsulation.None,
 	template: `
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
+			[attr.width]="size()"
+			[attr.height]="size()"
 			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="2"
+			[attr.fill]="fill()"
+			[attr.stroke]="stroke()"
+			[attr.stroke-width]="strokeWidth()"
 			stroke-linecap="round"
 			stroke-linejoin="round"
-			class="lucide lucide-arrow-up-down"
+			[class]="className()"
 			aria-hidden="true"
 		>
 			<path d="m21 16-4 4-4-4" />
@@ -24,5 +26,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 			<path d="M7 4v16" />
 		</svg>
 	`,
+	host: {
+		'[class]': 'className()',
+	},
 })
-export class UpDownArrowIconComponent {}
+export class UpDownArrowIconComponent extends IconAttributeDirective {}
