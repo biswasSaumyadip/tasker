@@ -1,21 +1,23 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { IconAttributeDirective } from './icon-attribute.directive';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'UploadIcon',
 	standalone: true,
+	encapsulation: ViewEncapsulation.None,
 	template: `
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
+			[attr.width]="size()"
+			[attr.height]="size()"
 			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="2"
+			[attr.fill]="fill()"
+			[attr.stroke]="stroke()"
+			[attr.stroke-width]="strokeWidth()"
 			stroke-linecap="round"
 			stroke-linejoin="round"
-			class="lucide lucide-upload"
+			[class]="className()"
 			aria-hidden="true"
 		>
 			<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -23,5 +25,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 			<line x1="12" x2="12" y1="3" y2="15" />
 		</svg>
 	`,
+	host: {
+		'[class]': 'className()',
+	},
 })
-export class UploadIconComponent {}
+export class UploadIconComponent extends IconAttributeDirective {}
