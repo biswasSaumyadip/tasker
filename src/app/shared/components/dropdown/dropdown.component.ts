@@ -64,6 +64,7 @@ export class DropdownComponent<T> implements OnInit {
 	@Input() error = false;
 
 	@Output() selectionChange = new EventEmitter<DropdownOption<T> | undefined>();
+	@Output() opened = new EventEmitter<void>();
 
 	@ViewChild('dropdown') dropdownElement?: ElementRef;
 
@@ -96,6 +97,8 @@ export class DropdownComponent<T> implements OnInit {
 				this.activeIndex.set(
 					this.selectedOption() ? this.options.indexOf(this.selectedOption()!) : -1,
 				);
+				// Emit the opened event when the dropdown is opened
+				this.opened.emit();
 			}
 		}
 	}
