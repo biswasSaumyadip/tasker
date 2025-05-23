@@ -21,8 +21,7 @@
                     ></tasker-input>
                 </div>
                 <div class="tasker__basic--description">
-                    <label for="description" class="tasker__basic--label">Task
-                        description</label>
+                    <label for="description" class="tasker__basic--label">Task description</label>
                     <tasker-rich-text-editor/>
                 </div>
                 <div class="tasker__basic--attachments">
@@ -51,7 +50,28 @@
                     </div>
                     <div class="tasker__details--dueDate">
                         <label for="dueDate" class="tasker__details--label">Due Date</label>
-                        <p-datePicker placeholder="Normal" showIcon iconDisplay="input"/>
+                        <p-datePicker [style]="{'width': '100%'}" placeholder="Normal" showIcon
+                                      iconDisplay="input"/>
+                    </div>
+                    <div class="tasker__details--assignee">
+                        <label for="assignee" class="tasker__details--label">Assignee</label>
+                        <tasker-dropdown
+                                [options]="(teamMembers$ | async)!"
+                                [searchable]="true"
+                                [clearable]="true"
+                                [loading]="isLoadingTeamMembers()"
+                                placeholder="Select an item..."
+                                (opened)="onTeamMembersDropdownOpened()"
+                        ></tasker-dropdown>
+                    </div>
+                    <div class="tasker__details--tags">
+                        <label for="tags" class="tasker__details--label">Tags</label>
+                        <tasker-chips
+                                [chips]="tags()"
+                                (chipsChange)="onTagsChange($event)"
+                                [editable]="isTagsEditable()"
+                                placeholder="Type tag and press Enter"
+                        ></tasker-chips>
                     </div>
                 </div>
             </div>
