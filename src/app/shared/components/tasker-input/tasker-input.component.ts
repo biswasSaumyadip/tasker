@@ -2,13 +2,16 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
+	forwardRef,
 	input,
 	output,
+	signal,
 	Type,
 	viewChild,
 	ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // Interface for icon components
 interface IconComponent {
@@ -30,8 +33,15 @@ interface IconComponent {
 	host: {
 		'[class]': 'className()',
 	},
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => TaskerInputComponent),
+			multi: true,
+		},
+	],
 })
-export class TaskerInputComponent {
+export class TaskerInputComponent implements ControlValueAccessor {
 	inputElement = viewChild.required<ElementRef<HTMLInputElement>>('inputElement');
 	placeholder = input<string>('');
 	type = input<string>('text');
@@ -65,13 +75,41 @@ export class TaskerInputComponent {
 	inputFocus = output<void>();
 	inputKeydown = output<KeyboardEvent>();
 
+	valueSignal = signal<string>(this.value());
+	isDisabled = signal(this.disabled());
+
+	// ControlValueAccessor implementation
+	private onChange: (value: string) => void = () => {};
+	private onTouched: () => void = () => {};
+
+	writeValue(value: string): void {
+		// Update the input value when the form control value changes
+		if (value !== undefined) {
+			this.valueSignal.set(value);
+		}
+	}
+
+	registerOnChange(fn: (value: string) => void): void {
+		this.onChange = fn;
+	}
+
+	registerOnTouched(fn: () => void): void {
+		this.onTouched = fn;
+	}
+
+	setDisabledState(isDisabled: boolean): void {
+		this.isDisabled.set(isDisabled);
+	}
+
 	onInput(event: Event) {
 		const value = (event.target as HTMLInputElement).value;
 		this.valueChange.emit(value);
+		this.onChange(value);
 	}
 
 	onBlur() {
 		this.inputBlur.emit();
+		this.onTouched();
 	}
 
 	onFocus() {

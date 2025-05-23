@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
+	forwardRef,
 	ViewChild,
 	ViewEncapsulation,
 	output,
@@ -9,6 +10,7 @@ import {
 } from '@angular/core';
 import { UploadIconComponent } from '../../../components/icons/upload-icon.component';
 import { CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'tasker-file-upload',
@@ -18,8 +20,15 @@ import { CommonModule } from '@angular/common';
 	styleUrl: './file-upload.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => FileUploadComponent),
+			multi: true,
+		},
+	],
 })
-export class FileUploadComponent {
+export class FileUploadComponent implements ControlValueAccessor {
 	@ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
 	// Output for selected files
@@ -30,6 +39,29 @@ export class FileUploadComponent {
 
 	// Maximum file size in bytes (10MB)
 	private maxFileSize = 10 * 1024 * 1024;
+
+	// ControlValueAccessor implementation
+	private onChange: (value: File[]) => void = () => {};
+	private onTouched: () => void = () => {};
+
+	writeValue(value: File[]): void {
+		if (value !== undefined && value !== null) {
+			this.uploadedFiles.set(value);
+		}
+	}
+
+	registerOnChange(fn: (value: File[]) => void): void {
+		this.onChange = fn;
+	}
+
+	registerOnTouched(fn: () => void): void {
+		this.onTouched = fn;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	setDisabledState(isDisabled: boolean): void {
+		// This component doesn't have a disabled state
+	}
 
 	// Trigger file input click
 	triggerFileInput(): void {
@@ -81,6 +113,10 @@ export class FileUploadComponent {
 
 			// Emit the updated files list
 			this.filesSelected.emit(updatedFiles);
+
+			// Notify Angular forms
+			this.onChange(updatedFiles);
+			this.onTouched();
 		}
 	}
 
@@ -89,5 +125,9 @@ export class FileUploadComponent {
 		const updatedFiles = this.uploadedFiles().filter((file) => file !== fileToRemove);
 		this.uploadedFiles.set(updatedFiles);
 		this.filesSelected.emit(updatedFiles);
+
+		// Notify Angular forms
+		this.onChange(updatedFiles);
+		this.onTouched();
 	}
 }

@@ -5,16 +5,17 @@ import {
 	DestroyRef,
 	ElementRef,
 	EventEmitter,
+	forwardRef,
 	HostListener,
+	inject,
 	Input,
 	OnInit,
 	Output,
+	signal,
 	ViewChild,
 	ViewEncapsulation,
-	inject,
-	signal,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -34,6 +35,13 @@ export interface DropdownOption<T> {
 	imports: [CommonModule, FormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	encapsulation: ViewEncapsulation.None,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => DropdownComponent),
+			multi: true,
+		},
+	],
 	animations: [
 		trigger('dropdownAnimation', [
 			transition(':enter', [
@@ -52,7 +60,7 @@ export interface DropdownOption<T> {
 		]),
 	],
 })
-export class DropdownComponent<T> implements OnInit {
+export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 	private destroyRef = inject(DestroyRef);
 
 	@Input() options: DropdownOption<T>[] = [];
@@ -66,12 +74,41 @@ export class DropdownComponent<T> implements OnInit {
 	@Output() selectionChange = new EventEmitter<DropdownOption<T> | undefined>();
 	@Output() opened = new EventEmitter<void>();
 
+	// ControlValueAccessor implementation
+	private onChange: (value: T | undefined) => void = () => {};
+	private onTouched: () => void = () => {};
+
 	@ViewChild('dropdown') dropdownElement?: ElementRef;
 
 	isOpen = signal(false);
 	selectedOption = signal<DropdownOption<T> | null>(null);
 	searchTerm = signal('');
 	activeIndex = signal(-1);
+
+	// ControlValueAccessor methods
+	writeValue(value: T | null): void {
+		if (value === null || value === undefined) {
+			this.selectedOption.set(null);
+			return;
+		}
+
+		const option = this.options.find((opt) => opt.value === value);
+		if (option) {
+			this.selectedOption.set(option);
+		}
+	}
+
+	registerOnChange(fn: (value: T | undefined) => void): void {
+		this.onChange = fn;
+	}
+
+	registerOnTouched(fn: () => void): void {
+		this.onTouched = fn;
+	}
+
+	setDisabledState(isDisabled: boolean): void {
+		this.disabled = isDisabled;
+	}
 
 	get filteredOptions(): DropdownOption<T>[] {
 		const term = this.searchTerm().toLowerCase();
@@ -109,6 +146,8 @@ export class DropdownComponent<T> implements OnInit {
 
 		this.selectedOption.set(option);
 		this.selectionChange.emit(option);
+		this.onChange(option.value);
+		this.onTouched();
 		this.isOpen.set(false);
 		this.searchTerm.set('');
 	}
@@ -117,6 +156,8 @@ export class DropdownComponent<T> implements OnInit {
 		event.stopPropagation();
 		this.selectedOption.set(null);
 		this.selectionChange.emit(undefined);
+		this.onChange(undefined);
+		this.onTouched();
 		this.searchTerm.set('');
 	}
 

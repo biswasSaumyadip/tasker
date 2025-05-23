@@ -1,11 +1,19 @@
-import { Component, input, model, output, signal } from '@angular/core';
+import { Component, forwardRef, input, model, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TaskerInputComponent } from '../tasker-input/tasker-input.component';
 
 @Component({
 	selector: 'tasker-chips',
 	standalone: true,
 	imports: [CommonModule, TaskerInputComponent],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => ChipsComponent),
+			multi: true,
+		},
+	],
 	template: `
 		<div class="chips-container" [class.view-mode]="!editable()">
 			@if (editable()) {
@@ -15,6 +23,7 @@ import { TaskerInputComponent } from '../tasker-input/tasker-input.component';
 					[value]="inputValue()"
 					(valueChange)="onInputChange($event)"
 					(inputKeydown)="onKeyDown($event)"
+					[disabled]="!isDisabled()"
 				></tasker-input>
 			}
 			<div class="chip__wrapper">
@@ -31,7 +40,7 @@ import { TaskerInputComponent } from '../tasker-input/tasker-input.component';
 	`,
 	styleUrl: './chips.component.scss',
 })
-export class ChipsComponent {
+export class ChipsComponent implements ControlValueAccessor {
 	// Input for initial chips
 	chips = model<string[]>([]);
 	// Input for placeholder text
@@ -42,6 +51,31 @@ export class ChipsComponent {
 	inputValue = signal('');
 	// Output for chip changes
 	chipsChange = output<string[]>();
+
+	isDisabled = signal<boolean>(false);
+
+	// ControlValueAccessor implementation
+	private onChange: (value: string[]) => void = () => {};
+	private onTouched: () => void = () => {};
+
+	writeValue(value: string[]): void {
+		// Update the chips when the form control value changes
+		if (value !== undefined && value !== null) {
+			this.chips.set(value);
+		}
+	}
+
+	registerOnChange(fn: (value: string[]) => void): void {
+		this.onChange = fn;
+	}
+
+	registerOnTouched(fn: () => void): void {
+		this.onTouched = fn;
+	}
+
+	setDisabledState(isDisabled: boolean): void {
+		this.isDisabled.set(!isDisabled);
+	}
 
 	// Handle input value changes
 	onInputChange(value: string) {
@@ -61,6 +95,8 @@ export class ChipsComponent {
 		const updatedChips = [...this.chips(), value];
 		this.chips.set(updatedChips);
 		this.chipsChange.emit(updatedChips);
+		this.onChange(updatedChips);
+		this.onTouched();
 	}
 
 	// Remove a chip
@@ -68,5 +104,7 @@ export class ChipsComponent {
 		const updatedChips = this.chips().filter((c) => c !== chip);
 		this.chips.set(updatedChips);
 		this.chipsChange.emit(updatedChips);
+		this.onChange(updatedChips);
+		this.onTouched();
 	}
 }
