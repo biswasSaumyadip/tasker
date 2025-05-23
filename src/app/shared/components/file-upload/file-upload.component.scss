@@ -38,4 +38,43 @@
 		color: color-shade($gray, 500);
 		font-size: font-size(sm);
 	}
+
+	&--files {
+		margin-top: spacing(4);
+		width: 100%;
+	}
+
+	&--file {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: spacing(2) spacing(3);
+		margin-bottom: spacing(2);
+		background-color: color-shade($gray, 50);
+		border-radius: spacing(1);
+		border: 1px solid color-shade($gray, 200);
+	}
+
+	&--filename {
+		font-size: font-size(sm);
+		color: color-shade($gray, 700);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		flex: 1;
+	}
+
+	&--remove {
+		background: none;
+		border: none;
+		color: color-shade($gray, 500);
+		font-size: font-size(xl);
+		cursor: pointer;
+		padding: 0 spacing(1);
+		line-height: 1;
+
+		&:hover {
+			color: color-shade($red, 500);
+		}
+	}
 }

@@ -1,11 +1,28 @@
-<div class="tasker__upload--layout">
+<div class="tasker__upload--layout" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
 	<div class="tasker__upload--icon">
 		<UploadIcon />
 	</div>
 	<div class="tasker__upload--option">
-		<input type="file" multiple class="hidden" />
-		<button class="indigo__button--text only__text tasker__upload--text">Upload</button>
+		<input #fileInput type="file" multiple class="hidden" (change)="onFileSelected($event)" />
+		<button
+			class="indigo__button--text only__text tasker__upload--text"
+			(click)="triggerFileInput()"
+		>
+			Upload
+		</button>
 		<span class="tasker__upload--drag"> or drag and drop</span>
 	</div>
 	<div class="tasker__upload--limit">Up to 10MB per file</div>
 </div>
+
+<!-- File list -->
+@if (uploadedFiles().length > 0) {
+	<div class="tasker__upload--files">
+		@for (file of uploadedFiles(); track file) {
+			<div class="tasker__upload--file">
+				<span class="tasker__upload--filename">{{ file.name }}</span>
+				<button class="tasker__upload--remove" (click)="removeFile(file)">×</button>
+			</div>
+		}
+	</div>
+}
