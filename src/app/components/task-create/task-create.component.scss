@@ -1,18 +1,48 @@
 @use 'functions' as *;
 
-.tasker {
-	&__basic {
-		&--label {
-			display: block;
-			font-size: font-size(xl);
-			font-weight: font-weight(medium);
-			line-height: 1.25rem;
-			padding: spacing(4) 0;
-		}
+@mixin label {
+  display: block;
+  font-size: font-size(xl);
+  font-weight: font-weight(medium);
+  line-height: 1.25rem;
+  padding: spacing(4) 0;
+}
 
-		&--input {
-			display: block;
-			padding: spacing(4) 0;
-		}
-	}
+.tasker {
+  &__basic {
+    &--label {
+      @include label;
+    }
+
+    &--input {
+      display: block;
+      padding: spacing(4) 0;
+    }
+  }
+
+  &__details {
+    &--label {
+      @include label;
+    }
+  }
+
+  &__card {
+    &--section {
+      background: white;
+    }
+  }
+
+  &__form {
+    @include flex-center;
+    flex-direction: column;
+    width: 100%;
+    gap: spacing(6);
+
+    &--section {
+      width: 100%;
+
+      &:not(:first-child) {
+      }
+    }
+  }
 }
