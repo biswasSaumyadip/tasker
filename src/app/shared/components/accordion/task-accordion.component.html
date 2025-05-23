@@ -73,7 +73,7 @@
 			</p>
 		</div>
 		<div class="tasker__accordion--footer">
-			<tasker-chips [chips]="task().tags"></tasker-chips>
+			<tasker-chips [chips]="task().tags" [editable]="false"></tasker-chips>
 		</div>
 
 		@if (hasChildren() && isExpanded()) {
