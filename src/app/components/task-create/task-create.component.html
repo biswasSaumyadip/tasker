@@ -1,84 +1,90 @@
 <div class="tasker__form tasker__layout">
-	<div class="tasker__form--section tasker__form--header">
-		<a href="#" (click)="goBack(); $event.preventDefault()" class="tasker__form--back">
-			<BackIcon></BackIcon>
-		</a>
+    <div class="tasker__form--section tasker__form--header">
+        <a href="#" (click)="goBack(); $event.preventDefault()" class="tasker__form--back">
+            <BackIcon></BackIcon>
+        </a>
 
-		<h1 class="tasker__form--title">Create new task</h1>
-		<p-button class="tasker__form--save tasker__button" (click)="onSave()">Save</p-button>
-	</div>
-	<div class="tasker__form--section tasker__basic--information">
-		<p-card>
-			<div class="tasker__card--header">
-				<h2>Basic Information</h2>
-			</div>
-			<form class="tasker__basic">
-				<div class="tasker__basic--title">
-					<label for="title" class="tasker__basic--label">Task title</label>
-					<tasker-input
-						placeholder="Enter task title"
-						className="tasker__basic--input"
-					></tasker-input>
-				</div>
-				<div class="tasker__basic--description">
-					<label for="description" class="tasker__basic--label">Task description</label>
-					<tasker-rich-text-editor />
-				</div>
-				<div class="tasker__basic--attachments">
-					<label for="attachments" class="tasker__basic--label">Attachments</label>
-					<tasker-file-upload (filesSelected)="onFilesSelected($event)" />
-				</div>
-			</form>
-		</p-card>
-	</div>
-	<div class="tasker__form--section tasker__task--details">
-		<p-card>
-			<div class="tasker__card--section">
-				<div class="tasker__card--header">
-					<h2>Task Details</h2>
-				</div>
-				<form class="tasker__details">
-					<div class="tasker__details--priority">
-						<label for="priority" class="tasker__details--label">Priority</label>
-						<tasker-dropdown
-							[options]="priorities"
-							[searchable]="true"
-							[clearable]="true"
-							(selectionChange)="onPrioritySelect($event)"
-							placeholder="Select an item..."
-						></tasker-dropdown>
-					</div>
-					<div class="tasker__details--dueDate">
-						<label for="dueDate" class="tasker__details--label">Due Date</label>
-						<p-datePicker
-							[style]="{ width: '100%' }"
-							placeholder="Normal"
-							showIcon
-							iconDisplay="input"
-						/>
-					</div>
-					<div class="tasker__details--assignee">
-						<label for="assignee" class="tasker__details--label">Assignee</label>
-						<tasker-dropdown
-							[options]="(teamMembers$ | async)!"
-							[searchable]="true"
-							[clearable]="true"
-							[loading]="isLoadingTeamMembers()"
-							placeholder="Select an item..."
-							(opened)="onTeamMembersDropdownOpened()"
-						></tasker-dropdown>
-					</div>
-					<div class="tasker__details--tags">
-						<label for="tags" class="tasker__details--label">Tags</label>
-						<tasker-chips
-							[chips]="tags()"
-							(chipsChange)="onTagsChange($event)"
-							[editable]="isTagsEditable()"
-							placeholder="Type tag and press Enter"
-						></tasker-chips>
-					</div>
-				</form>
-			</div>
-		</p-card>
-	</div>
+        <h1 class="tasker__form--title">Create new task</h1>
+        <p-button class="tasker__form--save tasker__button" (click)="onSave()">Save</p-button>
+    </div>
+    <div class="tasker__form--section tasker__basic--information">
+        <p-card>
+            <div class="tasker__card--header">
+                <h2>Basic Information</h2>
+            </div>
+            <form class="tasker__basic" [formGroup]="basicFormGroup">
+                <div class="tasker__basic--title">
+                    <label for="title" class="tasker__basic--label">Task title</label>
+                    <tasker-input
+                            placeholder="Enter task title"
+                            className="tasker__basic--input"
+                            formControlName='title'
+                    ></tasker-input>
+                </div>
+                <div class="tasker__basic--description">
+                    <label for="description" class="tasker__basic--label">Task description</label>
+                    <tasker-rich-text-editor formControlName='description'/>
+                </div>
+                <div class="tasker__basic--attachments">
+                    <label for="attachments" class="tasker__basic--label">Attachments</label>
+                    <tasker-file-upload (filesSelected)="onFilesSelected($event)"
+                                        formControlName='attachments'/>
+                </div>
+            </form>
+        </p-card>
+    </div>
+    <div class="tasker__form--section tasker__task--details">
+        <p-card>
+            <div class="tasker__card--section">
+                <div class="tasker__card--header">
+                    <h2>Task Details</h2>
+                </div>
+                <form class="tasker__details" [formGroup]="taskDetailFormGroup">
+                    <div class="tasker__details--priority">
+                        <label for="priority" class="tasker__details--label">Priority</label>
+                        <tasker-dropdown
+                                [options]="priorities"
+                                [searchable]="true"
+                                [clearable]="true"
+                                (selectionChange)="onPrioritySelect($event)"
+                                placeholder="Select an item..."
+                                formControlName="priority"
+                        ></tasker-dropdown>
+                    </div>
+                    <div class="tasker__details--dueDate">
+                        <label for="dueDate" class="tasker__details--label">Due Date</label>
+                        <p-datePicker
+                                [style]="{ width: '100%' }"
+                                placeholder="Normal"
+                                showIcon
+                                iconDisplay="input"
+                                formControlName="dueDate"
+                        />
+                    </div>
+                    <div class="tasker__details--assignee">
+                        <label for="assignee" class="tasker__details--label">Assignee</label>
+                        <tasker-dropdown
+                                [options]="(teamMembers$ | async)!"
+                                [searchable]="true"
+                                [clearable]="true"
+                                [loading]="isLoadingTeamMembers()"
+                                placeholder="Select an item..."
+                                (opened)="onTeamMembersDropdownOpened()"
+                                formControlName="assignedTo"
+                        ></tasker-dropdown>
+                    </div>
+                    <div class="tasker__details--tags">
+                        <label for="tags" class="tasker__details--label">Tags</label>
+                        <tasker-chips
+                                [chips]="tags()"
+                                (chipsChange)="onTagsChange($event)"
+                                [editable]="isTagsEditable()"
+                                placeholder="Type tag and press Enter"
+                                formControlName="tags"
+                        ></tasker-chips>
+                    </div>
+                </form>
+            </div>
+        </p-card>
+    </div>
 </div>

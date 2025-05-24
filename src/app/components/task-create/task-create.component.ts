@@ -14,6 +14,7 @@ import { BehaviorSubject, finalize, map, Observable, of, switchMap } from 'rxjs'
 import { AsyncPipe } from '@angular/common';
 import { ChipsComponent } from '../../shared/components/chips/chips.component';
 import { Button } from 'primeng/button';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
 	selector: 'tasker-task-create',
@@ -28,6 +29,7 @@ import { Button } from 'primeng/button';
 		AsyncPipe,
 		ChipsComponent,
 		Button,
+		ReactiveFormsModule,
 	],
 	templateUrl: './task-create.component.html',
 	styleUrl: './task-create.component.scss',
@@ -37,6 +39,20 @@ export class TaskCreateComponent {
 
 	isLoadingTeamMembers = signal(false);
 	private loadTeamMembers$ = new BehaviorSubject<boolean>(false);
+
+	basicFormGroup: FormGroup<TaskBasicFormGroup> = new FormGroup<TaskBasicFormGroup>({
+		attachments: new FormControl(),
+		description: new FormControl(),
+		title: new FormControl(''),
+	});
+
+	taskDetailFormGroup: FormGroup<TaskDetailFormGroup> = new FormGroup<TaskDetailFormGroup>({
+		assignedTo: new FormControl(),
+		dueDate: new FormControl(),
+		priority: new FormControl(),
+		tags: new FormControl(),
+		teamMembers: new FormControl(),
+	});
 
 	tags = signal<string[]>([]);
 	isTagsEditable = signal<boolean>(true);
@@ -106,5 +122,21 @@ export class TaskCreateComponent {
 		this.priority = data;
 	}
 
-	onSave() {}
+	onSave() {
+		console.log({ ...this.basicFormGroup.value, ...this.taskDetailFormGroup.value });
+	}
+}
+
+interface TaskBasicFormGroup {
+	title: FormControl<string | null>;
+	description: FormControl<string>;
+	attachments: FormControl<File[]>;
+}
+
+interface TaskDetailFormGroup {
+	dueDate: FormControl<string>;
+	assignedTo: FormControl<string>;
+	priority: FormControl<string>;
+	tags: FormControl<string[]>;
+	teamMembers: FormControl<string[]>;
 }
