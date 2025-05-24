@@ -13,6 +13,7 @@ import { UserService } from '../../services/user.service';
 import { BehaviorSubject, finalize, map, Observable, of, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ChipsComponent } from '../../shared/components/chips/chips.component';
+import { Button } from 'primeng/button';
 
 @Component({
 	selector: 'tasker-task-create',
@@ -26,6 +27,7 @@ import { ChipsComponent } from '../../shared/components/chips/chips.component';
 		Card,
 		AsyncPipe,
 		ChipsComponent,
+		Button,
 	],
 	templateUrl: './task-create.component.html',
 	styleUrl: './task-create.component.scss',
@@ -103,4 +105,6 @@ export class TaskCreateComponent {
 		if (!data) return;
 		this.priority = data;
 	}
+
+	onSave() {}
 }
