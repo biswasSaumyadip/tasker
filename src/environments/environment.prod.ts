@@ -2,5 +2,5 @@ import { Environment } from './environment.interface';
 
 export const environment: Environment = {
 	production: true,
-	apiUrl: 'http://localhost:8080/api', // Replace this with your production API URL when deploying
+	apiUrl: 'http://localhost:8080/api',
 };

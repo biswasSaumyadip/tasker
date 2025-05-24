@@ -1,31 +1,31 @@
 <div class="tasker-input">
-    @if (!icon()) {
-        <ng-content select="[icon]"></ng-content>
-    }
-    @if (icon()) {
-        <div class="icon-container">
-            @if (isStringIcon()) {
-                <i class="{{ icon() }}"></i>
-            }
-            @if (isComponentIcon()) {
-                <ng-container *ngComponentOutlet="getComponentIcon()"></ng-container>
-            }
-        </div>
-    }
-    <input
-        #inputElement
-        [type]="type()"
-        [placeholder]="placeholder()"
-        [class]="'tasker-input__field ' + className()"
-        [value]="valueSignal()"
-        (input)="onInput($event)"
-        (blur)="onBlur()"
-        (focus)="onFocus()"
-        (keydown)="onKeydown($event)"
-        [autocomplete]="autocomplete()"
-        [disabled]="isDisabled()"
-        [required]="required()"
-        [readonly]="readonly()"
-        [autofocus]="autofocus()"
-    />
+	@if (!icon()) {
+		<ng-content select="[icon]"></ng-content>
+	}
+	@if (icon()) {
+		<div class="icon-container">
+			@if (isStringIcon()) {
+				<i class="{{ icon() }}"></i>
+			}
+			@if (isComponentIcon()) {
+				<ng-container *ngComponentOutlet="getComponentIcon()"></ng-container>
+			}
+		</div>
+	}
+	<input
+		#inputElement
+		[type]="type()"
+		[placeholder]="placeholder()"
+		[class]="'tasker-input__field ' + className()"
+		[value]="valueSignal()"
+		(input)="onInput($event)"
+		(blur)="onBlur()"
+		(focus)="onFocus()"
+		(keydown)="onKeydown($event)"
+		[autocomplete]="autocomplete()"
+		[disabled]="isDisabled()"
+		[required]="required()"
+		[readonly]="readonly()"
+		[autofocus]="autofocus()"
+	/>
 </div>
