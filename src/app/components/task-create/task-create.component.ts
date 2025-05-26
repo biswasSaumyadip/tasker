@@ -15,6 +15,7 @@ import { AsyncPipe } from '@angular/common';
 import { ChipsComponent } from '../../shared/components/chips/chips.component';
 import { Button } from 'primeng/button';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UiConfigService } from '../../services/ui-config.service';
 
 @Component({
 	selector: 'tasker-task-create',
@@ -36,6 +37,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class TaskCreateComponent {
 	private _userService = inject(UserService);
+	private _uiConfigService = inject(UiConfigService);
 
 	isLoadingTeamMembers = signal(false);
 	private loadTeamMembers$ = new BehaviorSubject<boolean>(false);
@@ -60,11 +62,6 @@ export class TaskCreateComponent {
 
 	onTagsChange(tags: string[]) {
 		this.tags.set(tags);
-	}
-
-	onFilesSelected(files: File[]) {
-		this.uploadedFiles.set(files);
-		console.log('Files selected:', files);
 	}
 
 	teamMembers$: Observable<DropdownOption<string>[]> = this.loadTeamMembers$.pipe(
@@ -92,28 +89,8 @@ export class TaskCreateComponent {
 		window.history.back();
 	}
 
-	priorities: DropdownOption<string>[] = [
-		{
-			label: 'All Priority',
-			value: 'all',
-		},
-		{
-			label: 'Low',
-			value: 'low',
-		},
-		{
-			label: 'Medium',
-			value: 'medium',
-		},
-		{
-			label: 'High',
-			value: 'high',
-		},
-		{
-			label: 'Urgent',
-			value: 'urgent',
-		},
-	];
+	priorities$: Observable<DropdownOption<string>[]> =
+		this._uiConfigService.getPriorityLabels('test_team');
 
 	priority = {};
 

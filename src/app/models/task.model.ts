@@ -25,9 +25,12 @@ export interface TaskWithChildren extends Task {
 	children?: TaskWithChildren[];
 }
 
-export interface TaskResponse {
-	data: Task;
-	message: string;
+export class TaskResponse<T> {
+	data!: T;
+	message: string = '';
+	errors: string = '';
+	status: string = '';
+	errorCode: string = '';
 }
 
 export interface TaskAccordionItem {
