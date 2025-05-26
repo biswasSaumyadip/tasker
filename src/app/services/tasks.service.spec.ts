@@ -40,9 +40,12 @@ describe('TasksService', () => {
 		profilePicture: 'child.jpg',
 	};
 
-	const mockTaskResponse: TaskResponse = {
+	const mockTaskResponse: TaskResponse<Task> = {
 		data: mockTask,
 		message: 'Task created successfully',
+		errors: '',
+		status: 'success',
+		errorCode: '',
 	};
 
 	beforeEach(() => {
@@ -76,6 +79,14 @@ describe('TasksService', () => {
 			},
 		];
 
+		const mockTaskResponse: TaskResponse<Task[]> = {
+			data: mockTasks,
+			message: 'Task created successfully',
+			errors: '',
+			status: 'success',
+			errorCode: '',
+		};
+
 		// Spy on the utility service's buildTaskTree method
 		spyOn(utilityService, 'buildTaskTree').and.returnValue(expectedTaskTree);
 
@@ -86,7 +97,7 @@ describe('TasksService', () => {
 
 		const req = httpMock.expectOne(`${API}/list`);
 		expect(req.request.method).toBe('GET');
-		req.flush(mockTasks);
+		req.flush(mockTaskResponse);
 	});
 
 	it('should create a task', () => {
@@ -172,8 +183,16 @@ describe('TasksService', () => {
 			expect(utilityService.buildTaskTree).toHaveBeenCalledWith(emptyTasks);
 		});
 
+		const mockTaskResponse: TaskResponse<Task[]> = {
+			data: [] as Task[],
+			message: 'Task created successfully',
+			errors: '',
+			status: 'success',
+			errorCode: '',
+		};
+
 		const req = httpMock.expectOne(`${API}/list`);
-		req.flush(emptyTasks);
+		req.flush(mockTaskResponse);
 	});
 
 	it('should handle task with invalid parent ID', () => {
@@ -190,6 +209,14 @@ describe('TasksService', () => {
 			},
 		];
 
+		const mockTaskResponseHavingNull: TaskResponse<Task[]> = {
+			data: mockTasks,
+			message: 'Task created successfully',
+			errors: '',
+			status: 'success',
+			errorCode: '',
+		};
+
 		spyOn(utilityService, 'buildTaskTree').and.returnValue(expectedTaskTree);
 
 		service.getTasks().subscribe((tasks) => {
@@ -198,6 +225,6 @@ describe('TasksService', () => {
 		});
 
 		const req = httpMock.expectOne(`${API}/list`);
-		req.flush(mockTasks);
+		req.flush(mockTaskResponseHavingNull);
 	});
 });
