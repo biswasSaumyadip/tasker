@@ -100,16 +100,27 @@ describe('TasksService', () => {
 		req.flush(mockTaskResponse);
 	});
 
-	it('should create a task', () => {
-		const taskName = 'New Task';
+	it('should create a task with FormData', () => {
+		const formData = new FormData();
+		formData.append('title', 'Test Task');
+		formData.append('description', 'Test Description');
 
-		service.createTask(taskName).subscribe((response) => {
-			expect(response).toEqual(mockTaskResponse);
+		const mockTaskResponse: TaskResponse<string> = {
+			data: 'success',
+			message: 'Task created successfully',
+			errors: '',
+			status: 'success',
+			errorCode: '',
+		};
+
+		service.createTask(formData).subscribe((response) => {
+			return expect(response).toEqual(mockTaskResponse);
 		});
 
 		const req = httpMock.expectOne(API);
 		expect(req.request.method).toBe('POST');
-		expect(req.request.body).toEqual({ name: taskName });
+		// FormData is not directly comparable, so we check if it's an instance of FormData
+		expect(req.request.body instanceof FormData).toBeTrue();
 		req.flush(mockTaskResponse);
 	});
 
@@ -156,9 +167,10 @@ describe('TasksService', () => {
 
 	it('should handle error when creating a task fails', () => {
 		const errorMessage = 'Invalid task data';
-		const taskName = 'New Task';
+		const formData = new FormData();
+		formData.append('title', 'Invalid Task');
 
-		service.createTask(taskName).subscribe({
+		service.createTask(formData).subscribe({
 			next: () => fail('Expected an error, not a successful response'),
 			error: (error) => {
 				expect(error.status).toBe(400);
@@ -168,6 +180,61 @@ describe('TasksService', () => {
 
 		const req = httpMock.expectOne(API);
 		req.flush(errorMessage, { status: 400, statusText: 'Bad Request' });
+	});
+
+	it('should create a task with all fields', () => {
+		const formData = new FormData();
+		formData.append('title', 'Complete Task');
+		formData.append('description', 'Detailed description');
+		formData.append('priority', 'high');
+		formData.append('dueDate', '2023-12-31');
+		formData.append('assignedTo', 'user123');
+		formData.append('parentId', '1');
+		formData.append('tags', JSON.stringify(['important', 'urgent']));
+
+		const mockResponse: TaskResponse<string> = {
+			data: 'task-id-123',
+			message: 'Task created successfully',
+			errors: '',
+			status: 'success',
+			errorCode: '',
+		};
+
+		service.createTask(formData).subscribe((response) => {
+			expect(response).toEqual(mockResponse);
+		});
+
+		const req = httpMock.expectOne(API);
+		expect(req.request.method).toBe('POST');
+		expect(req.request.body instanceof FormData).toBeTrue();
+		req.flush(mockResponse);
+	});
+
+	it('should create a task with file attachment', () => {
+		const formData = new FormData();
+		formData.append('title', 'Task with File');
+		formData.append('description', 'Task with file attachment');
+
+		// Mock file
+		const file = new File(['dummy content'], 'test-file.pdf', { type: 'application/pdf' });
+		formData.append('file', file);
+
+		const mockResponse: TaskResponse<string> = {
+			data: 'task-id-456',
+			message: 'Task with file created successfully',
+			errors: '',
+			status: 'success',
+			errorCode: '',
+		};
+
+		service.createTask(formData).subscribe((response) => {
+			expect(response).toEqual(mockResponse);
+		});
+
+		const req = httpMock.expectOne(API);
+		expect(req.request.method).toBe('POST');
+		expect(req.request.body instanceof FormData).toBeTrue();
+		req.flush(mockResponse);
 	});
 
 	// Edge cases

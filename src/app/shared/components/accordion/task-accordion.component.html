@@ -1,91 +1,90 @@
 <div
-	class="tasker__accordion"
-	[ngClass]="{
+        class="tasker__accordion"
+        [ngClass]="{
 		'approaching-due': dueDateStatus(task().dueDate) === 'approaching',
 		future: dueDateStatus(task().dueDate) === 'future',
 	}"
-	(mouseenter)="onMouseEnter()"
-	(mouseleave)="onMouseLeave()"
+        (mouseenter)="onMouseEnter()"
+        (mouseleave)="onMouseLeave()"
 >
-	<div class="tasker__accordion--checkbox">
-		@let isTaskCompleted = isCompleted$ | async;
-		<input type="checkbox" [checked]="isTaskCompleted" (change)="toggleTask()" />
-		@if (isTaskCompleted) {
-			<tasker-check-icon
-				[className]="'tasker__accordion--checkbox-icon'"
-				(click)="toggleTask()"
-				[size]="'1.95rem'"
-				[isGreen]="true"
-			/>
-		} @else {
-			<span class="tasker__accordion--checkbox-icon"></span>
-		}
-	</div>
-	<div class="tasker__accordion--content">
-		<div class="tasker__accordion--header">
-			<div class="tasker__accordion--title-container">
-				@if (hasChildren()) {
-					<button
-						class="tasker__accordion--expand-button"
-						(click)="toggleExpand()"
-						[attr.aria-expanded]="isExpanded()"
-					>
-						<span class="expand-icon" [ngClass]="{ expanded: isExpanded() }"> ▶ </span>
-					</button>
-				}
-				<h2 class="tasker__accordion--title" [ngClass]="{ 'text-strike': isTaskCompleted }">
-					{{ task().title }}
-				</h2>
-			</div>
-			<div class="tasker__accordion--header-left">
-				<div
-					class="tasker__accordion--priority badge"
-					taskerPriorityBadge
-					[priority]="task().priority"
-				>
-					{{ task().priority | capitalizeFirst }}
-				</div>
-				<div class="tasker__accordion--dueDate" taskerDateColor [dueDate]="task().dueDate">
-					{{ task().dueDate | date: 'MMMM d, y' }}
-				</div>
-				@if (task().profilePicture) {
-					<img
-						[src]="task().profilePicture"
-						alt="profile picture"
-						class="tasker__accordion--profilePicture"
-					/>
-				}
-				<div class="tasker__accordion--assigned">{{ task().assignedTo }}</div>
-				<div class="tasker__accordion--actions" [class.visible]="isHovered$ | async">
-					@let iconSize = '15';
-					<div class="edit-icon">
-						<EditIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
-					</div>
-					<div class="delete-icon">
-						<TrashIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="tasker__accordion--body">
-			<p>
-				{{ task().description }}
-			</p>
-		</div>
-		<div class="tasker__accordion--footer">
-			<tasker-chips [chips]="task().tags" [editable]="false"></tasker-chips>
-		</div>
+    <div class="tasker__accordion--checkbox">
+        @let isTaskCompleted = isCompleted$ | async;
+        <input type="checkbox" [checked]="isTaskCompleted" (change)="toggleTask()"/>
+        @if (isTaskCompleted) {
+            <tasker-check-icon
+                    [className]="'tasker__accordion--checkbox-icon'"
+                    (click)="toggleTask()"
+                    [size]="'1.95rem'"
+                    [isGreen]="true"
+            />
+        } @else {
+            <span class="tasker__accordion--checkbox-icon"></span>
+        }
+    </div>
+    <div class="tasker__accordion--content">
+        <div class="tasker__accordion--header">
+            <div class="tasker__accordion--title-container">
+                @if (hasChildren()) {
+                    <button
+                            class="tasker__accordion--expand-button"
+                            (click)="toggleExpand()"
+                            [attr.aria-expanded]="isExpanded()"
+                    >
+                        <span class="expand-icon" [ngClass]="{ expanded: isExpanded() }"> ▶ </span>
+                    </button>
+                }
+                <h2 class="tasker__accordion--title" [ngClass]="{ 'text-strike': isTaskCompleted }">
+                    {{ task().title }}
+                </h2>
+            </div>
+            <div class="tasker__accordion--header-left">
+                <div
+                        class="tasker__accordion--priority badge"
+                        taskerPriorityBadge
+                        [priority]="task().priority"
+                >
+                    {{ task().priority | capitalizeFirst }}
+                </div>
+                <div class="tasker__accordion--dueDate" taskerDateColor [dueDate]="task().dueDate">
+                    {{ task().dueDate | date: 'MMMM d, y' }}
+                </div>
+                @if (task().profilePicture) {
+                    <img
+                            [src]="task().profilePicture"
+                            alt="profile picture"
+                            class="tasker__accordion--profilePicture"
+                    />
+                }
+                <div class="tasker__accordion--assigned">{{ task().assignedTo }}</div>
+                <div class="tasker__accordion--actions" [class.visible]="isHovered$ | async">
+                    @let iconSize = '15';
+                    <div class="edit-icon">
+                        <EditIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'"/>
+                    </div>
+                    <div class="delete-icon">
+                        <TrashIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tasker__accordion--body">
+            <p [innerHTML]="task().description | safeHtml">
+            </p>
+        </div>
+        <div class="tasker__accordion--footer">
+            <tasker-chips [chips]="task().tags" [editable]="false"></tasker-chips>
+        </div>
 
-		@if (hasChildren() && isExpanded()) {
-			<div class="tasker__accordion--children">
-				@for (childTask of task().children; track childTask.id) {
-					<tasker-accordion
-						[task]="childTask"
-						[title]="childTask.title"
-						class="tasker__accordion--child"
-					></tasker-accordion>
-				}
-			</div>
-		}
-	</div>
+        @if (hasChildren() && isExpanded()) {
+            <div class="tasker__accordion--children">
+                @for (childTask of task().children; track childTask.id) {
+                    <tasker-accordion
+                            [task]="childTask"
+                            [title]="childTask.title"
+                            class="tasker__accordion--child"
+                    ></tasker-accordion>
+                }
+            </div>
+        }
+    </div>
 </div>

@@ -3,10 +3,10 @@ import {
 	Component,
 	ElementRef,
 	forwardRef,
-	ViewChild,
-	ViewEncapsulation,
 	output,
 	signal,
+	ViewChild,
+	ViewEncapsulation,
 } from '@angular/core';
 import { UploadIconComponent } from '../../../components/icons/upload-icon.component';
 import { CommonModule } from '@angular/common';

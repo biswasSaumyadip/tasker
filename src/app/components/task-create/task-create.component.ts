@@ -16,6 +16,9 @@ import { ChipsComponent } from '../../shared/components/chips/chips.component';
 import { Button } from 'primeng/button';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UiConfigService } from '../../services/ui-config.service';
+import { TasksService } from '../../services/tasks.service';
+import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
+import { ToasterService } from '../../shared/services/toaster.service';
 
 @Component({
 	selector: 'tasker-task-create',
@@ -31,6 +34,7 @@ import { UiConfigService } from '../../services/ui-config.service';
 		ChipsComponent,
 		Button,
 		ReactiveFormsModule,
+		SpinnerComponent,
 	],
 	templateUrl: './task-create.component.html',
 	styleUrl: './task-create.component.scss',
@@ -38,8 +42,11 @@ import { UiConfigService } from '../../services/ui-config.service';
 export class TaskCreateComponent {
 	private _userService = inject(UserService);
 	private _uiConfigService = inject(UiConfigService);
+	private _taskService = inject(TasksService);
+	private _toasterService = inject(ToasterService);
 
 	isLoadingTeamMembers = signal(false);
+	isCreatingTask = signal(false);
 	private loadTeamMembers$ = new BehaviorSubject<boolean>(false);
 
 	basicFormGroup: FormGroup<TaskBasicFormGroup> = new FormGroup<TaskBasicFormGroup>({
@@ -100,7 +107,32 @@ export class TaskCreateComponent {
 	}
 
 	onSave() {
-		console.log({ ...this.basicFormGroup.value, ...this.taskDetailFormGroup.value });
+		const task = { ...this.basicFormGroup.value, ...this.taskDetailFormGroup.value };
+		const formData = new FormData();
+
+		formData.append('task', new Blob([JSON.stringify(task)], { type: 'application/json' }));
+
+		if (task.attachments) {
+			for (const file of task.attachments) formData.append('files', file);
+		}
+
+		this.isCreatingTask.set(true);
+		this._taskService
+			.createTask(formData)
+			.pipe(finalize(() => this.isCreatingTask.set(false)))
+			.subscribe({
+				next: (response) => {
+					// Handle successful task creation
+					console.log('Task created successfully', response);
+					this._toasterService.showSuccess('Task created successfully!');
+					this.goBack(); // Navigate back after successful creation
+				},
+				error: (error) => {
+					// Handle error
+					console.error('Error creating task', error);
+					this._toasterService.showError('Failed to create task. Please try again.');
+				},
+			});
 	}
 }
 

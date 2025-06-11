@@ -20,6 +20,7 @@ import { CheckIconComponent } from '../../../components/icons/check-icon.compone
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { EditIconComponent } from '../../../components/icons/edit-icon.component';
 import { TrashIconComponent } from '../../../components/icons/trash-icon.component';
+import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
 
 @Component({
 	selector: 'tasker-accordion',
@@ -39,6 +40,7 @@ import { TrashIconComponent } from '../../../components/icons/trash-icon.compone
 		CheckIconComponent,
 		EditIconComponent,
 		TrashIconComponent,
+		SafeHtmlPipe,
 	],
 })
 export class TaskerAccordionComponent implements OnInit, OnDestroy {

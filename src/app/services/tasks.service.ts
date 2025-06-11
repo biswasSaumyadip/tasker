@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { CreateTaskDto, Task, TaskResponse, TaskWithChildren } from '../models/task.model';
+import { Task, TaskResponse, TaskWithChildren } from '../models/task.model';
 import { environment } from '../../environments/environment';
 import { UtilityService } from '../shared/services/utility.service';
 
@@ -21,9 +21,8 @@ export class TasksService {
 		);
 	}
 
-	createTask(name: string): Observable<TaskResponse<Task>> {
-		const dto: CreateTaskDto = { name };
-		return this.http.post<TaskResponse<Task>>(this.API, dto);
+	createTask(formData: FormData): Observable<TaskResponse<string>> {
+		return this.http.post<TaskResponse<string>>(this.API, formData);
 	}
 
 	startTask(id: string): Observable<TaskResponse<Task>> {
