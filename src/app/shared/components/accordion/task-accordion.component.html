@@ -68,9 +68,7 @@
 			</div>
 		</div>
 		<div class="tasker__accordion--body">
-			<p>
-				{{ task().description }}
-			</p>
+			<p [innerHTML]="task().description | safeHtml"></p>
 		</div>
 		<div class="tasker__accordion--footer">
 			<tasker-chips [chips]="task().tags" [editable]="false"></tasker-chips>

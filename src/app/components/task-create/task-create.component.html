@@ -5,7 +5,18 @@
 		</a>
 
 		<h1 class="tasker__form--title">Create new task</h1>
-		<p-button class="tasker__form--save tasker__button" (click)="onSave()">Save</p-button>
+		<p-button
+			[label]="isCreatingTask() ? '' : 'Save'"
+			styleClass="p-button-primary tasker__button"
+			[style]="{ height: '38px', 'font-weight': '500', 'font-size': '12px' }"
+			class="mt-4 w-full"
+			(click)="onSave()"
+			[disabled]="isCreatingTask()"
+		>
+			@if (isCreatingTask()) {
+				<tasker-spinner [size]="20" colorClass="text-white"></tasker-spinner>
+			}
+		</p-button>
 	</div>
 	<div class="tasker__form--section tasker__basic--information">
 		<p-card>
