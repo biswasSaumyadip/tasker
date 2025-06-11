@@ -1,10 +1,6 @@
 <div class="toast-container" [ngClass]="getPositionClass()">
 	@for (toast of visibleToasts(); track toast.id) {
-		<div 
-			class="toast-item" 
-			[ngClass]="getToastClass(toast.type)"
-			[@toastAnimation]="'visible'"
-		>
+		<div class="toast-item" [ngClass]="getToastClass(toast.type)" [@toastAnimation]="'visible'">
 			<div class="toast-content">
 				<div class="toast-message">{{ toast.message }}</div>
 			</div>
