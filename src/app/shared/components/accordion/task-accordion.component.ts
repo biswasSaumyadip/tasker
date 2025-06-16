@@ -5,7 +5,7 @@ import {
 	input,
 	InputSignal,
 	OnDestroy,
-	OnInit,
+	OnInit, output, OutputEmitterRef,
 	signal,
 } from '@angular/core';
 import { TaskWithChildren } from '../../../models/task.model';
@@ -47,6 +47,7 @@ export class TaskerAccordionComponent implements OnInit, OnDestroy {
 	// Accordion component logic goes here
 	title: InputSignal<string> = input.required();
 	task: InputSignal<TaskWithChildren> = input.required();
+	onDelete: OutputEmitterRef<string> = output<string>();
 
 	// Track expanded state
 	isExpanded = signal<boolean>(false);
@@ -94,6 +95,10 @@ export class TaskerAccordionComponent implements OnInit, OnDestroy {
 
 	onMouseLeave(): void {
 		this.isHoveredSubject.next(false);
+	}
+
+	delete(id: string) {
+		this.onDelete.emit(id);
 	}
 
 	ngOnDestroy(): void {

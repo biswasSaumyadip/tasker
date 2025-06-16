@@ -62,7 +62,7 @@
 						<EditIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
 					</div>
 					<div class="delete-icon">
-						<TrashIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
+						<TrashIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" (click)="delete(task().id)" />
 					</div>
 				</div>
 			</div>

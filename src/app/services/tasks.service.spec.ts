@@ -294,4 +294,24 @@ describe('TasksService', () => {
 		const req = httpMock.expectOne(`${API}/list`);
 		req.flush(mockTaskResponseHavingNull);
 	});
+
+	it('Should delete a task based on ID and return the Success status', () => {
+		const mockResponse: TaskResponse<string> = {
+			data: '',
+			message: 'Task delete successful',
+			errors: '',
+			status: 'success',
+			errorCode: '',
+		};
+
+		const taskId = '1';
+
+		service.deleteTask(taskId).subscribe((resp) => {
+			expect(resp).toEqual(mockResponse);
+		});
+
+		const req = httpMock.expectOne(`${API}/${taskId}`);
+		expect(req.request.method).toBe('DELETE');
+		req.flush(mockResponse);
+	});
 });
