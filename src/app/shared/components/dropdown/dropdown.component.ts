@@ -2,13 +2,15 @@ import { CommonModule } from '@angular/common';
 import {
 	ChangeDetectionStrategy,
 	Component,
+	computed,
 	DestroyRef,
 	ElementRef,
 	EventEmitter,
 	forwardRef,
 	HostListener,
 	inject,
-	Input,
+	input,
+	InputSignal,
 	OnInit,
 	Output,
 	signal,
@@ -25,6 +27,7 @@ export interface DropdownOption<T> {
 	value: T;
 	disabled?: boolean;
 	icon?: string;
+	isSelected?: boolean;
 }
 
 @Component({
@@ -63,17 +66,16 @@ export interface DropdownOption<T> {
 export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 	private destroyRef = inject(DestroyRef);
 
-	@Input() options: DropdownOption<T>[] = [];
-	@Input() placeholder = 'Select an option';
-	@Input() searchable = false;
-	@Input() clearable = false;
-	@Input() loading = false;
-	@Input() disabled = false;
-	@Input() error = false;
+	options: InputSignal<DropdownOption<T>[]> = input([] as DropdownOption<T>[]);
+	readonly placeholder = input('Select an option');
+	readonly searchable = input(false);
+	readonly clearable = input(false);
+	readonly loading = input(false);
+	readonly disabled = input(false);
+	readonly error = input(false);
 
 	@Output() selectionChange = new EventEmitter<DropdownOption<T> | undefined>();
 	@Output() opened = new EventEmitter<void>();
-
 	// ControlValueAccessor implementation
 	private onChange: (value: T | undefined) => void = () => {};
 	private onTouched: () => void = () => {};
@@ -85,6 +87,10 @@ export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 	searchTerm = signal('');
 	activeIndex = signal(-1);
 
+	private internalDisabled = signal(false);
+
+	readonly isDisabled = computed(() => this.disabled() || this.internalDisabled());
+
 	// ControlValueAccessor methods
 	writeValue(value: T | null): void {
 		if (value === null || value === undefined) {
@@ -92,7 +98,9 @@ export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 			return;
 		}
 
-		const option = this.options.find((opt) => opt.value === value);
+		const option = this.options()?.find(
+			(opt) => opt.value === value || opt.label === value || opt.isSelected,
+		);
 		if (option) {
 			this.selectedOption.set(option);
 		}
@@ -107,13 +115,13 @@ export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 	}
 
 	setDisabledState(isDisabled: boolean): void {
-		this.disabled = isDisabled;
+		this.internalDisabled.set(isDisabled);
 	}
 
 	get filteredOptions(): DropdownOption<T>[] {
 		const term = this.searchTerm().toLowerCase();
-		if (!term) return this.options;
-		return this.options.filter((option) => option.label.toLowerCase().includes(term));
+		if (!term) return this.options();
+		return this.options().filter((option) => option.label.toLowerCase().includes(term));
 	}
 
 	ngOnInit() {
@@ -128,11 +136,11 @@ export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 
 	toggleDropdown(event: Event) {
 		event.stopPropagation();
-		if (!this.disabled) {
+		if (!this.disabled()) {
 			this.isOpen.update((value) => !value);
 			if (this.isOpen()) {
 				this.activeIndex.set(
-					this.selectedOption() ? this.options.indexOf(this.selectedOption()!) : -1,
+					this.selectedOption() ? this.options().indexOf(this.selectedOption()!) : -1,
 				);
 				// Emit the opened event when the dropdown is opened
 				this.opened.emit();

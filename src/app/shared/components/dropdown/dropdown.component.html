@@ -2,8 +2,8 @@
 	<!-- Dropdown Trigger -->
 	<div
 		class="dropdown__trigger"
-		[class.disabled]="disabled"
-		[class.error]="error"
+		[class.disabled]="isDisabled()"
+		[class.error]="error()"
 		(click)="toggleDropdown($event)"
 	>
 		<div class="dropdown__selected">
@@ -15,12 +15,12 @@
 					{{ option.label }}
 				</span>
 			} @else {
-				<span class="dropdown__placeholder">{{ placeholder }}</span>
+				<span class="dropdown__placeholder">{{ placeholder() }}</span>
 			}
 		</div>
 
 		<div class="dropdown__actions">
-			@if (clearable && selectedOption()) {
+			@if (clearable() && selectedOption()) {
 				<button type="button" class="dropdown__clear" (click)="clearSelection($event)">
 					<svg width="16" height="16" viewBox="0 0 24 24">
 						<path
@@ -41,7 +41,7 @@
 	<!-- Dropdown Content -->
 	@if (isOpen()) {
 		<div class="dropdown__content" [@dropdownAnimation]>
-			@if (searchable) {
+			@if (searchable()) {
 				<div class="dropdown__search">
 					<input
 						type="text"
@@ -53,7 +53,7 @@
 				</div>
 			}
 
-			@if (loading) {
+			@if (loading()) {
 				<div class="dropdown__loading">
 					<div class="spinner"></div>
 					<span>Loading...</span>
