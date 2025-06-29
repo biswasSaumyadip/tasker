@@ -25,6 +25,6 @@ export class TopBarComponent {
 
 	onSearch(searchTerm: string) {
 		// Handle search functionality
-		console.log('Search term:', searchTerm);
+		console.error('Search term:', searchTerm);
 	}
 }

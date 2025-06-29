@@ -1,4 +1,4 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
 export type PriorityLevel = 'high' | 'medium' | 'low';
 
@@ -11,10 +11,10 @@ export type PriorityLevel = 'high' | 'medium' | 'low';
 	},
 })
 export class PriorityBadgeDirective {
-	@Input({ required: true }) priority!: PriorityLevel;
+	readonly priority = input.required<PriorityLevel>();
 
 	get priorityClass(): string {
-		switch (this.priority.toLocaleLowerCase()) {
+		switch (this.priority().toLocaleLowerCase()) {
 			case 'high':
 				return 'badge-error';
 			case 'medium':

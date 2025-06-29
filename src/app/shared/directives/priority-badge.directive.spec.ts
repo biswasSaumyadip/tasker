@@ -30,8 +30,8 @@ describe('PriorityBadgeDirective', () => {
 	});
 
 	it('should create an instance', () => {
-		const directive = new PriorityBadgeDirective();
-		expect(directive).toBeTruthy();
+		const directiveInstance = divElement.injector.get(PriorityBadgeDirective);
+		expect(directiveInstance).toBeTruthy();
 	});
 
 	it('should add badge-error class for high priority', () => {

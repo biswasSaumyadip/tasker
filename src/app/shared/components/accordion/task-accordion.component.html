@@ -59,10 +59,20 @@
 				<div class="tasker__accordion--actions" [class.visible]="isHovered$ | async">
 					@let iconSize = '15';
 					<div class="edit-icon">
-						<EditIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" />
+						<EditIcon
+							[size]="iconSize"
+							className="color__grey"
+							[stroke]="'inherit'"
+							(click)="edit(task().id)"
+						/>
 					</div>
 					<div class="delete-icon">
-						<TrashIcon [size]="iconSize" className="color__grey" [stroke]="'inherit'" (click)="delete(task().id)" />
+						<TrashIcon
+							[size]="iconSize"
+							className="color__grey"
+							[stroke]="'inherit'"
+							(click)="delete(task().id)"
+						/>
 					</div>
 				</div>
 			</div>

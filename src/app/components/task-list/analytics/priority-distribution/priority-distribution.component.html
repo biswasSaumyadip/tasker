@@ -11,10 +11,10 @@
 		<div class="priority-distribution-card__bar-bg">
 			<div
 				class="priority-distribution-card__bar priority-distribution-card__bar--high"
-				[style.width.%]="(high / max) * 100"
+				[style.width.%]="(high() / max) * 100"
 			></div>
 		</div>
-		<span class="priority-distribution-card__value">{{ high }}</span>
+		<span class="priority-distribution-card__value">{{ high() }}</span>
 	</div>
 
 	<div class="priority-distribution-card__row">
@@ -22,10 +22,10 @@
 		<div class="priority-distribution-card__bar-bg">
 			<div
 				class="priority-distribution-card__bar priority-distribution-card__bar--medium"
-				[style.width.%]="(medium / max) * 100"
+				[style.width.%]="(medium() / max) * 100"
 			></div>
 		</div>
-		<span class="priority-distribution-card__value">{{ medium }}</span>
+		<span class="priority-distribution-card__value">{{ medium() }}</span>
 	</div>
 
 	<div class="priority-distribution-card__row">
@@ -33,9 +33,9 @@
 		<div class="priority-distribution-card__bar-bg">
 			<div
 				class="priority-distribution-card__bar priority-distribution-card__bar--low"
-				[style.width.%]="(low / max) * 100"
+				[style.width.%]="(low() / max) * 100"
 			></div>
 		</div>
-		<span class="priority-distribution-card__value">{{ low }}</span>
+		<span class="priority-distribution-card__value">{{ low() }}</span>
 	</div>
 </div>

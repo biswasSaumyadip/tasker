@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, input } from '@angular/core';
 import { TrendingIconComponent } from '../../../icons/trending-icon.component';
 
 @Component({
@@ -10,6 +10,6 @@ import { TrendingIconComponent } from '../../../icons/trending-icon.component';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PerformanceCardComponent {
-	@Input() avgCompletionTime: number = 0;
-	@Input() overdueTasks: number = 0;
+	readonly avgCompletionTime = input<number>(0);
+	readonly overdueTasks = input<number>(0);
 }

@@ -1,0 +1,75 @@
+@use 'functions' as *;
+
+@mixin label {
+	display: block;
+	font-size: font-size(xl);
+	font-weight: font-weight(medium);
+	line-height: 1.25rem;
+	padding: spacing(4) 0;
+}
+
+.tasker {
+	&__basic {
+		&--label {
+			@include label;
+		}
+
+		&--input {
+			display: block;
+			padding: spacing(4) 0;
+		}
+	}
+
+	&__details {
+		&--label {
+			@include label;
+		}
+	}
+
+	&__card {
+		&--section {
+			background: white;
+		}
+	}
+
+	&__form {
+		@include flex-center;
+		flex-direction: column;
+		width: 100%;
+		gap: spacing(6);
+
+		&--section {
+			width: 100%;
+		}
+
+		&--header {
+			@include flex-center;
+			flex-direction: row;
+			gap: spacing(4);
+			padding: spacing(6);
+		}
+
+		&--title [save] {
+			flex: 1 1 90%;
+			font-size: font-size(5xl);
+			font-weight: font-weight(semibold);
+			letter-spacing: -0.3px;
+		}
+
+		&--back {
+			text-align: center;
+			display: flex;
+			align-items: center;
+		}
+	}
+}
+
+[save] {
+	flex: 1 1 90%;
+	font-size: font-size(5xl);
+	font-weight: font-weight(semibold);
+	letter-spacing: -0.3px;
+
+	display: flex;
+	justify-content: space-between;
+}

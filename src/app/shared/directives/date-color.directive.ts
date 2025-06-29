@@ -3,9 +3,9 @@ import {
 	ElementRef,
 	EnvironmentInjector,
 	inject,
-	Input,
 	OnInit,
 	Renderer2,
+	input,
 } from '@angular/core';
 import { UtilityService } from '../services/utility.service';
 
@@ -14,7 +14,7 @@ import { UtilityService } from '../services/utility.service';
 	standalone: true,
 })
 export class DateColorDirective implements OnInit {
-	@Input({ required: true }) dueDate!: Date | string;
+	readonly dueDate = input.required<Date | string>();
 
 	// CSS classes for date status
 	private readonly PAST_DUE_CLASS = 'date-past-due';
@@ -30,7 +30,8 @@ export class DateColorDirective implements OnInit {
 	}
 
 	private applyColorClass(): void {
-		const dueDateObj = typeof this.dueDate === 'string' ? new Date(this.dueDate) : this.dueDate;
+		const dueDate = this.dueDate();
+		const dueDateObj = typeof dueDate === 'string' ? new Date(dueDate) : dueDate;
 		const today = new Date();
 
 		// Reset hours, minutes, seconds, and milliseconds for accurate day comparison
