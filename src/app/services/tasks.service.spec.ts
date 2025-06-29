@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TasksService } from './tasks.service';
 import { environment } from '../../environments/environment';
-import { Task, TaskResponse, TaskWithChildren } from '../models/task.model';
+import { Task, TaskDetail, TaskResponse, TaskWithChildren } from '../models/task.model';
 import { provideHttpClient } from '@angular/common/http';
 import { UtilityService } from '../shared/services/utility.service';
 
@@ -140,13 +140,41 @@ describe('TasksService', () => {
 	it('should get a single task', () => {
 		const taskId = '1';
 
+		const dummyTaskDetail: TaskDetail = {
+			id: 'task-001',
+			title: 'Finish unit tests',
+			description: 'Write unit tests for the TaskService module',
+			assignedTo: 'user-123',
+			parentId: 'parent-001',
+
+			completed: false,
+			priority: 'MEDIUM',
+
+			dueDate: '2025-06-30T12:00:00Z',
+			tags: ['backend', 'testing'],
+			assignedToName: 'lucas',
+
+			attachments: [
+				{
+					url: 'https://example.com/attachment1.pdf',
+					fileName: 'test-plan.pdf',
+					fileType: 'application/pdf',
+					uploadedAt: '2025-06-15T10:00:00Z',
+				},
+			],
+
+			teamMembers: ['user-123', 'user-456'],
+		};
+		const response: TaskResponse<TaskDetail> = new TaskResponse();
+		response.data = dummyTaskDetail;
+
 		service.getTask(taskId).subscribe((task) => {
-			expect(task).toEqual(mockTask);
+			expect(task).toEqual(dummyTaskDetail);
 		});
 
 		const req = httpMock.expectOne(`${API}/${taskId}`);
 		expect(req.request.method).toBe('GET');
-		req.flush(mockTask);
+		req.flush(response);
 	});
 
 	// Error handling tests

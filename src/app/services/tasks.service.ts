@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Task, TaskResponse, TaskWithChildren } from '../models/task.model';
+import { Task, TaskDetail, TaskResponse, TaskWithChildren } from '../models/task.model';
 import { environment } from '../../environments/environment';
 import { UtilityService } from '../shared/services/utility.service';
 
@@ -29,11 +29,17 @@ export class TasksService {
 		return this.http.post<TaskResponse<Task>>(`${this.API}/${id}/start`, {});
 	}
 
-	getTask(id: string): Observable<Task> {
-		return this.http.get<Task>(`${this.API}/${id}`);
+	getTask(id: string): Observable<TaskDetail> {
+		return this.http
+			.get<TaskResponse<TaskDetail>>(`${this.API}/${id}`)
+			.pipe(map((resp) => resp.data));
 	}
 
 	deleteTask(id: string): Observable<TaskResponse<string>> {
 		return this.http.delete<TaskResponse<string>>(`${this.API}/${id}`);
+	}
+
+	updateTask(formData: FormData, id: string): Observable<TaskResponse<string>> {
+		return this.http.post<TaskResponse<string>>(`${this.API}/${id}`, formData);
 	}
 }
