@@ -44,3 +44,28 @@ export interface Profile {
 	name: string;
 	avatar: string;
 }
+
+export interface TaskDetail {
+	id: string;
+	title: string;
+	description: string;
+	assignedTo: string;
+	assignedToName: string;
+	parentId: string;
+
+	completed: boolean; // default: false
+	priority: 'LOW' | 'MEDIUM' | 'HIGH'; // assuming these are the enum values
+
+	dueDate: string; // use string or Date depending on how you handle Instants
+	tags: string[];
+
+	attachments: Attachment[]; // needs a separate interface
+	teamMembers: string[];
+}
+
+export interface Attachment {
+	url: string;
+	fileName: string;
+	fileType: string;
+	uploadedAt: string; // or Date
+}
